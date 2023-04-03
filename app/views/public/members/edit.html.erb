@@ -26,13 +26,13 @@
             <tr>
               <th><%= f.label :favorite_genre, "好きなワインのジャンル" %></th>
               <td colspan="2">
-                <%#= f.text_field :favorite_genre, @member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
+                <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
               </td>
             </tr>
             <tr>
               <th><%= f.label :prefecture, "在住県" %></th>
               <td colspan="2">
-                <%= f.select :prefecture, @member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
+                <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
               </td>
             </tr>
             <tr>

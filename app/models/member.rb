@@ -6,12 +6,12 @@ class Member < ApplicationRecord
          
   has_one_attached :profile_image
   
-  def get_profile_image
+  def get_profile_image(width,height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+    profile_image.variant(resize_to_limit:[width, height]).processed
   end
   
   #ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないよう制約
@@ -20,10 +20,10 @@ class Member < ApplicationRecord
     super && (is_deleted == false)
   end
   
-  #enum favorite_genre: { 
-    #"All":0,
-    # "Sparkling":1,"Red":2,"White":3,"Rose":4,"Orengee":5,"Others":6
-  # }
+  enum favorite_genre: { 
+    All:0,
+     Sparkling:1,Red:2,White:3,Rose:4,Orengee:5,Others:6
+   }
   
   enum prefecture: { 
      "---":0,
