@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>マイページ編集</h2>
+    </div>
+  </div>
+  <%= form_with model:@member, url: update_information_path do |f| %>
+  <%#= render "public/shared/error_messages", resource: resource %>
+
+  
+    <div class="row">
+			 <div class ="col">
+			   <table class="table table-bordered">
+            <tr>
+              <th><%= f.label :name, "ユーザー名" %></th>
+              <td colspan="2"><%= f.text_field :name, :placeholder =>"#{@member.name}" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :email, "メールアドレス" %></th>
+              <td colspan="2"><%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>"#{@member.email}" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :profile_image, "プロフィール画像" %></th>
+              <td colspan="2"><%= f.file_field :profile_image, accept: "image/*", :placeholder =>"#{@member.profile_image}" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :favorite_genre, "好きなワインのジャンル" %></th>
+              <td colspan="2">
+                <%#= f.text_field :favorite_genre, @member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
+              </td>
+            </tr>
+            <tr>
+              <th><%= f.label :prefecture, "在住県" %></th>
+              <td colspan="2">
+                <%= f.select :prefecture, @member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
+              </td>
+            </tr>
+            <tr>
+              <th><%= f.label :introduction, "紹介文" %></th>
+              <td colspan="2"><%= f.text_field :introduction, :placeholder =>"#{@member.introduction}" %></td>
+            </tr>
+         </table>
+       </div>
+    </div>
+
+    <div class="row">
+      <div class ="col">
+        <%= f.submit "編集内容を保存", class:"btn btn-success my-4" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-danger" %>
+        <%= link_to "Back", :back, class:"btn btn-secondary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,12 +1,15 @@
 class Public::MembersController < ApplicationController
   
   def show
+    @member = current_member
   end
 
   def edit
+    @member = current_member
   end
   
   def update
+    @member = current_member
     if @member.update(member_params)
       redirect_to mypage_path, notice: '会員情報の更新が完了しました。'
     else
@@ -18,8 +21,11 @@ class Public::MembersController < ApplicationController
   end
 
   def withdraw
-    @member.update(is_active: false)
+    @member = current_member
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @member.update(is_deleted: true)
     reset_session
+    flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
 

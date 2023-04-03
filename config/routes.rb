@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     root 'homes#top'
     get "/about" => "homes#about"
     get 'members/mypage' => 'members#show', as: 'mypage'
+    # members/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
+    get 'members/information/edit' => 'members#edit', as: 'edit_information'
+    patch 'members/information' => 'members#update', as: 'update_information'
+    get 'members/unsubscribe' => 'members#unsubscribe', as: 'confirm_unsubscribe'
+    put 'members/information' => 'members#update'
+    patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_members'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
