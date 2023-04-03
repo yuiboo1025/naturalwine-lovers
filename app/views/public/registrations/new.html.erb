@@ -1,0 +1,43 @@
+<h2>Sign up</h2>
+
+<%= form_with model: @member, url: member_registration_path do |f| %>
+  <%= render "public/shared/error_messages", resource: resource %>
+  
+  <table class="member_info member_form">
+      <thead>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.label :name, "ユーザー名" %></td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :email, "メールアドレス" %></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password, "パスワード" %></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+          <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2"><%= f.submit "新規登録", class: "btn btn-success" %></td>
+        </tr>
+      </tbody>
+  </table>
+<% end %>
+
+<h2 class="section-ttl">既に登録済みの方</h2>
+<p><%= link_to "こちら", new_member_session_path, class: "underline" %>からログインしてください。</p>
+
+<%= render "public/shared/links" %>
