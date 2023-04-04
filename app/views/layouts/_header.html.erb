@@ -14,13 +14,13 @@
               <%#= link_to "商品一覧", admin_items_path, class: 'nav-link btn pr-3 pl-3 ml-4', :style=>"background-color:#fcfced;" %>
             </li>
             <li class="nav-item">
-              <%#= link_to "会員一覧", admin_customers_path, class: 'nav-link btn pr-3 pl-3 ml-4', :style=>"background-color:#fcfced;" %>
+              <%= link_to "会員一覧", admin_members_path, class: 'nav-link btn pr-3 pl-3 ml-4', :style=>"background-color:#fcfced;" %>
             </li>
             <li class="nav-item">
               <%#= link_to "注文履歴一覧", admin_root_path, class: 'nav-link btn pr-1 pl-1 ml-4', :style=>"background-color:#fcfced;" %>
             </li>
             <li class="nav-item">
-              <%#= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link btn pr-1 pl-1 ml-4', :style=>"background-color:#fcfced;" %>
+              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link btn pr-1 pl-1 ml-4', :style=>"background-color:#fcfced;" %>
             </li>
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn pr-2 pl-2 ml-4', :style=>"background-color:#fcfced;" %>
@@ -37,7 +37,7 @@
               <%#= link_to "商品一覧", items_path, class: 'nav-link btn pr-3 pl-3 ml-4', :style=>"background-color:#fcfced;" %>
             </li>
             <li class="nav-item">
-              <%#= link_to "カート", cart_items_path, class: 'nav-link btn pr-4 pl-4 ml-4', :style=>"background-color:#fcfced;" %>
+              <%= link_to "ナチュール投稿", new_wine_path, class: 'nav-link btn pr-4 pl-4 ml-4', :style=>"background-color:#fcfced;" %>
             </li>
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: 'nav-link btn pr-1 pl-1 ml-4', :style=>"background-color:#fcfced;" %>

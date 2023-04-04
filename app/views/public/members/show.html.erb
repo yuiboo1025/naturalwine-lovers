@@ -19,11 +19,6 @@
           <th class="table-active">プロフィール画像</th>
           <td>
             <%= image_tag @member.get_profile_image(100,100) %>
-            <%# if @member.profile_image.attached? %>
-              <%#= image_tag @member.profile_image, size: "200x200" %>
-            <%# else %>
-              <%#= image_tag 'no_image', size: "200x200" %>
-            <%# end %>
           </td>
         </tr>
         <tr>
@@ -34,7 +29,6 @@
           <th class="table-active">メールアドレス</th>
           <td><%= @member.email %></td>
         </tr>
-        
         <tr>
           <th class="table-active">好きなワインのジャンル</th>
           <td><%= @member.favorite_genre %></td>

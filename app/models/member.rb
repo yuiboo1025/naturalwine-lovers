@@ -4,8 +4,11 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  has_many :wines,dependent: :destroy
+         
   has_one_attached :profile_image
   
+  #プロフィール写真を表示するためのメソッドを作成
   def get_profile_image(width,height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -22,7 +25,7 @@ class Member < ApplicationRecord
   
   enum favorite_genre: { 
     All:0,
-     Sparkling:1,Red:2,White:3,Rose:4,Orengee:5,Others:6
+     Sparkling:1,White:2,Red:3,Rose:4,Orange:5,Others:6
    }
   
   enum prefecture: { 

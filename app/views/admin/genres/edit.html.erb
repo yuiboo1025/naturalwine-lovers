@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="card rounded col-4 mx-auto mt-4" style="background-color:#fcfced;" >
+    <div class="row">
+      <div class="col-12 p-0">
+        <div class="card-header">
+          <h4 class="text-center">ジャンル編集</h4>
+        </div>
+        <div class="p-2 text-center">
+          <%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch, local: true do |f| %>
+            <%= f.label :genre_name, "ジャンル名" %>
+            <%= f.text_field :genre_name, value: @genre.genre_name, style:"background-color:#fcfced", class:"my-3" %>
+            <div>
+              <%= f.submit "変更を保存", class: "btn pr-2 pl-2 my-3", style:"color:#007b43; background-color:#badcad;"%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

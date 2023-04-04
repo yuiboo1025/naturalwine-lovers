@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
+    get 'top' => 'homes#top', as: 'top'
+    resources :members, only: [:index, :show, :edit, :update]
+    resources :genres, only: [:index, :edit, :create, :update]
   end
   
   scope module: :public do
@@ -24,6 +27,7 @@ Rails.application.routes.draw do
     get 'members/unsubscribe' => 'members#unsubscribe', as: 'confirm_unsubscribe'
     put 'members/information' => 'members#update'
     patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_members'
+    resources :wines, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

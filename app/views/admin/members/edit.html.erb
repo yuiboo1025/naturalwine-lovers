@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 card p-0" style="background-color:#fcfced">
+      <div class="card-header text-center mt-0" style="margin-top:20px; margin-bottom:20px;">
+        <h4><%= @member.name %>さんの会員情報編集</h4>
+      </div>
+      <%= form_with model: @member, url: admin_member_path do |f| %>
+        <table class="table table-borderless">
+          <thead>
+              <tr>
+                <td>ユーザーID</td>
+                <td><%= @member.id %></td>
+              </tr>
+              <tr>
+                <td>プロフィール画像</td>
+                <td class="form-group">
+                  <%= f.file_field :profile_image, accept: "image/*", :placeholder =>"#{@member.profile_image}" %>
+                </td>
+              </tr>
+              <tr>
+                <td>ユーザーネーム</td>
+                <td class="form-group">
+                  <%= f.text_field :name, :placeholder =>"#{@member.name}" %>
+                </td>
+              </tr>
+              <tr>
+                <td>メールアドレス</td>
+                <td class="form-group"><%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>"#{@member.email}" %></td>
+              </tr>
+              <tr>
+                <td>好きなワインのジャンル</td>
+                <td class="form-group"><%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %></td>
+              </tr>
+              <tr>
+                <td>在住県</td>
+                <td class="form-group"><%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %></td>
+              </tr>
+              <tr>
+                <td>紹介文/td>
+                <td class="form-group"><%= f.text_area :introduction, :placeholder =>"#{@member.introduction}" %></td>
+              </tr>
+              <tr>
+                <td>会員ステータス</td>
+                <td class="form-group">
+                  <%= f.radio_button :is_deleted, "false" %>
+                  <%= f.label :is_deleted_false, "有効" %>
+                  <%= f.radio_button :is_deleted, "true", class:"ml-4" %>
+                  <%= f.label :is_deleted_false, "退会" %>
+                </td>
+              </tr>
+                <tr>
+                <td></td>
+                <td class="form-group">
+                  <%= f.submit "変更を保存", class: "btn mr-5", :style=>"color:#007b43; background-color:#badcad;" %>
+                </td>
+              </tr>
+          </thead>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

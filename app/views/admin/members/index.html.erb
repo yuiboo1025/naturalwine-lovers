@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="card rounded col-9 mx-auto mt-4" style="background-color:#fcfced;" >
+    <div class="row">
+      <div class="col-12 p-0">
+        <h4 class="text-center p-2">会員一覧</h4>
+        <table class="table table-hover mb-0 text-center" style="background-color:#fcfced">
+          <thead class="table-active">
+            <tr>
+              <th><%= "ユーザーID" %></th>
+              <th><%= "プロフィール画像" %></th>
+              <th><%= "ユーザーネーム" %></th>
+              <th><%= "メールアドレス" %></th>
+              <th><%= "ステータス" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.each do |member| %>
+              <tr>
+                <td><%= member.id %></td>
+                <td><%= image_tag member.get_profile_image(100,100) %></td>
+                <td><%= link_to member.name, admin_member_path(member.id), class:"text-dark" %></td>
+                <td><%= member.email %></td>
+                <% if member.is_deleted == false %>
+                  <td class="text-success">有効</td>
+                <% else %>
+                  <td class="text-secondary">退会</td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <%#= paginate @customers %>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>投稿詳細</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= image_tag @wine.get_wine_image(50,50) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <tr>
+          <th><%= image_tag @wine.member.get_profile_image(50,50) %></th>
+          <td><%= @wine.member.name %> </td>
+        </tr>
+        <tr>
+          <th>投稿日</th>
+          <td><%= @wine.created_at.strftime('%Y/%m/%d') %> </td>
+        </tr>
+        <tr>
+          <th>生産国</th>
+          <td><%= @wine.production_country %> </td>
+        </tr>
+        <tr>
+          <th>年代</th>
+          <td><%= @wine.production_year %> </td>
+        </tr>
+        <tr>
+          <th>年代</th>
+          <td><%= @wine.genre_id.gerne_name %> </td>
+        </tr>
+        <tr>
+          <th>評価</th>
+          <td><%= @wine.impression %> </td>
+        </tr>
+      </table>
+      <% if @wine.member == current_member %>
+        <%= link_to "編集", edit_wine_path(@wine) %>
+        <%= link_to "削除", wine_path(@wine), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    　<% end %>
+    </div>
+  </div>
+      

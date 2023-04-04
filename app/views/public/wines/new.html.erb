@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="text-center my-3">
+    <%# if @wine.errors.any? %>
+      <h3 class="text-danger">
+        <%#= @message %>
+      </h3>
+    <%# end %>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <h2>ナチュール投稿</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <%= form_with model: @wine do |f| %>
+        <tr>
+          <th class="table-active">記録するナチュール写真</th>
+          <td>
+            <%= f.file_field :wine_image, accept: "image/*" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">飲食店</th>
+          <td>
+            <%#= f.text_field :shop_name, placeholder:"ショップ名" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">商品名</th>
+          <td>
+            <%= f.text_field :wine_name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">生産国</th>
+          <td>
+            <%= f.text_field :production_country %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">生産年</th>
+          <td>
+            <%= f.text_field :production_year %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">種類</th>
+          <td>
+            <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "--選択してください--", class: "form-control border-dark", style: "background-color:#fcfced" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">評価</th>
+          <td>
+            <%#= f.hidden_field :rate %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">感想</th>
+          <td>
+            <%= f.text_area :impression %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">また飲みたい判定</th>
+          <td>
+            <%= f.radio_button :is_again, true %>
+　　　　　　<%= f.label :is_again_true, "また飲みたいリストに入れる" %>
+
+　　　　　　<%= f.radio_button :is_again, false %>
+　　　　　　<%= f.label :is_again_false, "また飲みたいリストには入れない" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+    </div>
+  </div>
+  <% end %>
+</div>
