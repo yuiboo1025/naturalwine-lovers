@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <%= image_tag @wine.get_wine_image(50,50) %>
+      <%= image_tag @wine.get_wine_image(300,300) %>
     </div>
   </div>
   <div class="row">
@@ -30,7 +30,7 @@
         </tr>
         <tr>
           <th>年代</th>
-          <td><%= @wine.genre_id.gerne_name %> </td>
+          <td><%= @wine.genre.genre_name %> </td>
         </tr>
         <tr>
           <th>評価</th>

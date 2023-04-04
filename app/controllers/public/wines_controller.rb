@@ -2,7 +2,7 @@ class Public::WinesController < ApplicationController
   before_action :authenticate_member!
   
   def index
-    @wine = Wine.all
+    @wines = Wine.all
   end
   
   def show
@@ -18,7 +18,7 @@ class Public::WinesController < ApplicationController
   end
 
   def create
-    @wine = Wine.new(wine_params)
+    @wine = current_member.wines.new(wine_params)
     @wine.save
     redirect_to wine_path(@wine.id)
     

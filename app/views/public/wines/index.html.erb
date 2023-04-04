@@ -1,1 +1,26 @@
-<h1>投稿一覧画面</h1>
+<div class='container'>
+  <div class='row', style="width: 100%;">
+    <div class='col card p-0' style="background-color:#fcfced;">
+      <div class="row card-header m-0">
+        <div class="text-center mx-auto">
+          <h4>投稿一覧<span class="h5"> (全<%= @wines.count %>件)</span></h4>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center mt-1">
+        <% @wines.each do |wine| %>
+          <div class="card my-2 pt-1 px-1" style="margin-left:2px; margin-right:2px;">
+            <%= link_to wine_path(wine) do %>
+              <%= image_tag wine.get_wine_image(150,150) %>
+            <% end %>
+            <div class="d-flex flex-wrap justify-content-center pt-2" style="width:150px;"><strong><%= wine.member.name %></strong></div>
+            <div class="text-center"><strong>a</strong></div>
+          </div>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-center mt-5">
+        <%#= paginate @active_items %>
+      </div>
+
+    </div>
+  </div>
+</div>
