@@ -34,7 +34,19 @@
         </tr>
         <tr>
           <th>評価</th>
+          <td><%= render "static_rate", wine: @wine %></td>
+        </tr>
+        <tr>
+          <th>感想</th>
           <td><%= @wine.impression %> </td>
+        </tr>
+        <tr>
+          <th></th>
+          <% if @wine.is_again == false %>
+            <td class="text-success"></td>
+          <% else %>
+            <td class="text-secondary">また飲みたい</td>
+          <% end %>
         </tr>
       </table>
       <% if @wine.member == current_member %>
@@ -43,4 +55,31 @@
     　<% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <div id = "wine_<%= @wine.id %>">
+        <p>コメント件数：<%= @wine.comments.count %></p>
+        
+        <div class= "favorite-btn" >
+          <%= render 'favorites/favorite-btn', wine: @wine %>
+        </div>
+      
+          <% @wine.comments.each do |comment| %>
+            <p><%= image_tag comment.member.get_profile_image(100,100) %></p>
+            <%= comment.member.name %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+            <% if comment.member == current_member %>
+              <%= link_to "削除", wine_comment_path(comment.wine, comment), method: :delete %>
+            <% end %>
+          <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@wine, @comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
       

@@ -1,0 +1,28 @@
+
+      <div class="d-flex flex-wrap justify-content-center mt-1">
+        <% wines.each do |wine| %>
+          <div class="card my-2 pt-1 px-1" style="margin-left:2px; margin-right:2px;">
+            <%= link_to wine_path(wine) do %>
+              <%= image_tag wine.get_wine_image(200,200) %>
+            <% end %>
+            <div class="d-flex flex-wrap justify-content-center pt-2" style="width:150px;">
+              <strong>
+                <%= link_to wines_myindex_path(wine.member.id) do %>
+                 <%= wine.member.name %>
+                <% end %>
+              </strong>
+            </div>
+            <div class="text-center">
+                <%= link_to wine_path(wine.id) do%>
+                  <i class="far fa-comment"></i><%= wine.comments.count %>
+                <% end %>
+                
+                <% if wine.favorited_by?(current_member) %>
+                  <p>♥<%= wine.favorites.count %></p>
+                <% else %>
+                  <p> ♡<%= wine.favorites.count %></p>
+                 <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>

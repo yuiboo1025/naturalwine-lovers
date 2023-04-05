@@ -5,8 +5,14 @@ class Public::WinesController < ApplicationController
     @wines = Wine.all
   end
   
+  def myindex
+    @member = Member.find(params[:id])
+    @wines = @member.wines.all
+  end
+  
   def show
     @wine = Wine.find(params[:id])
+    @comment = Comment.new
   end
   
   def new
@@ -50,6 +56,10 @@ class Public::WinesController < ApplicationController
 
   def wine_params
     params.require(:wine).permit(:member_id, :genre_id, :spot_id, :wine_name, :production_country, :production_year, :rate, :impression, :is_again, :wine_image)
+  end
+  
+  def member_params
+    params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction)
   end
   
 end

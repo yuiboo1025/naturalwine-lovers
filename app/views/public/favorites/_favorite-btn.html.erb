@@ -1,0 +1,9 @@
+    <% if wine.favorited_by?(current_member) %>
+       <%= link_to wine_favorites_path(wine),method: :delete, remote: true do %>
+       ♥<%= wine.favorites.count %>
+       <% end %>
+    <% else %>
+      <%= link_to wine_favorites_path(wine),method: :post, remote: true  do %>
+      ♡<%= wine.favorites.count %>
+      <% end %>
+    <% end %>

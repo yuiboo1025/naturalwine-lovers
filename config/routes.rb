@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     get 'members/unsubscribe' => 'members#unsubscribe', as: 'confirm_unsubscribe'
     put 'members/information' => 'members#update'
     patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_members'
-    resources :wines, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    get 'wines/myindex/:id' => 'wines#myindex', as: 'wines_myindex'
+    resources :wines, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      #1人のメンバーは1つの投稿に対して1回しかいいねできないためいいねのidはURLに含める必要がない(params[:id]を使わなくても良い)
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

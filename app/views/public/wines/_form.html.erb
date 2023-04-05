@@ -38,12 +38,38 @@
             <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "--選択してください--", class: "form-control border-dark", style: "background-color:#fcfced" %>
           </td>
         </tr>
+        
         <tr>
           <th class="table-active">評価</th>
           <td>
-            <%#= f.hidden_field :rate %>
+            <% if wine.id.nil? %>
+              <div class="form-group" id="star">
+                <%= f.hidden_field :rate, id: :review_star, class: 'form-control' %>
+                <div id="post_raty"></div>
+              </div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#post_raty');
+                  if (elem == null) return;
+  
+                  elem.innerHTML = ""
+                  let opt = {  
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    scoreName: 'wine[rate]',
+                   };
+                  raty(elem, opt);
+                 });
+              </script>
+            <% else %>
+              <div class="form-group">
+                <%= render "static_rate", wine: wine %>
+              </div>
+            <% end %>
           </td>
         </tr>
+        
         <tr>
           <th class="table-active">感想</th>
           <td>
