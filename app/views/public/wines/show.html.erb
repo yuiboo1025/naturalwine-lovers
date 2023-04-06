@@ -58,28 +58,23 @@
   <div class="row">
     <div class="col">
       <div id = "wine_<%= @wine.id %>">
-        <p>コメント件数：<%= @wine.comments.count %></p>
-        
         <div class= "favorite-btn" >
-          <%= render 'favorites/favorite-btn', wine: @wine %>
+          <%= render 'public/favorites/favorite-btn', wine: @wine %>
         </div>
+      </div>
       
-          <% @wine.comments.each do |comment| %>
-            <p><%= image_tag comment.member.get_profile_image(100,100) %></p>
-            <%= comment.member.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-            <% if comment.member == current_member %>
-              <%= link_to "削除", wine_comment_path(comment.wine, comment), method: :delete %>
-            <% end %>
-          <% end %>
+      <div class="comments-count">
+        <%= render "public/comments/counter", wine: @wine %>
       </div>
-      <div>
-        <%= form_with model: [@wine, @comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
+      
+      <div class="comment">
+        <%= render "public/comments/comment", wine: @wine %>
       </div>
+
+      <div class="form">
+        <%= render "public/comments/form", wine: @wine, comment: @comment %>
+      </div>
+      
     </div>
   </div>
 </div>
-      

@@ -1,0 +1,12 @@
+        <div> 
+          <% wine.comments.each do |comment| %>
+            <p><%= image_tag comment.member.get_profile_image(100,100) %></p>
+            <%= link_to wines_myindex_path(wine.member.id) do %>
+              <%= comment.member.name %>
+            <% end %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+            <% if comment.member == current_member %>
+              <%= link_to "削除", wine_comment_path(comment.wine, comment), remote: true, method: :delete %>
+            <% end %>
+          <% end %>
+        </div> 

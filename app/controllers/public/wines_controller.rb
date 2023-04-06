@@ -1,20 +1,20 @@
 class Public::WinesController < ApplicationController
   before_action :authenticate_member!
-  
+
   def index
     @wines = Wine.all
   end
-  
+
   def myindex
     @member = Member.find(params[:id])
     @wines = @member.wines.all
   end
-  
+
   def show
     @wine = Wine.find(params[:id])
     @comment = Comment.new
   end
-  
+
   def new
     @wine = Wine.new
   end
@@ -27,7 +27,7 @@ class Public::WinesController < ApplicationController
     @wine = current_member.wines.new(wine_params)
     @wine.save
     redirect_to wine_path(@wine.id)
-    
+
     #if @wine.save
      # redirect_to wine_path(@wine.id)
    # else
@@ -51,15 +51,15 @@ class Public::WinesController < ApplicationController
     wine.destroy
     redirect_to wines_path
   end
-  
+
   private
 
   def wine_params
     params.require(:wine).permit(:member_id, :genre_id, :spot_id, :wine_name, :production_country, :production_year, :rate, :impression, :is_again, :wine_image)
   end
-  
+
   def member_params
     params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction)
   end
-  
+
 end
