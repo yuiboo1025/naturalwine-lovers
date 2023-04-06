@@ -17,6 +17,7 @@ class Public::WinesController < ApplicationController
 
   def new
     @wine = Wine.new
+    @spot = Spot.find(params[:spot_id])
   end
 
   def edit
@@ -60,6 +61,10 @@ class Public::WinesController < ApplicationController
 
   def member_params
     params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction)
+  end
+  
+  def spot_params
+    params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
   end
 
 end

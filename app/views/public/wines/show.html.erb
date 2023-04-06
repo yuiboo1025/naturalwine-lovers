@@ -6,15 +6,19 @@
   </div>
   <div class="row">
     <div class="col">
-      <%= image_tag @wine.get_wine_image(300,300) %>
+      📍<%= @wine.spot.spot_name %></br>
+      〒<%= @wine.spot.address %>
     </div>
   </div>
   <div class="row">
     <div class="col">
+      <%= image_tag @wine.get_wine_image(400,400) %>
+    </div>
+    <div class="col">
       <table class="table table-bordered">
         <tr>
           <th><%= image_tag @wine.member.get_profile_image(50,50) %></th>
-          <td><%= @wine.member.name %> </td>
+          <td><%= @wine.member.name %></td>
         </tr>
         <tr>
           <th>投稿日</th>

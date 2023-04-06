@@ -11,7 +11,8 @@
         <tr>
           <th class="table-active">飲食店</th>
           <td>
-            <%#= f.text_field :shop_name, placeholder:"ショップ名" %>
+            <%= spot.spot_name %>
+            <%= f.hidden_field :spot_id, value: spot.id %>
           </td>
         </tr>
         <tr>
