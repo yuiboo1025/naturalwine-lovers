@@ -22,6 +22,7 @@ class Public::WinesController < ApplicationController
 
   def edit
     @wine = Wine.find(params[:id])
+    @spot = @wine.spot
   end
 
   def create
