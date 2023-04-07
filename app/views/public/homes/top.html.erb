@@ -1,1 +1,21 @@
-<h1>Topページ</h1>
+<div class ="main-visual">
+  <div class="container justify-content-center text-center mt-5">
+     <%= image_tag "logo4.jpg", class: "rounded-circle", size: "300x300", :style=>"border: 2px solid #3d83bf" %>
+    <div class ="row main-visual__catch-copy my-3 justify-content-center" >
+     <h2>Let's enjoy Naturalwine!!!</h2>
+    </div>
+       <div class="row main-visual__sign justify-content-center">
+         <div class ="col-3 p-5" style="background-color: #ffd700;","color:#ffffff;">
+           <%= link_to "Mapからお店を探す",spots_path %>
+         </div>
+         <div class ="col-3 p-5 mx-3" style="background-color: #f0e68c;">
+           <%= link_to "みんなが飲んでるナチュールを見る",spots_path %>
+         </div>
+         <div class ="col-3 p-5" style="background-color: #90ee90">
+           <%= link_to "ナチュールを投稿する",new_spot_path %>
+         </div>
+         
+         
+       </div>
+  </div>
+</div>

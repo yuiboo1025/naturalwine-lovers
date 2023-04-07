@@ -1,2 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import url('https://fonts.googleapis.com/css2?family=M PLUS Rounded 1c&display=swap');
+
+html{
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+header{
+  border-bottom: 3px solid #3d83bf;
+}
+
+.toplink{
+  background-color: #deb887;
+  color: white;
+}

@@ -2,8 +2,11 @@
       <div class="d-flex flex-wrap justify-content-center mt-1">
         <% wines.each do |wine| %>
           <div class="card my-2 pt-1 px-1" style="margin-left:2px; margin-right:2px;">
+            <%= link_to spot_path(wine.spot) do %>
+              📍<%= wine.spot.spot_name %>
+            <% end %>
             <%= link_to wine_path(wine) do %>
-              <%= image_tag wine.get_wine_image(200,200) %>
+              <%= image_tag wine.get_wine_image(250,250) %>
             <% end %>
             <div class="d-flex flex-wrap justify-content-center pt-2" style="width:150px;">
               <strong>
@@ -13,7 +16,6 @@
               </strong>
             </div>
             <div class="text-center">
-              <%#= wine.spot.spot_name %>
                 <%= link_to wine_path(wine.id) do%>
                   <i class="far fa-comment"></i><%= wine.comments.count %>
                 <% end %>
