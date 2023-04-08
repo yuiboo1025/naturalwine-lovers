@@ -1,18 +1,16 @@
 <div class='container'>
-  <div class='row', style="width: 100%;">
-    <div class='col card p-0' style="background-color:#fcfced;">
-      <div class="row card-header m-0">
-        <div class="text-center mx-auto">
-          <h4>投稿一覧<span class="h5"> (全<%= @wines.count %>件)</span></h4>
-        </div>
-      </div>
-      
-      <%= render 'index', wines:@wines %>
+  <div class='row'>
+    <div class='col text-center mx-auto',  style="color:#3d83bf;">
+      <h4>投稿一覧<span class="h5"> (全<%= @wines.count %>件)</span></h4>
+    </div>
+  </div>
+      <%= render 'index', wines:@wines, genres:@genres%>
       
       <div class="d-flex justify-content-center mt-5">
         <%#= paginate @active_items %>
       </div>
 
-    </div>
-  </div>
 </div>
+
+<div class='col card p-0' style="background-color:#fcfced;">
+  </div>
