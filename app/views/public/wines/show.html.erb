@@ -1,68 +1,69 @@
-<div class="container">
-  <div class="row mt-5 wine_">
-    <div class="col">
-      📍<%= @wine.spot.spot_name %></br>
-      〒<%= @wine.spot.address %></br>
-      <%= image_tag @wine.get_wine_image(400,400) %></br>
-      <div id = "wine_<%= @wine.id %>">
-        <div class= "favorite-btn" >
-          <%= render 'public/favorites/favorite-btn', wine: @wine %>
+<div class="container justify-content-center wine_show_main">
+  <div class="row mt-5 justify-content-center wine_show ">
+    <div class="wine_show_contents">
+        <div class="col">
+          📍<%= @wine.spot.spot_name %></br>
+           〒<%= @wine.spot.address %></br>
+           <%= image_tag @wine.get_wine_image(400,400) %></br>
+           <div id= "wine_<%= @wine.id %>">
+             <div class= "favorite-btn" >
+               <%= render 'public/favorites/favorite-btn', wine: @wine %>
+             </div>
+           </div>
+        </div>
+        <div class="col mt-5">
+          <table class="table">
+            <tr>
+              <th><%= image_tag @wine.member.get_profile_image(50,50) %></th>
+              <td><%= @wine.member.name %></td>
+            </tr>
+            <tr>
+              <th>投稿日</th>
+              <td><%= @wine.created_at.strftime('%Y/%m/%d') %> </td>
+            </tr>
+            <tr>
+              <th>生産国</th>
+              <td><%= @wine.production_country %> </td>
+            </tr>
+            <tr>
+              <th>年代</th>
+              <td><%= @wine.production_year %> </td>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
+              <td><%= @wine.genre.genre_name %> </td>
+            </tr>
+            <tr>
+              <th>評価</th>
+              <td><%= render "static_rate", wine: @wine %></td>
+            </tr>
+            <tr>
+              <th>感想</th>
+              <td><%= @wine.impression %> </td>
+            </tr>
+            <tr>
+              <th></th>
+              <% if @wine.is_again == false %>
+                <td class="text-success"></td>
+              <% else %>
+                <td class="text-secondary">また飲みたい</td>
+              <% end %>
+            </tr>
+          </table>
+          <div class="wine_show__update_destroy_btn">
+            <% if @wine.member == current_member %>
+              <%= link_to "編集", edit_wine_path(@wine) %>
+              <%= link_to "削除", wine_path(@wine), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          　<% end %>
+        　</div>
         </div>
       </div>
+      <div class="wine_show_map">
+        <h5>map</h5>
+      </div>
     </div>
-    <div class="col mt-5">
-      <table class="table table-bordered">
-        <tr>
-          <th><%= image_tag @wine.member.get_profile_image(50,50) %></th>
-          <td><%= @wine.member.name %></td>
-        </tr>
-        <tr>
-          <th>投稿日</th>
-          <td><%= @wine.created_at.strftime('%Y/%m/%d') %> </td>
-        </tr>
-        <tr>
-          <th>生産国</th>
-          <td><%= @wine.production_country %> </td>
-        </tr>
-        <tr>
-          <th>年代</th>
-          <td><%= @wine.production_year %> </td>
-        </tr>
-        <tr>
-          <th>ジャンル</th>
-          <td><%= @wine.genre.genre_name %> </td>
-        </tr>
-        <tr>
-          <th>評価</th>
-          <td><%= render "static_rate", wine: @wine %></td>
-        </tr>
-        <tr>
-          <th>感想</th>
-          <td><%= @wine.impression %> </td>
-        </tr>
-        <tr>
-          <th></th>
-          <% if @wine.is_again == false %>
-            <td class="text-success"></td>
-          <% else %>
-            <td class="text-secondary">また飲みたい</td>
-          <% end %>
-        </tr>
-      </table>
-      <% if @wine.member == current_member %>
-        <%= link_to "編集", edit_wine_path(@wine) %>
-        <%= link_to "削除", wine_path(@wine), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    　<% end %>
-    </div>
-  </div>
   <div class="row">
     <div class="col">
-      <div id = "wine_<%= @wine.id %>">
-        <div class= "favorite-btn" >
-          <%= render 'public/favorites/favorite-btn', wine: @wine %>
-        </div>
-      </div>
-      
       <div class="comments-count">
         <%= render "public/comments/counter", wine: @wine %>
       </div>

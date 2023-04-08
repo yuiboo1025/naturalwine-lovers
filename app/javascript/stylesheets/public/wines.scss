@@ -22,6 +22,22 @@
 //  display:block;
 //}
 
-.wine_show {
-  border: 2px solid #3d83bf;
+.wine_show_main {
+  color: #555555;
+  .table{
+    color: #555555;
+  }
+}
+
+.wine_show_contents {
+  background-color: #faebd7;
+  border-radius: 20px;
+  padding: 5%;
+  //margin-top:5%;
+  //margin-bottom: 10%;
+  display: flex;
+}
+
+.wine_show__update_destroy_btn {
+  text-align: right;
 }
