@@ -1,20 +1,16 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>投稿詳細</h2>
-    </div>
-  </div>
-  <div class="row">
+  <div class="row mt-5 wine_">
     <div class="col">
       📍<%= @wine.spot.spot_name %></br>
-      〒<%= @wine.spot.address %>
+      〒<%= @wine.spot.address %></br>
+      <%= image_tag @wine.get_wine_image(400,400) %></br>
+      <div id = "wine_<%= @wine.id %>">
+        <div class= "favorite-btn" >
+          <%= render 'public/favorites/favorite-btn', wine: @wine %>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%= image_tag @wine.get_wine_image(400,400) %>
-    </div>
-    <div class="col">
+    <div class="col mt-5">
       <table class="table table-bordered">
         <tr>
           <th><%= image_tag @wine.member.get_profile_image(50,50) %></th>

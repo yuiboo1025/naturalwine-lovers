@@ -15,6 +15,13 @@ class Public::WinesController < ApplicationController
   def myindex
     @member = Member.find(params[:id])
     @wines = @member.wines.all
+    @genres = Genre.all
+    if params[:genre_id]
+		  @genre = Genre.find(params[:genre_id])
+		  @wines = @genre.wines
+    else
+      @wines = @member.wines.all
+    end
   end
 
   def show

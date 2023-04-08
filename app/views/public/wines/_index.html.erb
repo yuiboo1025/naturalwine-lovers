@@ -2,6 +2,7 @@
 <div class ="row justify-content-center" >
   <div class ="col">
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+      <!--Allタブを作成　ジャンルIDがないとき（Allを選択）はactiveclassにする-->
       <li class="nav-item">
         <%= link_to wines_path do %>
           <li class="nav-item">
@@ -9,6 +10,7 @@
           </li>
         <% end %>
       </li>
+      <!--ジャンルごとにタブを作成　ジャンルIDがあるとき（All以外のジャンル）はactiveにclassする-->
       <% genres.each do |genre| %>
         <%= link_to wines_path(genre_id: genre.id) do %>
           <li class="nav-item">
@@ -17,13 +19,13 @@
         <% end %>
       <% end %>
     </ul>
-  </div>
+   </div>
 </div>
 
 <!-- タブの内容作成-->
 <div class ="row justify-content-center d-flex flex-wrap">
   <div class ="tab-content" id="myTabContent">
-    <!--Allリスト-->
+
     <div id="all" class="tab-pane fade show active justify-content-center d-flex flex-wrap active" role="tabpanel" aria-labelledby="all-tab" style="padding:10px;">
       　<% wines.each do |wine| %>
           <div class="card-deck  my-2 pt-1 px-1" style="width:250px;">

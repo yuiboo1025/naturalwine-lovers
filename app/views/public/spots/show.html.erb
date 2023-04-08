@@ -29,6 +29,6 @@ function initMap(){
 }
 </script>
 
-<%= render 'public/wines/index', wines:@wines %>
+<%= render 'public/wines/index', wines:@wines, genres:@genres %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANVEZaOAVmsA5IxBWxHuUDOy-5qzjluGI&callback=initMap" async defer></script>
