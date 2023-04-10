@@ -2,26 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-//.nav-link {
-//  background-color:#bbb;
-//}
-
-//ホバーした時の記述
-//.nav-link:hover {
-//  opacity: 0.7;
-//  transition: 0.3s;
-//}
-
-//「tab_contents_item」は通常時は何も表示されないようにします！！！
-//.tab_contents_item{
-//  display:none;
-//}
-
-//activeがクラス名についたら表示されるようにします。
-//.tab_contents_item.active{
-//  display:block;
-//}
-
+//wine_showページ
 .wine_show_main {
   color: #555555;
   .table{
@@ -30,9 +11,10 @@
 }
 
 .wine_show_contents {
-  background-color: #faebd7;
-  border-radius: 20px;
-  padding: 5%;
+  //background-color: #faebd7;
+  border: double 10px #3d83bf;
+  //border-radius: 20px;
+  padding: 3%;
   //margin-top:5%;
   //margin-bottom: 10%;
   display: flex;
@@ -42,8 +24,12 @@
   text-align: right;
 }
 
+.wine_show__favorite_comment {
+  display: flex;
+}
+
 //myindexページ
-.myindex_show_profile{
+.myindex_show_profile {
   background-color: #ffffe0;
   border : double 10px #f0e68c;
   border-radius: 20px;
@@ -72,6 +58,12 @@
   border-top-right-radius: 10px;
 }
 
+#tab-menu li a:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+  background-color: #dcdcdc;
+}
+
 #tab-menu .active {
   background: #3d83bf;
   color: #fff;
@@ -87,7 +79,7 @@
   padding: 10px;
 }
 
-.card{
+.card {
   background: #f7f6ed;
   border: double 3px #3d83bf;
 }
