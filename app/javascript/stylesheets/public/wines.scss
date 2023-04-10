@@ -57,23 +57,24 @@
 
 #tab-menu li {
   list-style-type: none;
-  width: 25%;
+  width: 20%;
+  border-bottom: 2px solid #3d83bf;
 }
 
 #tab-menu li a {
-  color: #fff;
+  color: #3d83bf;
   text-decoration: none;
   display: block;
   padding: 10px;
   text-align: center;
-  background: #deb887;
-  border: 1px solid #deb887;
-  border-bottom: none;
+  background: #f7f6ed;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 #tab-menu .active {
-  background: #f7f6ed;
-  color: #deb887;
+  background: #3d83bf;
+  color: #fff;
 }
 
 .tab{
@@ -83,13 +84,10 @@
 
 #tab-contents .tab {
   width: 100%;
-  padding: 30px;
-  //background: #f7f6ed;
-  //border: 1px solid #deb887;
-  //border-top: none;
+  padding: 10px;
 }
 
-#tab-contents p {
-  color: #000;
-  line-height: 2.5;
+.card{
+  background: #f7f6ed;
+  border: double 3px #3d83bf;
 }
