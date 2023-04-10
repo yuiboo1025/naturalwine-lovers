@@ -41,3 +41,55 @@
 .wine_show__update_destroy_btn {
   text-align: right;
 }
+
+//myindexページ
+.myindex_show_profile{
+  background-color: #ffffe0;
+  border : double 10px #f0e68c;
+  border-radius: 20px;
+  padding: 2%;
+}
+
+//indexページ
+#tab-menu {
+  display: flex;
+}
+
+#tab-menu li {
+  list-style-type: none;
+  width: 25%;
+}
+
+#tab-menu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  background: #deb887;
+  border: 1px solid #deb887;
+  border-bottom: none;
+}
+
+#tab-menu .active {
+  background: #f7f6ed;
+  color: #deb887;
+}
+
+.tab{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tab-contents .tab {
+  width: 100%;
+  padding: 30px;
+  //background: #f7f6ed;
+  //border: 1px solid #deb887;
+  //border-top: none;
+}
+
+#tab-contents p {
+  color: #000;
+  line-height: 2.5;
+}

@@ -14,7 +14,7 @@
         <div class="col mt-5">
           <table class="table">
             <tr>
-              <th><%= image_tag @wine.member.get_profile_image(50,50) %></th>
+              <th><%= image_tag @wine.member.get_profile_image(50,50), class: "rounded-circle" %></th>
               <td><%= @wine.member.name %></td>
             </tr>
             <tr>
@@ -67,7 +67,7 @@
       <div class="comments-count">
         <%= render "public/comments/counter", wine: @wine %>
       </div>
-      
+
       <div class="comment">
         <%= render "public/comments/comment", wine: @wine %>
       </div>
@@ -75,7 +75,7 @@
       <div class="form">
         <%= render "public/comments/form", wine: @wine, comment: @comment %>
       </div>
-      
+
     </div>
   </div>
 </div>

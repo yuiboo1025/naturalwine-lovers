@@ -1,33 +1,62 @@
 <!-- タブ作成-->
 <div class ="row justify-content-center" >
   <div class ="col">
-    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-      <!--Allタブを作成　ジャンルIDがないとき（Allを選択）はactiveclassにする-->
-      <li class="nav-item">
-        <%= link_to wines_path do %>
-          <li class="nav-item">
-            <div class="nav-link <%= "active" if params[:genre_id].nil? %>" id="all-tab">All</div>
-          </li>
-        <% end %>
-      </li>
-      <!--ジャンルごとにタブを作成　ジャンルIDがあるとき（All以外のジャンル）はactiveにclassする-->
+    <ul id="tab-menu">
+        <li><a href="#tab-All" class="active">All</a></li>
       <% genres.each do |genre| %>
-        <%= link_to wines_path(genre_id: genre.id) do %>
-          <li class="nav-item">
-            <div class="nav-link <%= "active" if genre.id.to_s == params[:genre_id] %>" id="<%= genre.genre_name %>-tab"><%= genre.genre_name %></div>
-          </li>
-        <% end %>
+        <li><a href="#tab-<%= genre.genre_name %>" class=""><%= genre.genre_name %></a></li>
       <% end %>
-    </ul>
+      </ul>
    </div>
 </div>
 
 <!-- タブの内容作成-->
-<div class ="row justify-content-center d-flex flex-wrap">
-  <div class ="tab-content" id="myTabContent">
-
-    <div id="all" class="tab-pane fade show active justify-content-center d-flex flex-wrap active" role="tabpanel" aria-labelledby="all-tab" style="padding:10px;">
-      　<% wines.each do |wine| %>
+<div class ="row justify-content-center">
+  <div id="tab-contents">
+    
+    <!-- Allを表示-->
+    <div id="tab-All" class="tab">
+      <% wines.each do |wine| %>
+        <div class="card-deck  my-2 pt-1 px-1" style="width:250px;">
+          <div class ="card text-center">
+            <div class ="card_spot_name">
+              <%= link_to spot_path(wine.spot) do %>
+                📍<%= wine.spot.spot_name %>
+              <% end %>
+            </div>
+            <div class ="card_wine_image text-center">
+              <%= link_to wine_path(wine) do %>
+                <%= image_tag wine.get_wine_image(250,250) %>
+              <% end %>
+            </div>
+            <div class ="card_member_name">
+              <%= link_to wines_myindex_path(wine.member.id) do %>
+                <%= wine.member.name %>
+              <% end %>
+            </div>
+            <div class ="row d-flex justify-content-end">
+              <div class ="col card_commenr_name">
+                <%= link_to wine_path(wine.id) do%>
+                  <i class="far fa-comment"></i><%= wine.comments.count %>
+                <% end %>
+              </div>
+              <div class ="col card_favorites">
+                <% if wine.favorited_by?(current_member) %>
+                  <p>♥<%= wine.favorites.count %></p>
+                <% else %>
+                  <p> ♡<%= wine.favorites.count %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+   <!-- ジャンルごとに表示-->
+    <% genres.each do |genre| %>
+      <div id="tab-<%= genre.genre_name %>" class="tab">
+        <% genre.wines.each do |wine| %>
           <div class="card-deck  my-2 pt-1 px-1" style="width:250px;">
             <div class ="card text-center">
               <div class ="card_spot_name">
@@ -40,16 +69,16 @@
                   <%= image_tag wine.get_wine_image(250,250) %>
                 <% end %>
               </div>
-             <div class ="card_member_name">
+              <div class ="card_member_name">
                 <%= link_to wines_myindex_path(wine.member.id) do %>
-                 <%= wine.member.name %>
+                  <%= wine.member.name %>
                 <% end %>
               </div>
               <div class ="row d-flex justify-content-end">
                 <div class ="col card_commenr_name">
-                    <%= link_to wine_path(wine.id) do%>
-                      <i class="far fa-comment"></i><%= wine.comments.count %>
-                    <% end %>
+                  <%= link_to wine_path(wine.id) do%>
+                    <i class="far fa-comment"></i><%= wine.comments.count %>
+                  <% end %>
                 </div>
                 <div class ="col card_favorites">
                   <% if wine.favorited_by?(current_member) %>
@@ -59,10 +88,32 @@
                   <% end %>
                 </div>
               </div>
+            </div>
           </div>
-        </div>
+        <% end %>
+      </div>
     <% end %>
-　　</div>
+
   </div>
 </div>
 
+    <script>
+    //初期設定で表示されるのはtab-Allのコンテンツだけにして、それ以外の内容は非表示にする
+      $('#tab-contents .tab[id != "tab-All"]').hide();
+
+　　//id="tab-menu"のaタグがクリックされたときに、処理を実行
+      $('#tab-menu a').on('click', function(event) {
+        //id="tab-contents"内のいずれかのタブがクリックされたときに、そのタブ内の全コンテンツをいったん非表示
+        $("#tab-contents .tab").hide();
+        //activeクラスを削除する(CSSを対応させるため)
+        $("#tab-menu .active").removeClass("active");
+        //$(this)のとき(タブがクリックされたとき)activeクラスを追加する
+        $(this).addClass("active");
+        //href属性を取得し、取得したhref属性の中身を表示
+        $($(this).attr("href")).show();
+        event.preventDefault();
+      });
+   </script>
+   
+  
+    <script src="javascript/src/jquery.min.js"></script>
