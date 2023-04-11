@@ -10,8 +10,10 @@
             <% end %>
           <% end %>
         </h4>
-        フォロー数　：○人</br>
-        フォロワー数：○人
+        <h6 class="mt-3 text-center">
+        フォロー数　：<%= @member.followings.count %></br>
+        フォロワー数：<%= @member.followers.count %>
+        </h6>
     </div>
     <div class="col-5 myindex_show_table">
       <table class="table table-sm">
@@ -43,7 +45,7 @@
       <div class="btn">→いいねした投稿</div>
     </div>
     <div class="col-2">
-      
+
       <% if current_member != @member %>
         <% if current_member.following?(@member) %>
           <%= link_to "フォロー外す", member_relationships_path(@member.id), method: :delete, class: "btn btn-info" %>
@@ -51,7 +53,7 @@
           <%= link_to "フォローする", member_relationships_path(@member.id), method: :post, class: "btn btn-success" %>
         <% end %>
       <% end %>
-      
+
     </div>
   </div>
   <div class="row">

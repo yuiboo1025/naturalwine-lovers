@@ -21,17 +21,15 @@ class Member < ApplicationRecord
   has_one_attached :profile_image
 
   #フォローをした時の処理
-  def follow(member)　
+  def follow(member)
     relationships.create(followed_id: member.id)
   end
-  
   #フォローを外す時の処理
-  def unfollow(member)　
+  def unfollow(member)
     relationships.find_by(followed_id: member.id).destroy
   end
-  
   #フォローしているか判定
-  def following?(member)　
+  def following?(member)
     followings.include?(member)
   end
 
@@ -48,6 +46,11 @@ class Member < ApplicationRecord
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?
     super && (is_deleted == false)
+  end
+  
+  #ransack使用する際、出てきたエラーに下記文を記載するよう指示
+  def self.ransackable_attributes(auth_object = nil)
+    ["email", "encrypted_password", "favorite_genre", "id", "introduction", "is_deleted", "name", "prefecture", "activated_true"]
   end
 
   enum favorite_genre: {
