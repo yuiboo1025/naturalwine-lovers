@@ -5,7 +5,7 @@
           <%= image_tag @member.get_profile_image(70,70), class: "rounded-circle" %>
           <%= @member.name %>
           <% if @member == current_member %>
-            <%= link_to mypage_path do %>
+            <%= link_to member_path(@member) do %>
               <i class="fas fa-user-cog"></i>
             <% end %>
           <% end %>
