@@ -4,24 +4,19 @@ class Public::WinesController < ApplicationController
   def index
     @wines = Wine.all
     @genres = Genre.all
-    if params[:genre_id]
-		  @genre = Genre.find(params[:genre_id])
-		  @wines = @genre.wines
-    else
-      @wines = Wine.all
-    end
   end
 
   def myindex
     @member = Member.find(params[:id])
     @wines = @member.wines.all
     @genres = Genre.all
-    if params[:genre_id]
-		  @genre = Genre.find(params[:genre_id])
-		  @wines = @genre.wines
-    else
-      @wines = @member.wines.all
-    end
+  end
+  
+  def again_index
+    @member = Member.find(params[:id])
+    @wines = @member.wines.all
+    @again_wines = @wines.where(is_again: true)
+    @genres = Genre.all
   end
 
   def show

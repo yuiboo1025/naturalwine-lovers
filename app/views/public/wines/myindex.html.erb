@@ -30,8 +30,16 @@
       </table>
     </div>
     <div class="col-4">
-      <div class="btn">→ナチュール記録all</div>
-      <div class="btn">→また飲みたいナチュール</div>
+      <div class="btn">
+        <%= link_to wines_myindex_path(@member) do %>
+          →ナチュール記録all
+        <% end %>
+        </div>
+      <div class="btn">
+        <%= link_to wines_again_index_path(@member) do %>
+          →また飲みたいナチュール
+        <% end %>
+      </div>
       <div class="btn">→いいねした投稿</div>
     </div>
   </div>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     put 'members/information' => 'members#update'
     patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_members'
     get 'wines/myindex/:id' => 'wines#myindex', as: 'wines_myindex'
+    get 'wines/again_index/:id' => 'wines#again_index', as: 'wines_again_index'
     resources :wines, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       #1人のメンバーは1つの投稿に対して1回しかいいねできないためいいねのidはURLに含める必要がない(params[:id]を使わなくても良い)
       resource :favorites, only: [:create, :destroy]
