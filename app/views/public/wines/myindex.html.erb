@@ -44,13 +44,13 @@
     </div>
     <div class="col-2">
       
-      <%# if current_member != @member %>
-        <%# if current_member.following?(@member) %>
-          <%#= link_to "フォロー外す", member_relationships_path(@member.id), method: :delete, class: "btn btn-info" %>
-        <%# else %>
-          <%#= link_to "フォローする", member_relationships_path(@member.id), method: :post, class: "btn btn-success" %>
-        <%# end %>
-      <%# end %>
+      <% if current_member != @member %>
+        <% if current_member.following?(@member) %>
+          <%= link_to "フォロー外す", member_relationships_path(@member.id), method: :delete, class: "btn btn-info" %>
+        <% else %>
+          <%= link_to "フォローする", member_relationships_path(@member.id), method: :post, class: "btn btn-success" %>
+        <% end %>
+      <% end %>
       
     </div>
   </div>

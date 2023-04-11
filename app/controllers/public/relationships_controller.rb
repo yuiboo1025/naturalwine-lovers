@@ -21,4 +21,5 @@ class Public::RelationshipsController < ApplicationController
     member = Member.find(params[:member_id])
 		@members = member.followers
   end
+  
 end
