@@ -1,6 +1,15 @@
 <div class="container my-4">
+  <%# provide(:title,'ユーザー検索') %>
+  <h1><%#= @title %></h1>
+  
   <div class="row">
     <div class="col">
+      <%#= render 'search_form', q: @q %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%# unless @members.empty? %>
       <table class="table">
         <thead>
           <th>ユーザー名</th>
@@ -26,6 +35,15 @@
         </tbody>
         <% end %>
       </table>
+    
+      <%# else %>
+      <%#
+      <p>
+      ユーザーが見つかりませんでした。<br>
+      お探しのユーザー名を確認してください。
+      </p>%
+      <%# end %>
+      
     </div>
   </div>
 </div>

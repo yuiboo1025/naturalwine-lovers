@@ -2,6 +2,16 @@ class Public::MembersController < ApplicationController
   
   def index
     @members = Member.all
+    
+    #if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+     # @q = Member.ransack(search_params, activated_true: true)
+     # @title = "検索結果"
+   # else
+     # @q = Member.ransack(activated_true: true)
+      #@title = "全てのユーザー"
+   # end
+     # @members = @q.result.all
+      
   end
   
   def show
@@ -41,5 +51,9 @@ class Public::MembersController < ApplicationController
 
   def member_params
     params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction)
+  end
+  
+  def search_params
+    params.require(:q).permit(:name_cont)
   end
 end

@@ -60,3 +60,4 @@ gem "enum_help"
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'google_places'
+gem 'ransack'

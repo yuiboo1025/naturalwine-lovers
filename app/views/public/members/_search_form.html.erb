@@ -1,0 +1,7 @@
+<%= search_form_for @q do |f| %>
+  <h1>ユーザー検索</h1>
+<div class = "input-group">
+  <%= f.text_field :name_cont, placeholder: "ユーザーネームを入力" %>
+  <%= f.submit '検索' %>
+</div
+<% end %>
