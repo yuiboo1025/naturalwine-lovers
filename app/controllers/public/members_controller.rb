@@ -1,5 +1,9 @@
 class Public::MembersController < ApplicationController
   
+  def index
+    @members = Member.all
+  end
+  
   def show
     @member = current_member
   end

@@ -1,0 +1,62 @@
+<div class='container my-4'>
+  <div class='row mb-5 myindex_show_profile'>
+    <div class="col-3">
+        <h4 class="text-left">
+          <%= image_tag @member.get_profile_image(70,70), class: "rounded-circle" %>
+          <%= @member.name %>
+          <% if @member == current_member %>
+            <%= link_to mypage_path do %>
+              <i class="fas fa-user-cog"></i>
+            <% end %>
+          <% end %>
+        </h4>
+        フォロー数　：○人</br>
+        フォロワー数：○人
+    </div>
+    <div class="col-5 myindex_show_table">
+      <table class="table table-sm">
+        <tr>
+          <th class="text-left">在住県</th>
+          <td class="text-left"><%= @member.prefecture %></td>
+        </tr>
+        <tr>
+          <th class="text-left">好きなワインのジャンル</th>
+          <td class="text-left"><%= @member.favorite_genre %></td>
+        </tr>
+        <tr>
+          <th class="text-left">紹介文</th>
+          <td class="text-left"><%= @member.introduction %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4">
+      <div class="btn">
+        <%= link_to wines_myindex_path(@member) do %>
+        →ナチュール記録all
+        <% end %>
+      </div>
+      <div class="btn">
+        <%= link_to wines_again_index_path(@member) do %>
+        <p>→また飲みたいナチュール</p>
+        <% end %>
+      </div>
+      <div class="btn">→いいねした投稿</div>
+    </div>
+  </div>
+  <div class="row">
+    <h5 class="col text-center mx-auto",  style="color:#3d83bf;">
+      <%= @member.name %>のまた飲みたいナチュール🍷<span> (<%= @wines.count %>件)</span>
+    </h5>
+  </div>
+  <div class='row'>
+    <div class='col'>
+
+      <%= render 'index', wines:@wines, member:@member, genres:@genres %>
+
+      <div class="d-flex justify-content-center mt-5">
+        <%#= paginate @active_items %>
+      </div>
+
+    </div>
+  </div>
+</div>

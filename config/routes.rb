@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get "/about" => "homes#about"
     get 'members/mypage' => 'members#show', as: 'mypage'
+    get 'members/index' => 'members#index'
     # members/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
     get 'members/information/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information' => 'members#update', as: 'update_information'
