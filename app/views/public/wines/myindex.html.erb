@@ -1,6 +1,6 @@
 <div class='container my-4'>
   <div class='row mb-5 myindex_show_profile'>
-    <div class="col-2">
+    <div class="col-3">
         <h4 class="text-left">
           <%= image_tag @member.get_profile_image(70,70), class: "rounded-circle" %>
           <%= @member.name %>
@@ -15,7 +15,7 @@
         フォロワー数：<%= @member.followers.count %>
         </h6>
     </div>
-    <div class="col-5 myindex_show_table">
+    <div class="col-4 myindex_show_table">
       <table class="table table-sm">
         <tr>
           <th class="text-left">在住県</th>
@@ -34,7 +34,7 @@
     <div class="col-3">
       <div class="btn">
         <%= link_to wines_myindex_path(@member) do %>
-          →ナチュール記録all
+          <h7>→ナチュール記録all</h7>
         <% end %>
         </div>
       <div class="btn">
@@ -48,9 +48,9 @@
 
       <% if current_member != @member %>
         <% if current_member.following?(@member) %>
-          <%= link_to "フォロー外す", member_relationships_path(@member.id), method: :delete, class: "btn btn-info" %>
+          <%= link_to "フォロー外す", member_relationships_path(@member.id), method: :delete, class: "btn unfollow_btn pr-3 pl-3" %>
         <% else %>
-          <%= link_to "フォローする", member_relationships_path(@member.id), method: :post, class: "btn btn-success" %>
+          <%= link_to "フォローする", member_relationships_path(@member.id), method: :post, class: "btn follow_btn pr-3 pl-3" %>
         <% end %>
       <% end %>
 
@@ -73,3 +73,15 @@
     </div>
   </div>
 </div>
+
+<style>
+  .follow_btn {
+    color: #fff;
+    background-color: #20b2aa;
+  }
+
+  .unfollow_btn {
+    color: #fff;
+    background-color: #a9a9a9;
+  }
+</style>

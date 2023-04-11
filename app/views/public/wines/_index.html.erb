@@ -13,7 +13,7 @@
 <!-- タブの内容作成-->
 <div class ="row">
   <div id="tab-contents">
-    
+
     <!-- Allを表示-->
     <div id="tab-All" class="tab">
       <% wines.each do |wine| %>
@@ -40,19 +40,17 @@
                   <i class="far fa-comment"></i><%= wine.comments.count %>
                 <% end %>
               </div>
-              <div class ="col card_favorites">
-                <% if wine.favorited_by?(current_member) %>
-                  <p>♥<%= wine.favorites.count %></p>
-                <% else %>
-                  <p> ♡<%= wine.favorites.count %></p>
-                <% end %>
+              <div id= "wine_<%= wine.id %>">
+                <div class ="col card_favorites favorite-btn">
+                   <%= render 'public/favorites/favorite-btn', wine: wine %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-    
+
    <!-- ジャンルごとに表示-->
     <% genres.each do |genre| %>
       <div id="tab-<%= genre.genre_name %>" class="tab">
@@ -114,6 +112,6 @@
         event.preventDefault();
       });
    </script>
-   
-  
+
+
     <script src="javascript/src/jquery.min.js"></script>
