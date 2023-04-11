@@ -19,6 +19,7 @@
       <% wines.each do |wine| %>
         <div class="card-deck wine_card my-2 pt-1 px-1" style="width:300px;">
           <div class ="card text-center">
+            
             <div class ="card_spot_name">
               <%= link_to spot_path(wine.spot) do %>
                 📍<%= wine.spot.spot_name %>
@@ -34,18 +35,20 @@
                 <%= wine.member.name %>
               <% end %>
             </div>
-            <div class ="row d-flex justify-content-end">
-              <div class ="col card_commenr_name">
-                <%= link_to wine_path(wine.id) do%>
-                  <i class="far fa-comment"></i><%= wine.comments.count %>
-                <% end %>
-              </div>
-              <div id= "wine_<%= wine.id %>">
+            
+            <div id= "wine_<%= wine.id %>">
+              <div class ="row d-flex justify-content-end">
+                <div class ="col card_commenr_name">
+                  <%= link_to wine_path(wine.id) do%>
+                    <i class="far fa-comment"></i><%= wine.comments.count %>
+                  <% end %>
+                </div>
                 <div class ="col card_favorites favorite-btn">
                    <%= render 'public/favorites/favorite-btn', wine: wine %>
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
       <% end %>
