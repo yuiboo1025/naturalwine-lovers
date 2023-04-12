@@ -8,9 +8,11 @@
     <div class="col">
       <h4>登録情報</h4>
     </div>
+    <% if @member.name != "guestuser" %>
     <div class="col">
       <%= link_to "編集する", edit_information_path, class:"btn btn-success px-4 mb-2" %>
     </div>
+    <% end %>
   </div>
   <div class="row">
     <div class="col">

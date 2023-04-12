@@ -42,5 +42,10 @@ Rails.application.routes.draw do
     end
     resources :spots, only: [:index, :show, :create, :new, :edit, :update]
   end
+  
+  #ゲストログイン用  
+  devise_scope :member do
+    post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

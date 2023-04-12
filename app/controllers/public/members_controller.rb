@@ -1,4 +1,5 @@
 class Public::MembersController < ApplicationController
+   before_action :ensure_guest_member, only: [:edit]
   
   def index
     #params[:q]で、欲しいデータが送られてきているかチェック
@@ -57,5 +58,14 @@ class Public::MembersController < ApplicationController
   def search_params
     params.require(:q).permit(:name_cont)
   end
+  
+  #ユーザーの編集画面へのURLを直接入力された場合にはメッセージを表示してユーザー詳細画面へリダイレクトさせる。
+  #before_actionでeditアクション実行前に処理を行う。
+  def ensure_guest_member
+    @member = Member.find(params[:id])
+    if @member.name == "guestmember"
+      redirect_to member_path(current_member) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+  end  
   
 end

@@ -26,7 +26,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
   
   def after_sign_in_path_for(resource)
-    mypage_path
+    wines_myindex_path(@member)
   end
 
   def after_sign_out_path_for(resource)

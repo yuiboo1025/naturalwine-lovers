@@ -52,6 +52,14 @@ class Member < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["email", "encrypted_password", "favorite_genre", "id", "introduction", "is_deleted", "name", "prefecture", "activated_true"]
   end
+  
+  #ゲストログイン用。app/controllers/members/sessions_controller.rbで記述したMember.guestのguestメソッドを定義
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.name = "guestuser"
+    end
+  end
 
   enum favorite_genre: {
     All:0,
