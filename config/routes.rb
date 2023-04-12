@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
   #root to: 'homes#top'
   #get "/about" => "homes#about"
-  
+
   devise_for :admin, skip: [:registrations, :passwords] , controllers: {
     sessions: "admin/sessions"
   }
-  
+
   devise_for :members, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
     resources :members, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
   end
-  
+
   scope module: :public do
     root 'homes#top'
     get "/about" => "homes#about"
@@ -32,6 +32,10 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
   	  get 'followings' => 'relationships#followings', as: 'followings'
   	  get 'followers' => 'relationships#followers', as: 'followers'
+  	  #member doを使うと、ユーザーidが含まれてるurlを使えるようになる。
+  	  member do
+        get :bookmarks
+      end
     end
     get 'wines/myindex/:id' => 'wines#myindex', as: 'wines_myindex'
     get 'wines/again_index/:id' => 'wines#again_index', as: 'wines_again_index'
@@ -43,8 +47,8 @@ Rails.application.routes.draw do
     end
     resources :spots, only: [:index, :show, :create, :new, :edit, :update]
   end
-  
-  #ゲストログイン用  
+
+  #ゲストログイン用
   devise_scope :member do
     post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
   end

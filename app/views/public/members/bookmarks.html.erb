@@ -1,16 +1,16 @@
 <div class='container my-4'>
-  
-  <%= render 'member_info', member: @member %>
-  
+
+  <%= render 'public/wines/member_info', member: @member %>
+
   <div class="row">
     <h5 class="col text-center mx-auto",  style="color:#3d83bf;">
-      <%= @member.name %>のまた飲みたいナチュール🍷<span> (<%= @again_wines.count %>件)</span>
+      <%= @member.name %>がブックマークした投稿🍷<span> (<%= @bookmark_wines.count %>件)</span>
     </h5>
   </div>
   <div class='row'>
     <div class='col'>
 
-      <%= render 'index', wines: @again_wines, member: @member, genres: @genres %>
+      <%= render 'public/wines/index', wines: @bookmark_wines, member: @member, genres: @genres %>
 
       <div class="d-flex justify-content-center mt-5">
         <%#= paginate @active_items %>

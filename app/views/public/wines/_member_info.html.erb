@@ -1,0 +1,73 @@
+  <div class='row mb-5 myindex_show_profile'>
+    <div class="col-3">
+        <h4 class="text-left">
+          <%= image_tag member.get_profile_image(70,70), class: "rounded-circle" %>
+          <%= member.name %>
+          <% if member == current_member %>
+            <%= link_to member_path(member) do %>
+              <i class="fas fa-user-cog"></i>
+            <% end %>
+          <% end %>
+        </h4>
+        <h6 class="mt-3 text-center">
+        フォロー数　：<%= member.followings.count %></br>
+        フォロワー数：<%= member.followers.count %>
+        </h6>
+    </div>
+    <div class="col-4 myindex_show_table">
+      <table class="table table-sm">
+        <tr>
+          <th class="text-left">在住県</th>
+          <td class="text-left"><%= member.prefecture %></td>
+        </tr>
+        <tr>
+          <th class="text-left">好きなワインのジャンル</th>
+          <td class="text-left"><%= member.favorite_genre %></td>
+        </tr>
+        <tr>
+          <th class="text-left">紹介文</th>
+          <td class="text-left"><%= member.introduction %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-3">
+      <div class="btn">
+        <%= link_to wines_myindex_path(member) do %>
+          <h7>→ナチュール記録all</h7>
+        <% end %>
+        </div>
+      <div class="btn">
+        <%= link_to wines_again_index_path(member) do %>
+          →また飲みたいナチュール
+        <% end %>
+      </div>
+      <div class="btn">
+        <%=link_to bookmarks_member_path(member) do %>
+          →ブックマークした投稿
+        <% end %>
+        </div>
+    </div>
+    <div class="col-2">
+
+      <% if current_member != member %>
+        <% if current_member.following?(member) %>
+          <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn unfollow_btn pr-3 pl-3" %>
+        <% else %>
+          <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class: "btn follow_btn pr-3 pl-3" %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+
+  <style>
+  .follow_btn {
+    color: #fff;
+    background-color: #20b2aa;
+  }
+
+  .unfollow_btn {
+    color: #fff;
+    background-color: #a9a9a9;
+  }
+</style>

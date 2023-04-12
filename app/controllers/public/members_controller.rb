@@ -32,6 +32,15 @@ class Public::MembersController < ApplicationController
       render :edit
     end
   end
+  
+  def bookmarks
+    @member = Member.find(params[:id])
+    #ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
+    #bookmarksには、あるユーザーがブックマークした投稿のidが入っている
+    bookmarks= Bookmark.where(member_id: @member.id).pluck(:wine_id)
+    @bookmark_wines = Wine.find(bookmarks)
+    @genres = Genre.all
+  end
 
   def unsubscribe
   end
