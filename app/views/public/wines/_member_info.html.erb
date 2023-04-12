@@ -14,6 +14,7 @@
         フォロワー数：<%= member.followers.count %>
         </h6>
     </div>
+
     <div class="col-4 myindex_show_table">
       <table class="table table-sm">
         <tr>
@@ -30,6 +31,7 @@
         </tr>
       </table>
     </div>
+
     <div class="col-3">
       <div class="btn">
         <%= link_to wines_myindex_path(member) do %>
@@ -41,22 +43,23 @@
           →また飲みたいナチュール
         <% end %>
       </div>
+      <% if current_member == member %>
       <div class="btn">
         <%=link_to bookmarks_member_path(member) do %>
           →ブックマークした投稿
         <% end %>
-        </div>
+      </div>
+      <% end %>
     </div>
-    <div class="col-2">
 
+    <div class="col-2">
       <% if current_member != member %>
         <% if current_member.following?(member) %>
-          <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn unfollow_btn pr-3 pl-3" %>
+          <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn unfollow_btn pr-1 pl-1" %>
         <% else %>
-          <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class: "btn follow_btn pr-3 pl-3" %>
+          <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class: "btn follow_btn pr-1 pl-1" %>
         <% end %>
       <% end %>
-
     </div>
   </div>
 

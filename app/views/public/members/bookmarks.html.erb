@@ -4,12 +4,11 @@
 
   <div class="row">
     <h5 class="col text-center mx-auto",  style="color:#3d83bf;">
-      <%= @member.name %>がブックマークした投稿🍷<span> (<%= @bookmark_wines.count %>件)</span>
+      <%= @member.name %>がブックマークした投稿🍷<!--<span> (<%#= @bookmark_wines.count %>件)</span> %> -->
     </h5>
   </div>
   <div class='row'>
     <div class='col'>
-
       <%= render 'public/wines/index', wines: @bookmark_wines, member: @member, genres: @genres %>
 
       <div class="d-flex justify-content-center mt-5">
