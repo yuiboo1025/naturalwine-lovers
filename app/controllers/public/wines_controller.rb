@@ -18,6 +18,13 @@ class Public::WinesController < ApplicationController
     @again_wines = @wines.where(is_again: true)
     @genres = Genre.all
   end
+  
+  def bookmark_index
+    @member = Member.find(params[:id])
+    @wines = @member.wines.all
+    @bookmark_wines = @wines.where(is_again: true)
+    @genres = Genre.all
+  end
 
   def show
     @wine = Wine.find(params[:id])

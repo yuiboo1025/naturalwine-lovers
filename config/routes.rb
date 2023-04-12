@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :wines, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       #1人のメンバーは1つの投稿に対して1回しかいいねできないためいいねのidはURLに含める必要がない(params[:id]を使わなくても良い)
       resource :favorites, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
     resources :spots, only: [:index, :show, :create, :new, :edit, :update]

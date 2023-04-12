@@ -1,0 +1,9 @@
+    <% if wine.bookmarked_by?(current_member) %>
+       <%= link_to wine_bookmarks_path(wine),method: :delete, remote: true do %>
+       <i class="fas fa-bookmark"></i><%#= wine.bookmarks.count %>
+       <% end %>
+    <% else %>
+      <%= link_to wine_bookmarks_path(wine),method: :post, remote: true  do %>
+      <i class="far fa-bookmark"></i><%#= wine.bookmarks.count %>
+      <% end %>
+    <% end %>

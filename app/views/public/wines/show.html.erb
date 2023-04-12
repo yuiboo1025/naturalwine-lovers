@@ -5,18 +5,22 @@
           📍<%= @wine.spot.spot_name %></br>
            〒<%= @wine.spot.address %></br>
            <%= image_tag @wine.get_wine_image(400,400) %></br>
-           <h5 class="wine_show__favorite_comment d-flex mt-3">
-             <div id= "wine_<%= @wine.id %>">
-               <div class= "favorite-btn">
+           
+           <div id= "wine_<%= @wine.id %>">
+             <h4 class="wine_show__favorite_comment d-flex justify-content-end mt-3">
+               <div class="comments-count">
+                 <%= render "public/comments/counter", wine: @wine %>
+               </div>
+               <div class= "favorite-btn mx-4">
                  <%= render 'public/favorites/favorite-btn', wine: @wine %>
                </div>
-             </div>
-
-             <div class="comments-count">
-        　　　　　<%= render "public/comments/counter", wine: @wine %>
-             </div>
-           </h5>
+               <div class= "bookmark-btn">
+                 <%= render 'public/bookmarks/bookmark-btn', wine: @wine %>
+               </div>
+             </h4>
+           </div>
         </div>
+        
         <div class="col mt-5">
           <table class="table">
             <tr>

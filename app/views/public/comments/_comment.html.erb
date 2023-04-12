@@ -9,8 +9,8 @@
             <th style="width: 20%"></th>
           </tr>
           <tr>
-            <td>
-              <%= image_tag comment.member.get_profile_image(70,70), class: "rounded-circle" %><
+            <td class="d-flex">
+              <%= image_tag comment.member.get_profile_image(70,70), class: "rounded-circle" %>
               <%= link_to wines_myindex_path(wine.member.id) do %>
                 <%= comment.member.name %>
               <% end %>
