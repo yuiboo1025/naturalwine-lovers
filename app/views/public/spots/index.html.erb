@@ -38,11 +38,11 @@
 
 //複数マーカー ここから
       <% @spots.each do |spot|%>
-        ( function() { 
-          let markerLatLng = { lat: <%= spot.lat %>, lng: <%= spot.lng %> }; // 緯度経度のデータ作成
-          let marker = new google.maps.Marker({ 
-            position: markerLatLng, 
-            map: map 
+        ( function() {
+          let markerLatLng = { lat: <%= spot.lat ||= 0 %>, lng: <%= spot.lng ||= 0 %> }; // 緯度経度のデータ作成
+          let marker = new google.maps.Marker({
+            position: markerLatLng,
+            map: map
           });
 //マーカーをクリックしたとき、詳細情報を表示
           let infowindow = new google.maps.InfoWindow({
@@ -55,7 +55,7 @@
 
        })();
       <% end %>
-      //複数マーカー ここまで  
+      //複数マーカー ここまで
   }
 </script>
 

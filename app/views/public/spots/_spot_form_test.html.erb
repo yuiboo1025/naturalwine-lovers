@@ -1,4 +1,5 @@
 <div class="container justify-content-center">
+  
 <%= form_with model: spot, url:method do |f| %>
   <div class="actions">
     <%= f.label :spot_name,"店名" %>
@@ -24,6 +25,8 @@
 <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
 <div id='map'></div>
 
+
+
 <style>
 #map {
   height: 800px;
@@ -37,17 +40,47 @@
 //初期マップの設定
 let map //変数の定義
 let marker
+let geocoder 
+let service
 function initMap(){  //コールバック関数
   geocoder = new google.maps.Geocoder()  //GoogleMapsAPIジオコーディングサービスにアクセス
 
   map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
     center:  {lat: 35.6803997, lng:139.7690174},  //東京
-    zoom: 8, //数値は0〜21まで指定でき、数値が大きいほど拡大される
+    zoom: 12, //数値は0〜21まで指定でき、数値が大きいほど拡大される
   });
+  
+  //const input = document.getElementById("pac-input");
+  //const autocomplete = new google.maps.places.Autocomplete(input);
+  //autocomplete.bindTo("bounds", map);
+  
+  const request = {
+    location: map,
+    radius: 1000,      // ※１ 表示する半径領域を設定(1 = 1M)
+    types: ['cafe'] 
+  };
+  service = new google.maps.places.PlacesService(myMap);
+  service.search(request, Result_Places);
+        
+}
+
+// 検索結果を受け取る
+function Result_Places(results, status){
+    // Placesが検家に成功したかとマうかをチェック
+    if(status == google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i++) {
+            // 検索結果の数だけ反復処理を変数placeに格納
+            var place = results[i];
+            createMarker({
+                 text : place.name,
+                 position : place.geometry.location
+            });
+        }
+    }
 }
 
 //検索後のマップ作成
-let geocoder
+//let geocoder  
 let aft
 　//検索フォームのボタンが押された時に実行される
 function codeAddress(){
@@ -76,40 +109,16 @@ function codeAddress(){
         document.getElementById('lat').value = results[0].geometry.location.lat();
         document.getElementById('lng').value = results[0].geometry.location.lng();
 
-        // 住所欄に住所を抽出して入れる
-        $('#spot_address').val(getAddress(results[0].formatted_address));
-
         // マーカーのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
             // イベントの引数evの、プロパティ.latLngが緯度経度
             document.getElementById('lat').value = ev.latLng.lat();
             document.getElementById('lng').value = ev.latLng.lng();
-            
-            geocoder.geocode({
-              latLng: {lat: ev.latLng.lat(), lng: ev.latLng.lng()}
-            }, function(results, status) {
-              // 住所欄に住所を抽出して入れる(formatted_addressのデータを取ってくる)
-              $('#spot_address').val(getAddress(results[0].formatted_address));
-            });
         });
     } else {
       alert('該当する結果がありませんでした：' + status);
     }
   });
-}
-
-// 住所のフォーマッティング
-function getAddress (address) {
-  address = address.split(/\s+|、/);　//スペースと句読点で区切る
-  address.splice(0, 1)　　　　　　　　//1くくり分削除
-  if (address[0] == '日本') {　　　　//日本で始まっていたらもう1くくり分削除
-    address.splice(0, 1)
-  }
-  if (address[0].match(/〒/)) {　　　//〒で始まっていたらもう1くくり分削除
-    address.splice(0, 1)
-  }
-  address = address.join(' ')
-  return address
 }
 
 </script>
