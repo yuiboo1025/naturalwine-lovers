@@ -87,7 +87,8 @@ function codeAddress(){
             
             geocoder.geocode({
               latLng: {lat: ev.latLng.lat(), lng: ev.latLng.lng()}
-            }, function(results, status) {
+            }, 
+            function(results, status) {
               // 住所欄に住所を抽出して入れる(formatted_addressのデータを取ってくる)
               $('#spot_address').val(getAddress(results[0].formatted_address));
             });
@@ -98,7 +99,7 @@ function codeAddress(){
   });
 }
 
-// 住所のフォーマッティング
+// 住所のフォーマッティング マークした場所から住所を取ってくる
 function getAddress (address) {
   address = address.split(/\s+|、/);　//スペースと句読点で区切る
   address.splice(0, 1)　　　　　　　　//1くくり分削除
