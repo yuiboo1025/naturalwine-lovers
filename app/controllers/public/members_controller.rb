@@ -1,5 +1,7 @@
 class Public::MembersController < ApplicationController
-   before_action :ensure_guest_member, only: [:edit]
+  before_action :authenticate_member!, except: [:index] 
+  #ゲストユーザーにはユーザー情報編集できないようにするため
+  before_action :ensure_guest_member, only: [:edit]
   
   def index
     #params[:q]で、欲しいデータが送られてきているかチェック
@@ -11,6 +13,34 @@ class Public::MembersController < ApplicationController
     else
       @q = Member.ransack(activated_true: true)
       @title = "全てのユーザー"
+    end
+      @members = @q.result.all
+      #@members = @q.result.paginate(page: params[:page])
+  end
+  
+  def followings
+    @member = Member.find(params[:id])
+    @members = @member.followings
+    if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+      @q = @members.ransack(search_params, activated_true: true)
+      @title = "検索結果(フォローしているユーザ)"
+    else
+      @q = @members.ransack(activated_true: true)
+      @title = "フォローしているユーザー"
+    end
+      @members = @q.result.all
+      #@members = @q.result.paginate(page: params[:page])
+  end
+
+  def followers
+    @member = Member.find(params[:id])
+    @members = @member.followers
+    if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+      @q = @members.ransack(search_params, activated_true: true)
+      @title = "検索結果"
+    else
+      @q = @members.ransack(activated_true: true)
+      @title = "フォロワー"
     end
       @members = @q.result.all
       #@members = @q.result.paginate(page: params[:page])

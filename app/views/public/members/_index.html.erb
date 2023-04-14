@@ -1,5 +1,5 @@
 <!-- ナチュール記録ボタン -->
-    <%= render 'public/wines/post_wine-btn' %>
+<%= render 'public/wines/post_wine-btn' %>
 
 <div class="container my-4">
 
@@ -21,7 +21,7 @@
 
       <% unless members.empty? %>
 
-      <table class="table">
+      <table class="table member_index_table">
         <thead>
           <th>ユーザー名</th>
           <th>在住県</th>
@@ -33,26 +33,30 @@
         </thead>
         <% members.each do |member| %>
         <tbody>
-          <td>
-            <%= link_to wines_myindex_path(member) do %>
-              <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
-              <%= member.name %>
-            <% end %>
-          </td>
-          <td><%= member.prefecture %></td>
-          <td><%= member.favorite_genre %></td>
-          <td><%= member.wines.count %></td>
-          <td><%= member.followings.count %></td>
-          <td><%= member.followers.count %></td>
-          <td>
-            <% if current_member != member %>
-              <% if current_member.following?(member) %>
-                <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn unfollow_btn pr-3 pl-3 ml-4" %>
-              <% else %>
-                <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class: "btn follow_btn pr-3 pl-3 ml-4" %>
+          <tr class="member_index_tbody_tr" data-href="wines/myindex/<%= member.id%>">
+            <td>
+              <%#= link_to wines_myindex_path(member) do %>
+                <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
+                <%= member.name %>
+              <%# end %>
+            </td>
+            <td><%= member.prefecture %></td>
+            <td><%= member.favorite_genre %></td>
+            <td><%= member.wines.count %></td>
+            <td><%= member.followings.count %></td>
+            <td><%= member.followers.count %></td>
+            <td>
+              <% if member_signed_in? %>
+                <% if current_member != member %>
+                  <% if current_member.following?(member) %>
+                    <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn unfollow_btn pr-3 pl-3 ml-4" %>
+                  <% else %>
+                    <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class: "btn follow_btn pr-3 pl-3 ml-4" %>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
+            </td>
+          </tr>
         </tbody>
         <% end %>
       </table>
@@ -78,4 +82,17 @@
     color: #fff;
     background-color: #a9a9a9;
   }
+  
+  .member_index_table tbody tr:hover {
+    background-color: #f7f2c6;
+  }
+  
 </style>
+
+<script>
+  $(document).on("turbolinks:load", function() {
+    $(".member_index_tbody_tr").on('click', function() {
+      window.location = $(this).data("href");
+    });
+  });
+</script>

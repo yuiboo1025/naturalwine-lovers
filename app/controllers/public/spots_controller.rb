@@ -1,17 +1,16 @@
 class Public::SpotsController < ApplicationController
+  before_action :authenticate_member!, except: [:index, :show]
 
   def new
     @spot = Spot.new
   end
 
   def create
-
     spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
     if spot.blank?
       spot = Spot.new(spot_params)
       spot.save
     end
-
     redirect_to new_wine_path(spot_id: spot.id)
 
      #if spot.save
@@ -36,15 +35,24 @@ class Public::SpotsController < ApplicationController
       @wines = @spot.wines.all
     end
   end
-
+  
   def edit
     @spot = Spot.find(params[:id])
     @wine_id = params[:wine_id]
   end
 
   def update
-    @spot = Spot.find(params[:id])
-    @spot.update(spot_params)
+    #@spot = Spot.find(params[:id])
+    #@spot.update(spot_params)
+    #redirect_to edit_wine_path(params[:spot][:wine_id])
+    
+    spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
+    if spot.blank?
+      spot = Spot.new(spot_params)
+      spot.save
+    else
+      spot.update(spot_params)
+    end
     redirect_to edit_wine_path(params[:spot][:wine_id])
 
     #if @wine.update(wine_params)

@@ -1,11 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import url('https://fonts.googleapis.com/css2?family=M PLUS Rounded 1c&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap');
 @import 'public/homes';
 @import 'public/wines';
 
-header body footer {
-  font-family: 'M PLUS Rounded 1c' ,'sans-serif';
+//header body footer {
+//  font-family: 'M PLUS Rounded 1c' ,'sans-serif';
+//}
+
+.nav-item {
+  font-family: 'Rubik Pixels', cursive;
 }
 
 header{

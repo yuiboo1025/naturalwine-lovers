@@ -1,5 +1,5 @@
 class Public::WinesController < ApplicationController
-  before_action :authenticate_member!
+  before_action :authenticate_member!, except: [:index]
 
   def index
     @wines = Wine.all

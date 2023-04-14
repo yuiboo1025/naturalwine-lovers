@@ -1,3 +1,6 @@
+  <%# ログインしていない場合にはカウント表示のみでいいね押せない %>
+  <% if member_signed_in? %>  
+  
     <% if wine.favorited_by?(current_member) %>
        <%= link_to wine_favorites_path(wine),method: :delete, remote: true do %>
        ♥<%= wine.favorites.count %>
@@ -7,3 +10,7 @@
       ♡<%= wine.favorites.count %>
       <% end %>
     <% end %>
+    
+  <% else %>
+      ♡<%= wine.favorites.count %>
+  <% end %>

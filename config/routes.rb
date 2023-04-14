@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get 'top' => 'homes#top', as: 'top'
     resources :members, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
+    resources :wines, only: [:index, :show, :edit, :update, :destroy]
+    resources :spots, only: [:index, :show, :edit, :update]
   end
 
   scope module: :public do
@@ -30,11 +32,11 @@ Rails.application.routes.draw do
     patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_members'
     resources :members, only: [:index,:show] do
       resource :relationships, only: [:create, :destroy]
-  	  get 'followings' => 'relationships#followings', as: 'followings'
-  	  get 'followers' => 'relationships#followers', as: 'followers'
+  	  #get 'followings' => 'relationships#followings', as: 'followings'
+  	  #get 'followers' => 'relationships#followers', as: 'followers'
   	  #member doを使うと、ユーザーidが含まれてるurlを使えるようになる。
   	  member do
-        get :bookmarks
+        get :bookmarks, :followings, :followers
       end
     end
     get 'wines/myindex/:id' => 'wines#myindex', as: 'wines_myindex'

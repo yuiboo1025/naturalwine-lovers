@@ -17,13 +17,13 @@
           <% if admin_signed_in? %>
             <!--管理者ログイン後-->
             <li class="nav-item">
-              <%#= link_to "商品一覧", admin_items_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link'%>
+              <%= link_to "メンバー一覧", admin_members_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
-            <li class="nav-item">
-              <%= link_to "会員一覧", admin_members_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
+            <li class="nav-item ">
+              <%= link_to "投稿一覧", admin_wines_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
-            <li class="nav-item">
-              <%#= link_to "注文履歴一覧", admin_root_path, class: 'nav-link btn pr-1 pl-1 ml-4 header-link' %>
+            <li class="nav-item ">
+              <%= link_to "Map", admin_spots_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link btn pr-1 pl-1 ml-4 header-link' %>
@@ -47,18 +47,12 @@
               <%= link_to "Map", spots_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
             <li class="nav-item ">
-              <%#= link_to "ナチュール投稿", new_spot_path, class: 'nav-link btn pr-4 pl-4 ml-4 header-link' %>
-            </li>
-            <li class="nav-item ">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: 'nav-link btn pr-1 pl-1 ml-4 header-link' %>
             </li>
           <% else %>
             <!--ログイン前-->
             <li class="nav-item">
               <%= link_to "About", about_path, class: 'nav-link btn pr-4 pl-4 ml-4 header-link' %>
-            </li>
-            <li class="nav-item">
-              <%#= link_to "商品一覧", wines_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "新規登録", new_member_registration_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>

@@ -1,3 +1,6 @@
+  <%# ログインしていない場合には表示させない %>
+  <% if member_signed_in? %>   
+    
     <% if wine.bookmarked_by?(current_member) %>
        <%= link_to wine_bookmarks_path(wine),method: :delete, remote: true do %>
        <i class="fas fa-bookmark"></i><%#= wine.bookmarks.count %>
@@ -7,3 +10,5 @@
       <i class="far fa-bookmark"></i><%#= wine.bookmarks.count %>
       <% end %>
     <% end %>
+    
+  <% end %>

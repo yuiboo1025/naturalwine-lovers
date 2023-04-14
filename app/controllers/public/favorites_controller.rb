@@ -1,4 +1,5 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_member!
 
   def create
     @wine = Wine.find(params[:wine_id])

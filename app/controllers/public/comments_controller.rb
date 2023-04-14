@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_member!
+  
   def create
     wine = Wine.find(params[:wine_id])
     comment = current_member.comments.new(comment_params)
