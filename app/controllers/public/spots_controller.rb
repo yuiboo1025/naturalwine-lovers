@@ -47,17 +47,17 @@ class Public::SpotsController < ApplicationController
     #編集画面で入力した緯度経度からspotを検索
     spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
     #spotが存在すれば
-    unless spot.blank?
-      #同じとこをろ探す
-      spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
-      #wineを更新をする(カラム名：↑で検索されたspotのid)
-      @wine.update(spot_id: spot.id)
-    #spotが存在しなければ
-    else
+    if spot.blank?
       #新しいspotを作成
       spot = Spot.new(spot_params)
       spot.save
        #wineを更新をする(カラム名：↑で作成されたspotのid)
+      @wine.update(spot_id: spot.id)
+    #spotが存在しなければ
+    else
+      #同じとこをろ探す
+      spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
+      #wineを更新をする(カラム名：↑で検索されたspotのid)
       @wine.update(spot_id: spot.id)
     end
     redirect_to edit_wine_path(params[:spot][:wine_id])
