@@ -3,7 +3,7 @@
     <div class="col">
       <table class="table table-bordered">
         <tr>
-          <th class="table-active">記録するナチュール写真</th>
+          <th class="table-active">記録するナチュール写真(※必須)</th>
           <td>
             <%= f.file_field :wine_image, accept: "image/*" %>
           </td>
@@ -35,7 +35,7 @@
           </td>
         </tr>
         <tr>
-          <th class="table-active">種類</th>
+          <th class="table-active">種類(※必須)</th>
           <td>
             <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "--選択してください--", class: "form-control border-dark", style: "background-color:#fcfced" %>
           </td>

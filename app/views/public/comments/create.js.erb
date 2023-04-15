@@ -1,4 +1,4 @@
 $(".form").html("<%= j(render 'public/comments/form', wine: @wine, comment: @comment) %>");
 $(".comment").html("<%= j(render 'public/comments/comment', wine: @wine) %>");
-$(".comments-count").html("<%= j(render 'public/comments/count', wine: @wine) %>");
+$(".comments_count").html("<%= j(render 'public/comments/counter', wine: @wine) %>");
 $("#comment_comment").val("");

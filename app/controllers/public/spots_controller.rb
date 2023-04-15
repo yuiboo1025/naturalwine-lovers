@@ -42,18 +42,19 @@ class Public::SpotsController < ApplicationController
   end
 
   def update
-    #@spot = Spot.find(params[:id])
-    #@spot.update(spot_params)
+    @spot = Spot.find(params[:id])
+    @spot.update(spot_params)
+    redirect_to edit_wine_path(params[:spot][:wine_id])
+    
+    #spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
+    #if spot.blank?
+     # spot = Spot.new(spot_params)
+      #spot.save
+   # else
+     # spot.update(spot_params)
+   # end
     #redirect_to edit_wine_path(params[:spot][:wine_id])
     
-    spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
-    if spot.blank?
-      spot = Spot.new(spot_params)
-      spot.save
-    else
-      spot.update(spot_params)
-    end
-    redirect_to edit_wine_path(params[:spot][:wine_id])
 
     #if @wine.update(wine_params)
      # redirect_to wine_path(@wine.id)

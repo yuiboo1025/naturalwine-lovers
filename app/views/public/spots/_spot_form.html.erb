@@ -1,37 +1,46 @@
-<div class="container justify-content-center">
-<%= form_with model: spot, url:method do |f| %>
-  <div class="actions">
-    <%= f.label :spot_name,"店名" %>
-    <%= f.text_field :spot_name %>
-    <%= f.label :address,"住所" %>
-    <%= f.text_field :address %>
-    <%= f.label :lat,"緯度" %>
-    <%= f.text_field :lat, id: :lat %>
-    <%= f.label :lng,"経度" %>
-    <%= f.text_field :lng, id: :lng %>
-    <% if params[:wine_id].present? %>
-      <%= f.hidden_field :wine_id, :value => wine_id %>
-    <% end %>
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="row">
+  <%= form_with model: spot, url:method do |f| %>
+    <div class="actions">
+      <h6>※ご自身で入力をお願いします</h6>
+      <%= f.label :spot_name,"店名" %>
+      <%= f.text_field :spot_name,  size: 30  %></br>
+      <h6 class="mt-2">※mapのマーカー場所から自動的に入力されます</h6>
+      <%= f.label :address,"住所" %>
+      <%= f.text_field :address,  size: 30   %>
+      <%= f.label :lat,"緯度" %>
+      <%= f.text_field :lat, id: :lat %>
+      <%= f.label :lng,"経度" %>
+      <%= f.text_field :lng, id: :lng %>
+      <% if params[:wine_id].present? %>
+        <%= f.hidden_field :wine_id, :value => wine_id %>
+      <% end %>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
 
-<h2>Map</h2>
+<div class="row mt-4">
+  <h2>Map</h2>
+</div>
 
 <%#検索フォーム %>
-<input id="address" type="textbox" value="">
-<input type="button" value="検索" onclick="codeAddress()">
-<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
-<div id='map'></div>
+<div class="row my-2">
+  <input id="address" type="textbox" value="">
+  <input type="button" value="検索" onclick="codeAddress()">
+  <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+</div>
+
+<%#map %>
+<div class="row">
+  <div id='map'></div>
+</div>
 
 <style>
 #map {
-  height: 800px;
-  width: 800px;
+  height: 500px;
+  width: 1000px;
 }
 </style>
-
-</div>
 
 <script>
 //初期マップの設定
