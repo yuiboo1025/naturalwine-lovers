@@ -35,17 +35,33 @@ class Public::SpotsController < ApplicationController
       @wines = @spot.wines.all
     end
   end
-  
+
   def edit
     @spot = Spot.find(params[:id])
     @wine_id = params[:wine_id]
   end
 
   def update
-    @spot = Spot.find(params[:id])
-    @spot.update(spot_params)
+    #編集からワインを取ってくる
+    @wine = Wine.find(params[:spot][:wine_id])
+    #編集画面で入力した緯度経度からspotを検索
+    spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
+    #spotが存在すれば
+    unless spot.blank?
+      #同じとこをろ探す
+      spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
+      #wineを更新をする(カラム名：↑で検索されたspotのid)
+      @wine.update(spot_id: spot.id)
+    #spotが存在しなければ
+    else
+      #新しいspotを作成
+      spot = Spot.new(spot_params)
+      spot.save
+       #wineを更新をする(カラム名：↑で作成されたspotのid)
+      @wine.update(spot_id: spot.id)
+    end
     redirect_to edit_wine_path(params[:spot][:wine_id])
-    
+
     #spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
     #if spot.blank?
      # spot = Spot.new(spot_params)
@@ -54,7 +70,7 @@ class Public::SpotsController < ApplicationController
      # spot.update(spot_params)
    # end
     #redirect_to edit_wine_path(params[:spot][:wine_id])
-    
+
 
     #if @wine.update(wine_params)
      # redirect_to wine_path(@wine.id)
