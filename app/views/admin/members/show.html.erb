@@ -1,57 +1,75 @@
-<div class="container">
-  <div class="row" style="margin-bottom:20px;">
-    <div class="card mx-auto col-lg-7 p-0" style="background-color:#cfae9f">
-      <div class="card-header text-center mt-0" style="margin-top:20px; margin-bottom:30px;">
-        <h4><%= @member.name %>さんの会員詳細</h4>
-      </div>
-      <div class="col-9 mx-auto">
-        <table class="table table-active table-boderless card">
-          <tbody style="background-color:#fcfced">
-            <tr>
-              <th class="table-active">ユーザーID</th>
-              <td><%= @member.id %></td>
-            </tr>
-            <tr>
-              <th class="table-active">プロフィール画像</th>
-              <td>
-                <%= image_tag @member.get_profile_image(100,100) %>
-              </td>
-            </tr>
-            <tr>
-              <th class="table-active">ユーザーネーム</th>
-              <td><%= @member.name %></td>
-            </tr>
-            <tr>
-              <th class="table-active">メールアドレス</th>
-              <td><%= @member.email %></td>
-            </tr>
-            <tr>
-              <th class="table-active">好きなワインのジャンル</th>
-              <td><%= @member.favorite_genre %></td>
-            </tr>
-            <tr>
-              <th class="table-active">在住県</th>
-              <td><%= @member.prefecture %></td>
-            </tr>
-            <tr>
-              <th class="table-active">紹介文</th>
-              <td><%= @member.introduction %></td>
-            </tr>
-            <tr>
-              <th class="table-active">会員ステータス</th>
-              <% if @member.is_deleted == false %>
-                <td class="text-success">有効</td>
-              <% else %>
-                <td class="text-secondary">退会</td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-        <div class="text-center p-2">
-          <%= link_to "編集する", edit_admin_member_path(@member.id), class: "btn mr-5",:style=>"color:#007b43; background-color:#badcad;" %>
-          <%#= link_to "投稿一覧を見る", admin_path, class: "btn",:style=>"color:#ee7800; background-color:#f2d58a;" %>
-        </div>
-      </div>
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-6 text-left">
+      <h2><%= @member.name %>さんの登録情報</h2>
     </div>
   </div>
+  <div class="row justify-content-center mb-3">
+    <div class="col-6 text-right">
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <table class="table table-bordered">
+        <tr>
+          <th class="table-active">ユーザーID</th>
+          <td><%= @member.id %></td>
+        </tr>
+        <tr>
+        <tr>
+          <th class="table-active">プロフィール画像</th>
+          <td>
+            <%= image_tag @member.get_profile_image(150,150) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">ユーザーネーム</th>
+          <td><%= @member.name %></td>
+        </tr>
+        <tr>
+          <th class="table-active">メールアドレス</th>
+          <td><%= @member.email %></td>
+        </tr>
+        <tr>
+          <th class="table-active">好きなワインのジャンル</th>
+          <td><%= @member.favorite_genre %></td>
+        </tr>
+        <tr>
+          <th class="table-active">在住県</th>
+          <td><%= @member.prefecture %></td>
+        </tr>
+        <tr>
+          <th class="table-active">紹介文</th>
+          <td><%= @member.introduction %></td>
+        </tr>
+        <tr>
+          <th class="table-active">ステータス</th>
+          <td>
+            <% if @member.is_deleted == false %>
+              <div class="text-success">有効</div>
+            <% else %>
+              <div class="text-secondary">退会</div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <div class="row justify-content-center">
+      <div class="col-5 text-right ml-5">
+        <% if @member.name != "guestuser" %>
+          <%= link_to "→Edit", edit_admin_member_path(@member), class:"btn px-5 py-1 member_show__edit_btn" %>
+        <% end %>
+      </div>
+    </div>
 </div>
+
+
+<style>
+  .member_show__edit_btn {
+    background-color :#008b8b;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+  }
+</style>

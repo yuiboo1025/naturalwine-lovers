@@ -1,0 +1,79 @@
+<div class="container my-4">
+
+  <div class="row">
+    <div class="col text-center">
+      <% provide(:title,'ユーザー検索') %>
+      <h4><%= title %></h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <%= render 'search_form', q: q %>
+    </div>
+  </div>
+
+  <div class="row my-4 text-center">
+    <div class="col">
+
+      <% unless members.empty? %>
+
+      <table class="table member_index_table">
+        <thead>
+          <th>ユーザー名</th>
+          <th>在住県</th>
+          <th>好きなワインのジャンル</th>
+          <th>ナチュール記録数</th>
+          <th>フォロー数</th>
+          <th>フォロワー数</th>
+          <th>ステータス</th>
+        </thead>
+        <% members.each do |member| %>
+        <tbody>
+          <tr class="member_index_tbody_tr" data-href="admin/wines/myindex/<%= member.id%>">
+            <td>
+              <%#= link_to wines_myindex_path(member) do %>
+                <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
+                <%= member.name %>
+              <%# end %>
+            </td>
+            <td><%= member.prefecture %></td>
+            <td><%= member.favorite_genre %></td>
+            <td><%= member.wines.count %></td>
+            <td><%= member.followings.where(is_deleted: false).count %></td>
+            <td><%= member.followers.where(is_deleted: false).count %></td>
+　　　　　　<% if member.is_deleted == false %>
+              <td class="text-success">有効</td>
+            <% else %>
+              <td class="text-secondary">退会</td>
+            <% end %>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+
+      <% else %>
+      <p>
+      ユーザーが見つかりませんでした。<br>
+      お探しのユーザー名を確認してください。
+      </p>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .member_index_table tbody tr:hover {
+    background-color: #f7f2c6;
+  }
+  
+</style>
+
+<script>
+  $(document).on("turbolinks:load", function() {
+    $(".member_index_tbody_tr").on('click', function() {
+      window.location = $(this).data("href");
+    });
+  });
+</script>

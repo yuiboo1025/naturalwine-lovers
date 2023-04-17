@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
+    get 'admin/wines/myindex/:id' => 'wines#myindex', as: 'admin_wines_myindex'
     resources :members, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :wines, only: [:index, :show, :edit, :update, :destroy]
@@ -22,16 +23,10 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get "/about" => "homes#about"
-    # members/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
-    #get 'members/information/edit' => 'members#edit', as: 'edit_information'
-   # patch 'members/information' => 'members#update', as: 'update_information'
     get 'members/unsubscribe' => 'members#unsubscribe', as: 'confirm_unsubscribe'
-    #put 'members/information' => 'members#update'
     patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_members'
     resources :members, only: [:index,:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-  	  #get 'followings' => 'relationships#followings', as: 'followings'
-  	  #get 'followers' => 'relationships#followers', as: 'followers'
   	  #member doを使うと、ユーザーidが含まれてるurlを使えるようになる。
   	  member do
         get :bookmarks, :followings, :followers

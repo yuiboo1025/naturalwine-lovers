@@ -1,0 +1,7 @@
+<%= search_form_for q, url: admin_members_path do |f| %>
+  <h6>※ユーザー検索</h6> 
+<div class = "input-group">
+  <%= f.text_field :name_cont, placeholder: "ユーザーネームを入力" %>
+  <%= f.submit '検索' %>
+</div
+<% end %>

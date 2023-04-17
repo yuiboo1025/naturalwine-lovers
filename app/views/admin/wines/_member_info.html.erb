@@ -1,0 +1,60 @@
+  <div class='row mb-5 myindex_show_profile'>
+    <div class="col-3">
+        <h4 class="text-left">
+          <%= image_tag member.get_profile_image(70,70), class: "rounded-circle" %>
+          <%= member.name %>
+          <%= link_to admin_member_path(member) do %>
+            <i class="fas fa-user-cog"></i>
+          <% end %>
+        </h4>
+        <h6 class="mt-3 text-center">
+        <%#= link_to followings_member_path(member) do %>
+          フォロー数　：<%= member.followings.where(is_deleted: false).count %>
+        <%# end %></br>
+        <%#= link_to followers_member_path(member) do %>
+          フォロワー数：<%= member.followers.where(is_deleted: false).count %>
+        <%# end %>
+        </h6>
+    </div>
+
+    <div class="col-4 myindex_show_table">
+      <table class="table table-sm">
+        <tr>
+          <th class="text-left">在住県</th>
+          <td class="text-left"><%= member.prefecture %></td>
+        </tr>
+        <tr>
+          <th class="text-left">好きなワインのジャンル</th>
+          <td class="text-left"><%= member.favorite_genre %></td>
+        </tr>
+        <tr>
+          <th class="text-left">紹介文</th>
+          <td class="text-left"><%= member.introduction %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-3">
+      <div class="btn">
+        <%#= link_to admin_wines_myindex_path(member) do %>
+          <h7><i class="fas fa-wine-bottle"></i>ナチュール記録all</h7>
+        <%# end %>
+        </div>
+      <div class="btn">
+        <%#= link_to admin_wines_again_index_path(member) do %>
+          <i class="fas fa-star"></i>また飲みたいナチュール
+        <%# end %>
+      </div>
+      <% if current_member == member %>
+      <div class="btn">
+        <%#=link_to bookmarks_member_path(member) do %>
+          <i class="fas fa-bookmark"></i>ブックマークした投稿
+        <%# end %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="col-2">
+    </div>
+    
+  </div>

@@ -62,7 +62,6 @@ gem 'dotenv-rails'
 gem 'google_places'
 gem 'ransack'
 
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
