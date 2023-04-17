@@ -24,7 +24,7 @@ class Public::MembersController < ApplicationController
     @members = @member.followings.where(is_deleted: false)
     if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
       @q = @members.ransack(search_params, activated_true: true)
-      @title = "検索結果(フォローしているユーザ)"
+      @title = "検索結果(フォローしているユーザー)"
     else
       @q = @members.ransack(activated_true: true)
       @title = "フォローしているユーザー"
@@ -38,7 +38,7 @@ class Public::MembersController < ApplicationController
     @members = @member.followers.where(is_deleted: false)
     if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
       @q = @members.ransack(search_params, activated_true: true)
-      @title = "検索結果"
+      @title = "検索結果(フォロワー)"
     else
       @q = @members.ransack(activated_true: true)
       @title = "フォロワー"

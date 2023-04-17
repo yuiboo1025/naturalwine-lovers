@@ -2,9 +2,9 @@ class Public::WinesController < ApplicationController
   before_action :authenticate_member!, except: [:index]
   
   def index
-    #@exist_members = Member.where(is_deleted: true)
-    #@wines = @exist_members.wines.all
-    @wines = Wine.all
+    #アソシエーション先での検索方法。(wineからmemberを指定して取り出したいときの書き方)
+    @wines = Wine.includes(:member).where(member: { is_deleted: false }).page(params[:page]).per(8)
+    @wines_all = Wine.includes(:member).where(member: { is_deleted: false })
     @genres = Genre.all
   end
 

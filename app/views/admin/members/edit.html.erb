@@ -4,53 +4,53 @@
       <h2><%= @member.name %>のユーザー登録情報編集</h2>
     </div>
   </div>
-      <%= form_with model: @member, url: admin_member_path do |f| %>
-      <%#= render "public/shared/error_messages", resource: resource %>
+  <%= form_with model: @member, url: admin_member_path do |f| %>
+  <%#= render "public/shared/error_messages", resource: resource %>
       
-      <div class="row justify-content-center">
-			 <div class ="col-7">
-			   <table class="table table-bordered">
-			     <tr>
-                <th>ユーザーID</th>
-                <td><%= @member.id %></td>
-              </tr>
-              <tr>
-              <th class="table-active"><%= f.label :profile_image, "プロフィール画像" %></th>
-              <td><%= f.file_field :profile_image, accept: "image/*", :placeholder =>"#{@member.profile_image}" %></td>
-            </tr>
-            <tr>
-              <th class="table-active"><%= f.label :name, "ユーザー名" %></th>
-              <td><%= f.text_field :name, :placeholder =>"#{@member.name}" %></td>
-            </tr>
-            <tr>
-              <th class="table-active"><%= f.label :email, "メールアドレス" %></th>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>"#{@member.email}" %></td>
-            </tr>
-            <tr>
-              <th class="table-active"><%= f.label :favorite_genre, "好きなワインのジャンル" %></th>
-              <td>
-                <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
-              </td>
-            </tr>
-            <tr>
-              <th class="table-active"><%= f.label :prefecture, "在住県" %></th>
-              <td>
-                <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
-              </td>
-            </tr>
-            <tr>
-              <th class="table-active"><%= f.label :introduction, "紹介文" %></th>
-              <td><%= f.text_area :introduction, :placeholder =>"#{@member.introduction}" %></td>
-            </tr>
-              <tr>
-                <th>会員ステータス</th>
-                <td>
-                  <%= f.radio_button :is_deleted, "false" %>
-                  <%= f.label :is_deleted_false, "有効" %>
-                  <%= f.radio_button :is_deleted, "true", class:"ml-4" %>
-                  <%= f.label :is_deleted_false, "退会" %>
-                </td>
-              </tr>
+    <div class="row justify-content-center">
+			<div class ="col-7">
+			  <table class="table table-bordered">
+			    <tr>
+            <th class="table-active">ユーザーID</th>
+            <td><%= @member.id %></td>
+          </tr>
+          <tr>
+            <th class="table-active"><%= f.label :profile_image, "プロフィール画像" %></th>
+            <td><%= f.file_field :profile_image, accept: "image/*", :placeholder =>"#{@member.profile_image}" %></td>
+          </tr>
+          <tr>
+            <th class="table-active"><%= f.label :name, "ユーザー名" %></th>
+            <td><%= f.text_field :name, :placeholder =>"#{@member.name}" %></td>
+          </tr>
+          <tr>
+            <th class="table-active"><%= f.label :email, "メールアドレス" %></th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>"#{@member.email}" %></td>
+          </tr>
+          <tr>
+            <th class="table-active"><%= f.label :favorite_genre, "好きなワインのジャンル" %></th>
+            <td>
+              <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="table-active"><%= f.label :prefecture, "在住県" %></th>
+            <td>
+              <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="table-active"><%= f.label :introduction, "紹介文" %></th>
+            <td><%= f.text_area :introduction, :placeholder =>"#{@member.introduction}" %></td>
+          </tr>
+          <tr>
+            <th class="table-active">会員ステータス</th>
+            <td>
+              <%= f.radio_button :is_deleted, "false" %>
+              <%= f.label :is_deleted_false, "有効" %>
+              <%= f.radio_button :is_deleted, "true", class:"ml-4" %>
+              <%= f.label :is_deleted_false, "退会" %>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
