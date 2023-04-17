@@ -1,7 +1,9 @@
 class Public::WinesController < ApplicationController
   before_action :authenticate_member!, except: [:index]
-
+  
   def index
+    #@exist_members = Member.where(is_deleted: true)
+    #@wines = @exist_members.wines.all
     @wines = Wine.all
     @genres = Genre.all
   end
@@ -62,6 +64,7 @@ class Public::WinesController < ApplicationController
     wine.destroy
     redirect_to wines_path
   end
+  
 
   private
 
@@ -70,7 +73,7 @@ class Public::WinesController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction)
+    params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction, :is_deleted)
   end
   
   def spot_params

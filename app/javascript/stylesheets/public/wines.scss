@@ -11,21 +11,16 @@
 }
 
 .wine_show_contents {
-  //background-color: #faebd7;
   border: double 10px #3d83bf;
-  //border-radius: 20px;
-  padding: 3%;
-  //margin-top:5%;
-  //margin-bottom: 10%;
+  padding: 1%;
   display: flex;
 }
 
-.wine_show__update_destroy_btn {
-  text-align: right;
-}
-
-.wine_show__favorite_comment {
-  display: flex;
+.wine_show__edit_btn {
+  border-bottom: solid;
+  border-width: 5px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 70%, #3cb371 0%);
 }
 
 //myindexページ
@@ -82,4 +77,8 @@
 .card {
   background: #f7f6ed;
   border: double 3px #3d83bf;
+}
+
+.card_under_info {
+  border-top: dashed 2px #3d83bf;
 }

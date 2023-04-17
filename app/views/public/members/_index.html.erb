@@ -43,8 +43,8 @@
             <td><%= member.prefecture %></td>
             <td><%= member.favorite_genre %></td>
             <td><%= member.wines.count %></td>
-            <td><%= member.followings.count %></td>
-            <td><%= member.followers.count %></td>
+            <td><%= member.followings.where(is_deleted: false).count %></td>
+            <td><%= member.followers.where(is_deleted: false).count %></td>
             <td>
               <% if member_signed_in? %>
                 <% if current_member != member %>

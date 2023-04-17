@@ -7,11 +7,12 @@ class Public::MembersController < ApplicationController
     #params[:q]で、欲しいデータが送られてきているかチェック
     #送られてきている、かつ、データが存在しているか確認している。
     #左側のparams[:q]の記述がないと、そもそもデータが送られてきていない場合、エラーが出てきてしまう。
+    @exist_members = Member.where(is_deleted: false)
     if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
-      @q = Member.ransack(search_params, activated_true: true)
+      @q = @exist_members.ransack(search_params, activated_true: true)
       @title = "検索結果"
     else
-      @q = Member.ransack(activated_true: true)
+      @q = @exist_members.ransack(activated_true: true)
       @title = "全てのユーザー"
     end
       @members = @q.result.all
@@ -20,7 +21,7 @@ class Public::MembersController < ApplicationController
   
   def followings
     @member = Member.find(params[:id])
-    @members = @member.followings
+    @members = @member.followings.where(is_deleted: false)
     if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
       @q = @members.ransack(search_params, activated_true: true)
       @title = "検索結果(フォローしているユーザ)"
@@ -34,7 +35,7 @@ class Public::MembersController < ApplicationController
 
   def followers
     @member = Member.find(params[:id])
-    @members = @member.followers
+    @members = @member.followers.where(is_deleted: false)
     if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
       @q = @members.ransack(search_params, activated_true: true)
       @title = "検索結果"
@@ -57,7 +58,7 @@ class Public::MembersController < ApplicationController
   def update
     @member = current_member
     if @member.update(member_params)
-      redirect_to mypage_path, notice: '会員情報の更新が完了しました。'
+      redirect_to member_path(@member), notice: '会員情報の更新が完了しました。'
     else
       render :edit
     end
@@ -85,6 +86,15 @@ class Public::MembersController < ApplicationController
   end
 
   private
+  
+  #ユーザーの編集画面へのURLを直接入力された場合にはメッセージを表示してユーザー詳細画面へリダイレクトさせる。
+  #before_actionでeditアクション実行前に処理を行う。
+  def ensure_guest_member
+    @member = Member.find(params[:id])
+    if @member.name == "guestmember"
+      redirect_to member_path(current_member) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+  end 
 
   def set_current_member
     @member = current_member
@@ -97,14 +107,5 @@ class Public::MembersController < ApplicationController
   def search_params
     params.require(:q).permit(:name_cont)
   end
-  
-  #ユーザーの編集画面へのURLを直接入力された場合にはメッセージを表示してユーザー詳細画面へリダイレクトさせる。
-  #before_actionでeditアクション実行前に処理を行う。
-  def ensure_guest_member
-    @member = Member.find(params[:id])
-    if @member.name == "guestmember"
-      redirect_to member_path(current_member) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-    end
-  end  
   
 end

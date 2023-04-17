@@ -10,8 +10,13 @@
            <%= image_tag @wine.get_wine_image(400,400) %></br>
            
            <div id= "wine_<%= @wine.id %>">
-             <h4 class="wine_show__favorite_comment d-flex justify-content-end mt-3">
-               <div class="comments_count">
+             <h4 class="wine_show__under_info d-flex justify-content-end mt-3 mr-3">
+               <% if @wine.is_again == true && @wine.member == current_member %>
+                <div class ="against mr-5 pr-5">
+                  <i class="fas fa-star"></i>
+                </div>
+               <% end %>
+               <div class="comments_count ml-1">
                  <%= render "public/comments/counter", wine: @wine %>
                </div>
                <div class= "favorite-btn mx-4">
@@ -63,10 +68,10 @@
               <% end %>
             </tr>
           </table>
-          <div class="wine_show__update_destroy_btn">
+          <div class="wine_show__edit_destroy_btn text-right">
             <% if @wine.member == current_member %>
-              <%= link_to "編集", edit_wine_path(@wine) %>
-              <%= link_to "削除", wine_path(@wine), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+              <%= link_to "編集", edit_wine_path(@wine), class: "wine_show__edit_btn px-2" %>
+              <%= link_to "削除", wine_path(@wine), method: :delete, class: "wine_show__destroy_btn px-2", "data-confirm" => "本当に削除しますか？" %>
           　<% end %>
         　</div>
         </div>
@@ -99,6 +104,24 @@
 .wine_show_map {
   background-color: #f5deb3;
   border-radius: 70px;
+}
+
+.wine_show__edit_btn {
+  border-width: 15px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 50%, #66cdaa 0%);
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wine_show__destroy_btn {
+  border-width: 7px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 50%, #ffa07a 0%);
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>
 

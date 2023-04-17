@@ -1,26 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>マイページ</h2>
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-6 text-left">
+      <h2><%= @member.name %>さんの登録情報</h2>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <h4>登録情報</h4>
+  <div class="row justify-content-center mb-3">
+    <div class="col-6 text-right">
     </div>
-    <% if @member.name != "guestuser" %>
-    <div class="col">
-      <%= link_to "編集する", edit_information_path, class:"btn btn-success px-4 mb-2" %>
-    </div>
-    <% end %>
   </div>
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-center">
+    <div class="col-6">
       <table class="table table-bordered">
         <tr>
           <th class="table-active">プロフィール画像</th>
           <td>
-            <%= image_tag @member.get_profile_image(100,100) %>
+            <%= image_tag @member.get_profile_image(150,150) %>
           </td>
         </tr>
         <tr>
@@ -45,3 +39,22 @@
         </tr>
       </table>
     </div>
+  </div>
+    <div class="row justify-content-center">
+      <div class="col-5 text-right ml-5">
+        <% if @member.name != "guestuser" %>
+          <%= link_to "→Edit", edit_member_path(@member), class:"btn px-5 py-1 member_show__edit_btn" %>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+<style>
+  .member_show__edit_btn {
+    background-color :#008b8b;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+  }
+</style>
