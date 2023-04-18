@@ -1,25 +1,5 @@
-class Public::SpotsController < ApplicationController
-  before_action :authenticate_member!, except: [:index, :show]
-
-  def new
-    @spot = Spot.new
-  end
-
-  def create
-    spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
-    if spot.blank?
-      spot = Spot.new(spot_params)
-      spot.save
-    end
-    redirect_to new_wine_path(spot_id: spot.id)
-
-     #if spot.save
-       # redirect_to new_wine_path(@spot.id)
-     #else
-       # redirect_to :action => "index"
-     #end
-  end
-
+class Admin::SpotsController < ApplicationController
+  
   def index
     @spots = Spot.all
   end
@@ -60,21 +40,14 @@ class Public::SpotsController < ApplicationController
       #wineを更新をする(カラム名：↑で検索されたspotのid)
       @wine.update(spot_id: spot.id)
     end
-    redirect_to edit_wine_path(params[:spot][:wine_id])
-
-    #if @wine.update(wine_params)
-     # redirect_to wine_path(@wine.id)
-   # else
-     # @message = "※情報が足りません"
-     # render :edit
-   # end
-
+    redirect_to edit_admin_wine_path(params[:spot][:wine_id])
   end
+
 
   private
 
   def spot_params
     params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
   end
-
+  
 end

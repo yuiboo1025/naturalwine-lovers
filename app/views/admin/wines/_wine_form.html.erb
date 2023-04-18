@@ -13,7 +13,7 @@
           <td>
             <%= spot.spot_name %>
             <%= f.hidden_field :spot_id, value: spot.id %>
-              <%= link_to "編集", edit_spot_path(spot.id, wine_id: wine.id) %>
+              <%= link_to "編集", edit_admin_spot_path(spot.id, wine_id: wine.id) %>
           </td>
         </tr>
         <tr>
