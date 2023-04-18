@@ -2,11 +2,17 @@
     <%= render 'public/wines/post_wine-btn' %>
 
 <div class="main-visual">
-  <div class="container text-center my-4">
+  <div class="container text-center my-5">
     
-    <div class="row justify-content-center">
-      <div class="col">
+    <div class="row justify-content-between align-items-end">
+      <div class="col-4 mr-3 mb-3">
+        <%= image_tag "top_wine_img.png", size: "350x250" %>
+      </div>
+      <div class="col-3 ml-2 mr-4">
         <%= image_tag "logo4.jpg", class: "rounded-circle", size: "300x300", :style=>"border: 2px solid #3d83bf;" %>
+      </div>
+      <div class="col-4 text-right ml-4 mb-3">
+        <%= image_tag "top_wine_img2.png", size: "350x250" %>
       </div>
     </div>
     
@@ -16,9 +22,17 @@
       </div>
     </div>
     
-    <div class="row justify-content-center my-3" >
+    <div class="row justify-content-center" >
+      <div class="col-2">
+        <%= link_to 'Sign-up', new_member_registration_path, class: "btn mb-1 pr-3 pl-3 ml-4 sign_in", method: :post %>
+      </div>
+      <div class="col-2">
+        <%= link_to 'Log-in', new_member_session_path, class: "btn mb-1 pr-3 pl-3 ml-4 log_in", method: :post %>
+      </div>
+    </div>
+    <div class="row justify-content-center mb-3" >
       <div class="col-3">
-        <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+        <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 guest_sign_in", method: :post %>
       </div>
     </div>
     
