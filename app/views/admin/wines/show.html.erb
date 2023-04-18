@@ -4,7 +4,7 @@
     <div class="wine_show_contents">
         <div class="col">
           📍<%= @wine.spot.spot_name %></br>
-           〒<%= @wine.spot.address %></br>
+           
            <%= image_tag @wine.get_wine_image(400,400) %></br>
            
            <div id= "wine_<%= @wine.id %>">
@@ -64,9 +64,12 @@
         　</div>
         </div>
       </div>
-      <div class="wine_show_map justify-content-center text-center p-4 ml-4">
+      <div class="wine_show_map justify-content-center text-center p-4 ml-3">
         <h3>Where is...?</h3>
-        <div class="mb-2 mt-5">📍<%= @wine.spot.spot_name %></div>
+        <div class="wine_show_map_info mb-2 mt-5">
+          📍<%= @wine.spot.spot_name %></br>
+          〒<%= @wine.spot.address %>
+          </div>
         <div id='map'></div>
       </div>
     </div>
@@ -107,6 +110,10 @@
   color: #555555;
   font-size: 20px;
   font-weight: bold;
+}
+
+.wine_show_map_info {
+  width: 300px;
 }
 </style>
 

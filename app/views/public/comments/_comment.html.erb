@@ -3,21 +3,15 @@
       
         <table class="table">
           <tr>
-            <th style="width: 20%"></th>
-            <th style="width: 20%"></th>
-            <th style="width: 40%"></th>
-            <th style="width: 20%"></th>
-          </tr>
-          <tr>
-            <td class="d-flex">
+            <td class="d-flex" style="width: 20%">
               <%= image_tag comment.member.get_profile_image(70,70), class: "rounded-circle" %>
               <%= link_to wines_myindex_path(wine.member.id), remote: true do %>
                 <%= comment.member.name %>
               <% end %>
             </td>
-            <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= comment.comment %></td>
-            <td>
+            <td style="width: 20%"><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+            <td style="width: 40%"><%= comment.comment %></td>
+            <td style="width: 20%">
               <% if comment.member == current_member %>
                 <%= link_to "削除", wine_comment_path(comment.wine, comment), remote: true, method: :delete %>
                <% end %>
