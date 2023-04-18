@@ -11,6 +11,14 @@ class Admin::WinesController < ApplicationController
     @genres = Genre.all
   end
   
+  def again_index
+    @member = Member.find(params[:id])
+    @wines = @member.wines.all
+    @again_wines = @wines.where(is_again: true)
+    @genres = Genre.all
+  end
+
+  
   def show
     @wine = Wine.find(params[:id])
     @comment = Comment.new
@@ -21,10 +29,20 @@ class Admin::WinesController < ApplicationController
     @spot = @wine.spot
   end
   
+  def update
+    @wine = Wine.find(params[:id])
+    if @wine.update(wine_params)
+      redirect_to admin_wine_path(@wine.id)
+    else
+      @message = "※情報が足りません"
+      render :edit
+    end
+  end
+  
   def destroy
     wine = Wine.find(params[:id])
     wine.destroy
-    redirect_to wines_path
+    redirect_to admin_wines_path
   end
   
   private

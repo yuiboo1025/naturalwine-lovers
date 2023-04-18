@@ -1,0 +1,132 @@
+
+<div class="container justify-content-center wine_show_main my-4">
+  <div class="row mt-5 justify-content-center wine_show ">
+    <div class="wine_show_contents">
+        <div class="col">
+          📍<%= @wine.spot.spot_name %></br>
+           〒<%= @wine.spot.address %></br>
+           <%= image_tag @wine.get_wine_image(400,400) %></br>
+           
+           <div id= "wine_<%= @wine.id %>">
+             <h4 class="wine_show__under_info d-flex justify-content-end mt-3 mr-3">
+               <div class="comments_count ml-1">
+                 <%= render "admin/comments/counter", wine: @wine %>
+               </div>
+               <div class= "favorite-btn mx-4">
+                 ♡<%= @wine.favorites.count %>
+               </div>
+             </h4>
+           </div>
+        </div>
+        
+        <div class="col mt-5">
+          <table class="table">
+            <tr>
+              <th><%= image_tag @wine.member.get_profile_image(50,50), class: "rounded-circle" %></th>
+              <td><%= @wine.member.name %></td>
+            </tr>
+            <tr>
+              <th>投稿日</th>
+              <td><%= @wine.created_at.strftime('%Y/%m/%d') %> </td>
+            </tr>
+            <tr>
+              <th>生産国</th>
+              <td><%= @wine.production_country %> </td>
+            </tr>
+            <tr>
+              <th>年代</th>
+              <td><%= @wine.production_year %> </td>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
+              <td><%= @wine.genre.genre_name %> </td>
+            </tr>
+            <tr>
+              <th>評価</th>
+              <td><%= render "public/wines/static_rate", wine: @wine %></td>
+            </tr>
+            <tr>
+              <th>感想</th>
+              <td><%= @wine.impression %> </td>
+            </tr>
+            <tr>
+              <th></th>
+              <% if @wine.is_again == false %>
+                <td class="text-success"></td>
+              <% else %>
+                <td class="text-secondary">また飲みたい</td>
+              <% end %>
+            </tr>
+          </table>
+          <div class="wine_show__edit_destroy_btn text-right">
+              <%= link_to "編集", edit_admin_wine_path(@wine), class: "wine_show__edit_btn px-2" %>
+              <%= link_to "削除", admin_wine_path(@wine), method: :delete, class: "wine_show__destroy_btn px-2", "data-confirm" => "本当に削除しますか？" %>
+        　</div>
+        </div>
+      </div>
+      <div class="wine_show_map justify-content-center text-center p-4 ml-4">
+        <h3>Where is...?</h3>
+        <div class="mb-2 mt-5">📍<%= @wine.spot.spot_name %></div>
+        <div id='map'></div>
+      </div>
+    </div>
+  <div class="row justify-content-left mt-3">
+    <div class="col-7">
+      <div class="comment">
+        <%= render "admin/comments/comment", wine: @wine %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+#map {
+  height: 300px;
+  width: 300px;
+}
+
+.wine_show_map {
+  background-color: #f5deb3;
+  border-radius: 70px;
+}
+
+.wine_show__edit_btn {
+  border-width: 15px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 50%, #66cdaa 0%);
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wine_show__destroy_btn {
+  border-width: 7px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 50%, #ffa07a 0%);
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>
+
+<!-- js部分 -->
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= @wine.spot.lat %>, lng: <%= @wine.spot.lng %>},
+    zoom: 15,
+  });
+
+   marker = new google.maps.Marker({
+    position:  {lat: <%= @wine.spot.lat %>, lng: <%= @wine.spot.lng %>},
+    map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANVEZaOAVmsA5IxBWxHuUDOy-5qzjluGI&callback=initMap" async defer></script>

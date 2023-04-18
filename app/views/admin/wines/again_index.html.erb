@@ -1,6 +1,6 @@
 <div class='container my-4'>
   
-  <%= render 'member_info', member: @member %>
+  <%= render 'admin/wines/member_info', member: @member %>
   
   <div class="row">
     <h5 class="col text-center mx-auto",  style="color:#3d83bf;">
@@ -10,7 +10,7 @@
   <div class='row'>
     <div class='col'>
 
-      <%= render 'index', wines: @again_wines, member: @member, genres: @genres %>
+      <%= render 'admin/wines/index', wines: @again_wines, member: @member, genres: @genres %>
 
       <div class="d-flex justify-content-center mt-5">
         <%#= paginate @wines %>

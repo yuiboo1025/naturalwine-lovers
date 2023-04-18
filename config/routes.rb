@@ -13,10 +13,17 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    get 'admin/wines/myindex/:id' => 'wines#myindex', as: 'admin_wines_myindex'
-    resources :members, only: [:index, :show, :edit, :update]
+    get 'admin/wines/myindex/:id' => 'wines#myindex', as: 'wines_myindex'
+    get 'admin/wines/again_index/:id' => 'wines#again_index', as: 'wines_again_index'
+    resources :members, only: [:index, :show, :edit, :update] do
+      member do
+        get :bookmarks, :followings, :followers
+      end
+    end
     resources :genres, only: [:index, :edit, :create, :update]
-    resources :wines, only: [:index, :show, :edit, :update, :destroy]
+    resources :wines, only: [:index, :show, :edit, :update, :destroy] do
+      resources :comments, only: [:destroy]
+    end
     resources :spots, only: [:index, :show, :edit, :update]
   end
 

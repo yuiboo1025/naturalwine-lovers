@@ -1,6 +1,5 @@
 class Admin::MembersController < ApplicationController
   def index
-    #@members = Member.all
     @members = Member.all
     if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
       @q = @members.ransack(search_params, activated_true: true)
@@ -9,8 +8,33 @@ class Admin::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "全てのユーザー"
     end
-      @members = @q.result.all
-      #@members = @q.result.paginate(page: params[:page])
+      @members = @q.result.page(params[:page]).per(5)
+  end
+  
+  def followings
+    @member = Member.find(params[:id])
+    @members = @member.followings
+    if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+      @q = @members.ransack(search_params, activated_true: true)
+      @title = "検索結果(フォローしているユーザー)"
+    else
+      @q = @members.ransack(activated_true: true)
+      @title = "フォローしているユーザー"
+    end
+      @members = @q.result.page(params[:page]).per(5)
+  end
+
+  def followers
+    @member = Member.find(params[:id])
+    @members = @member.followers
+    if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+      @q = @members.ransack(search_params, activated_true: true)
+      @title = "検索結果(フォロワー)"
+    else
+      @q = @members.ransack(activated_true: true)
+      @title = "フォロワー"
+    end
+      @members = @q.result.page(params[:page]).per(5)
   end
 
   def show
@@ -25,6 +49,15 @@ class Admin::MembersController < ApplicationController
     @member = Member.find(params[:id])
     @member.update(member_params)
     redirect_to admin_member_path(@member.id)
+  end
+  
+  def bookmarks
+    @member = Member.find(params[:id])
+    #ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
+    #bookmarksには、あるユーザーがブックマークした投稿のidが入っている
+    bookmarks= Bookmark.where(member_id: @member.id).pluck(:wine_id)
+    @bookmark_wines = Wine.find(bookmarks)
+    @genres = Genre.all
   end
 
   private
