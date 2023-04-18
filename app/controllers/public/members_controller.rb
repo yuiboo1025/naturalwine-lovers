@@ -15,8 +15,8 @@ class Public::MembersController < ApplicationController
       @q = @exist_members.ransack(activated_true: true)
       @title = "全てのユーザー"
     end
-      @members = @q.result.all
-      #@members = @q.result.paginate(page: params[:page])
+      #@members = @q.result.all
+      @members = @q.result.page(params[:page]).per(5)
   end
   
   def followings
@@ -29,8 +29,8 @@ class Public::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "フォローしているユーザー"
     end
-      @members = @q.result.all
-      #@members = @q.result.paginate(page: params[:page])
+      #@members = @q.result.all
+      @members = @q.result.page(params[:page]).per(5)
   end
 
   def followers
@@ -43,8 +43,8 @@ class Public::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "フォロワー"
     end
-      @members = @q.result.all
-      #@members = @q.result.paginate(page: params[:page])
+      #@members = @q.result.all
+      @members = @q.result.page(params[:page]).per(5)
   end
   
   def show

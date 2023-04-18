@@ -38,3 +38,22 @@ header{
 footer{
   border-top: 2px solid #3d83bf;
 }
+
+  /*ページネーション自体のデザイン*/
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+  background-color: #f7f6ed;
+  border-radius: 15px;
+}
+
+/* 表示しているページ番号のデザイン */
+.page-item.active .page-link {
+  background-color: #3d83bf;
+  border-radius: 15px; 
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
+}
