@@ -33,7 +33,7 @@
         </thead>
         <% members.each do |member| %>
         <tbody>
-          <tr class="member_index_tbody_tr" data-href="wines/myindex/<%= member.id%>">
+          <tr class="member_index_tbody_tr" data-href="../../wines/myindex/<%= member.id%>">
             <td>
               <%#= link_to wines_myindex_path(member) do %>
                 <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
