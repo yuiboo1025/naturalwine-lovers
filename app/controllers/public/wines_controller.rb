@@ -52,9 +52,11 @@ class Public::WinesController < ApplicationController
   def update
     @wine = Wine.find(params[:id])
     if @wine.update(wine_params)
+      flash[:notice] = "ナチュール投稿の更新が完了しました。"
       redirect_to wine_path(@wine.id)
     else
-      @message = "※情報が足りません"
+      flash[:error] = "※情報が足りません"
+      #@message = "※情報が足りません"
       render :edit
     end
   end

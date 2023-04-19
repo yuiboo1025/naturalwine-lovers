@@ -1,8 +1,8 @@
 class Public::MembersController < ApplicationController
-  before_action :authenticate_member!, except: [:index] 
+  before_action :authenticate_member!, except: [:index]
   #ゲストユーザーにはユーザー情報編集できないようにするため
   before_action :ensure_guest_member, only: [:edit]
-  
+
   def index
     #params[:q]で、欲しいデータが送られてきているかチェック
     #送られてきている、かつ、データが存在しているか確認している。
@@ -17,7 +17,7 @@ class Public::MembersController < ApplicationController
     end
       @members = @q.result.page(params[:page]).per(5)
   end
-  
+
   def followings
     @member = Member.find(params[:id])
     @members = @member.followings.where(is_deleted: false)
@@ -43,7 +43,7 @@ class Public::MembersController < ApplicationController
     end
       @members = @q.result.page(params[:page]).per(5)
   end
-  
+
   def show
     @member = current_member
   end
@@ -51,16 +51,17 @@ class Public::MembersController < ApplicationController
   def edit
     @member = current_member
   end
-  
+
   def update
     @member = current_member
     if @member.update(member_params)
-      redirect_to member_path(@member), notice: '会員情報の更新が完了しました。'
+      flash[:notice] = "会員情報の更新が完了しました。"
+      redirect_to member_path(@member)
     else
       render :edit
     end
   end
-  
+
   def bookmarks
     @member = Member.find(params[:id])
     #ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
@@ -83,15 +84,16 @@ class Public::MembersController < ApplicationController
   end
 
   private
-  
+
   #ユーザーの編集画面へのURLを直接入力された場合にはメッセージを表示してユーザー詳細画面へリダイレクトさせる。
   #before_actionでeditアクション実行前に処理を行う。
   def ensure_guest_member
     @member = Member.find(params[:id])
-    if @member.name == "guestmember"
-      redirect_to member_path(current_member) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    if @member.name == "guestuser"
+      flash[:error] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to member_path(current_member)
     end
-  end 
+  end
 
   def set_current_member
     @member = current_member
@@ -100,9 +102,9 @@ class Public::MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction)
   end
-  
+
   def search_params
     params.require(:q).permit(:name_cont)
   end
-  
+
 end

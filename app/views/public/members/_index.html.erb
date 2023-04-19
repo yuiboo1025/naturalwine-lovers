@@ -33,28 +33,20 @@
         </thead>
         <% members.each do |member| %>
         <tbody>
-          <tr class="member_index_tbody_tr" data-href="../../wines/myindex/<%= member.id%>">
-            <td>
+          <tr>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
               <%#= link_to wines_myindex_path(member) do %>
                 <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
                 <%= member.name %>
               <%# end %>
             </td>
-            <td><%= member.prefecture %></td>
-            <td><%= member.favorite_genre %></td>
-            <td><%= member.wines.count %></td>
-            <td><%= member.followings.where(is_deleted: false).count %></td>
-            <td><%= member.followers.where(is_deleted: false).count %></td>
-            <td>
-              <% if member_signed_in? %>
-                <% if current_member != member %>
-                  <% if current_member.following?(member) %>
-                    <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn unfollow_btn pr-3 pl-3 ml-4" %>
-                  <% else %>
-                    <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class: "btn follow_btn pr-3 pl-3 ml-4" %>
-                  <% end %>
-                <% end %>
-              <% end %>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.prefecture %></td>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.followings.where(is_deleted: false).count %></td>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.followers.where(is_deleted: false).count %></td>
+            <td class="relationships_btn-<%= member.id %>">
+              <%= render 'public/relationships/relationship', member: member %>
             </td>
           </tr>
         </tbody>
@@ -98,7 +90,7 @@
 
 <script>
   $(document).on("turbolinks:load", function() {
-    $(".member_index_tbody_tr").on('click', function() {
+    $(".member_index_tbody_td").on('click', function() {
       window.location = $(this).data("href");
     });
   });
