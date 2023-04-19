@@ -58,7 +58,7 @@
     <div class="row justify-content-center">
       <div class="col-5 text-right ml-5">
         <% if @member.name != "guestuser" %>
-          <%= link_to "→Edit", edit_admin_member_path(@member), class:"btn px-5 py-1 member_show__edit_btn" %>
+          <%= link_to "→ Edit", edit_admin_member_path(@member), class:"btn btn-info btn-info px-5 py-1 member_show__edit_btn" %>
         <% end %>
       </div>
     </div>
@@ -67,8 +67,6 @@
 
 <style>
   .member_show__edit_btn {
-    background-color :#008b8b;
-    color: #ffffff;
     font-size: 18px;
     font-weight: bold;
   }

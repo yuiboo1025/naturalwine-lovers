@@ -19,7 +19,7 @@
         <tr>
           <th class="table-active">商品名</th>
           <td>
-            <%= f.text_field :wine_name %>
+            <%= f.text_field :wine_name, size: 40 %>
           </td>
         </tr>
         <tr>
@@ -73,7 +73,7 @@
         <tr>
           <th class="table-active">感想</th>
           <td>
-            <%= f.text_area :impression %>
+            <%= f.text_area :impression, size: "40x5" %>
           </td>
         </tr>
         <tr>
@@ -90,8 +90,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+    <div class="col-7 justify-content-center">
+      <%= f.submit '→　投稿する', class:"btn btn-info btn-block mt-4 px-5 py-2" %>
     </div>
   </div>
 <% end %>

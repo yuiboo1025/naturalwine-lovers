@@ -1,74 +1,78 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-　　　<h2>Sign up</h2>
+<div class="container mb-4">
+  <div class="row justify-content-center">
+    <div class="col-8 ml-5">
+　　　<h3>新規会員登録</h3>
+　　　<h6 style= "color: red;">※の項目は入力が必須です</h6>
 　　</div>
   </div>
 
   <%= form_with model: @member, url: member_registration_path do |f| %>
     <%#= render "public/shared/error_messages", resource: resource %>
-  
-  <table class="member_info member_form">
-    <div class="row">
-      <div class="col">
-      　<thead>
-        　<th></th>
-          <th></th>
-        </thead>
-      </div>
-      <div class="col">
-        <tbody>
+
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <table class="table member_info member_form">
           <tr>
-            <td><%= f.label :name, "ユーザー名" %></td>
+            <th class="table-active"><%= f.label :name, "※ユーザー名(50字以内)" %></th>
             <td colspan="2"><%= f.text_field :name %></td>
           </tr>
           <tr>
-            <td><%= f.label :email, "メールアドレス" %></td>
+            <th class="table-active"><%= f.label :email, "※メールアドレス" %></th>
             <td colspan="2"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
           </tr>
           <tr>
-            <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+            <th class="table-active"><%= f.label :password, "※パスワード(#{@minimum_password_length}文字以上)" %></th>
             <td colspan="2"><%= f.password_field :password, autocomplete: "new-password" %></td>
           </tr>
           <tr>
-            <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
+            <th class="table-active"><%= f.label :password_confirmation, "※パスワード(確認用)" %></th>
             <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
           </tr>
           <tr>
-            <td><%= f.label :profile_image, "プロフィール画像" %></td>
+            <th class="table-active"><%= f.label :profile_image, "プロフィール画像" %></th>
             <td colspan="2"><%= f.file_field :profile_image, accept: "image/*" %></td>
           </tr>
           <tr>
-            <td><%= f.label :favorite_genre, "好きなワインのジャンル" %></td>
+            <th class="table-active"><%= f.label :favorite_genre, "好きなワインのジャンル" %></th>
             <td colspan="2">
               <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
             </td>
           </tr>
           <tr>
-            <td><%= f.label :prefecture, "在住県" %></td>
+            <th class="table-active"><%= f.label :prefecture, "在住県" %></th>
             <td colspan="2">
               <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
             </td>
           </tr>
           <tr>
-            <td><%= f.label :introduction, "紹介文" %></td>
+            <th class="table-active"><%= f.label :introduction, "紹介文" %></th>
             <td colspan="2"><%= f.text_area :introduction %></td>
           </tr>
-          <tr>
-            <td></td>
-            <td colspan="2"><%= f.submit "新規登録", class: "btn btn-success" %></td>
-          </tr>
-        </tbody>
-        </div>
-      </div>
-    </table>
-  <% end %>
-
-  <div class="row">
-    <div class="col">
-      <h2 class="section-ttl">既に登録済みの方</h2>
-      <p><%= link_to "こちら", new_member_session_path, class: "underline" %>からログインしてください。</p>
+      </table>
     </div>
   </div>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <%= f.submit "Sign-Up", class: "btn btn-info btn-block px-5 sign_up_btn" %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-4 text-right">
+      <h5>※既に登録済みの方はこちらから</h5>
+    </div>
+    <div class="col-4 text-left">
+      <p><%= link_to "→ Log-In", new_member_session_path, class: "underline" %></p>
+    </div>
+  </div>
+
 </div>
+
+<style>
+  .sign_up_btn {
+    font-size: 18px;
+    font-weight: bold;
+  }
+</style>
 

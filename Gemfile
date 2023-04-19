@@ -71,3 +71,4 @@ gem "net-imap"
 gem 'kaminari','~> 1.2.1'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 gem 'mini_magick'
+gem 'rails-i18n'
