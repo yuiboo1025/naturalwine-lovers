@@ -58,6 +58,7 @@ class Public::MembersController < ApplicationController
       flash[:notice] = "会員情報の更新が完了しました。"
       redirect_to member_path(@member)
     else
+      flash[:error] = "情報が足りていないか、または情報が正しくありません。"
       render :edit
     end
   end
@@ -100,7 +101,7 @@ class Public::MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction)
+    params.require(:member).permit(:name, :email, :profile_image, :favorite_genre, :prefecture, :introduction)
   end
 
   def search_params

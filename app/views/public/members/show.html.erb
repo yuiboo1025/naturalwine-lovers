@@ -1,3 +1,6 @@
+ <!-- ナチュール記録ボタン -->
+　<%= render 'public/wines/post_wine-btn' %>
+
 <div class="container my-4">
   <div class="row justify-content-center">
     <div class="col-6 text-left">
@@ -18,11 +21,11 @@
           </td>
         </tr>
         <tr>
-          <th class="table-active">ユーザーネーム</th>
+          <th class="table-active">ユーザーネーム(※必須:50文字以内)</th>
           <td><%= @member.name %></td>
         </tr>
         <tr>
-          <th class="table-active">メールアドレス</th>
+          <th class="table-active">メールアドレス(※必須)</th>
           <td><%= @member.email %></td>
         </tr>
         <tr>

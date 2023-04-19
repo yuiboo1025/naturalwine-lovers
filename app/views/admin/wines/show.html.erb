@@ -19,7 +19,7 @@
            </div>
         </div>
         
-        <div class="col mt-5">
+        <div class="col mt-3">
           <table class="table">
             <tr>
               <th><%= image_tag @wine.member.get_profile_image(50,50), class: "rounded-circle" %></th>
@@ -28,6 +28,10 @@
             <tr>
               <th>投稿日</th>
               <td><%= @wine.created_at.strftime('%Y/%m/%d') %> </td>
+            </tr>
+            <tr>
+              <th>商品名</th>
+              <td><%= @wine.wine_name%> </td>
             </tr>
             <tr>
               <th>生産国</th>

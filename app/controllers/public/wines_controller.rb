@@ -38,15 +38,13 @@ class Public::WinesController < ApplicationController
 
   def create
     @wine = current_member.wines.new(wine_params)
-    @wine.save
-    redirect_to wine_path(@wine.id)
-
-    #if @wine.save
-     # redirect_to wine_path(@wine.id)
-   # else
-    #  @message = "※情報が足りません"
-    #  render :new
-   # end
+    if @wine.save
+      flash[:notice] = "ナチュール投稿が成功しました。"
+      redirect_to wine_path(@wine.id)
+    else
+      flash[:error] = "※情報が足りません"
+      redirect_to request.referer
+    end
   end
 
   def update
@@ -56,7 +54,6 @@ class Public::WinesController < ApplicationController
       redirect_to wine_path(@wine.id)
     else
       flash[:error] = "※情報が足りません"
-      #@message = "※情報が足りません"
       render :edit
     end
   end

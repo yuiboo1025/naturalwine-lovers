@@ -4,6 +4,10 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name,  presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
+
   has_many :wines,dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -48,12 +52,12 @@ class Member < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
+
   #ransack使用する際、出てきたエラーに下記文を記載するよう指示
   def self.ransackable_attributes(auth_object = nil)
     ["email", "encrypted_password", "favorite_genre", "id", "introduction", "is_deleted", "name", "prefecture", "activated_true"]
   end
-  
+
   #ゲストログイン用。app/controllers/members/sessions_controller.rbで記述したMember.guestのguestメソッドを定義
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |member|
