@@ -1,22 +1,25 @@
+<!-- ナチュール記録ボタン -->
+    <%= render 'public/wines/post_wine-btn' %>
+
 <div class="container my-4">
-  <div class="row">
+  <div class="row" style="color: #3d83bf;">
     <div class="col text-center">
       <h1>What about NaturNote ??</h1>
     </div>
   </div>
-  <div class="row mt-4">
+  <div class="row mt-4" style="color: #3d83bf;">
     <div class="col text-center">
       <h5>ナチュール（自然派ワイン）好きな人のための</br>
      「飲んだナチュールのラベル記録」「ナチュールが楽しめる飲食店探し」ができるサービスです！</h5>
     </div>
   </div>
-  <div class="row mt-3">
+  <div class="row mt-3" style="color: #3d83bf;">
     <div class="col text-center">
       <h5>みんなどんなナチュールを飲んでいるんだろう？どこでナチュールが楽しめるんだろう？</br>
      気に入ったラベル・飲んでみたいナチュール、行ってみたいお店が載ってる投稿に<i class="fas fa-heart"></i>や<i class="fas fa-bookmark"></i>してみよう！</h5>
     </div>
   </div>
-  <div class="row mt-5">
+  <div class="row mt-5 about_content">
     <div class="col text-center">
       <%= image_tag "about_winefarm.jpg", size: "400x270" %>
     </div>
@@ -24,34 +27,106 @@
       <h5>ナチュール(自然派ワイン)とは？</h5>
       <h6>「出来るだけ無農薬でぶどうを育て、添加物を極力ゼロに近づけて造ったワイン」</h6>
       <h6 class="mt-4">普通のワインとの違いは？</h6>
-      <h6><i class="fas fa-wine-glass-alt"></i>　濁ってる、澱（おり）が見える</h6>
+      <h6><i class="fas fa-wine-glass-alt"></i>　    濁ってる、澱（おり）が見える</h6>
       <h6><i class="fas fa-wine-glass-alt"></i>　日持ちがしない</h6>
       <h6><i class="fas fa-wine-glass-alt"></i>　個性豊か</h6>
     </div>
   </div>
-  <div class="row mt-5">
+  
+  <div class="row mt-5 about_content">
     <div class="col text-center mt-4">
       <h5>自分が飲んだナチュールを記録しよう！</h5>
       <h6 class="mt-4">生産者の個性や、ワインの個性がラベルに現れており、</br>
       １つ１つのラベルが個性的でオシャレ！</h6>
       <h6 class="mt-4">写真を撮ったら、さっそく投稿して、</br>
       自分のナチュールを記録Noteを作ろう！</h6>
+      <h6>商品名や感想を記録することもOK</h6>
+      <h6 class="mt-4">右下の「ナチュールを記録する」ボタンをClick!!</br>
     </div>
     <div class="col text-center">
       <%= image_tag "top_wine_img.png", size: "400x270" %>
     </div>
   </div>
-  <div class="row mt-5">
+  
+  <div class="row mt-5 about_content">
     <div class="col text-center">
       <%= image_tag "about_map.png", size: "400x270" %>
     </div>
     <div class="col text-center mt-4">
       <h5>ナチュールが楽しめる店を探してみよう！</h5>
-      <h6>「出来るだけ無農薬でぶどうを育て、添加物を極力ゼロに近づけて造ったワイン」</h6>
-      <h6 class="mt-4">普通のワインとの違いは？</h6>
-      <h6><i class="fas fa-wine-glass-alt"></i>　濁ってる、澱（おり）が見える</h6>
-      <h6><i class="fas fa-wine-glass-alt"></i>　日持ちがしない</h6>
-      <h6><i class="fas fa-wine-glass-alt"></i>　個性豊か</h6>
+      <h6 class="mt-4">みんながナチュールを楽しんでいるお店を知ることができます。</h6>
+      <h6 class="mt-4">近くのお店を探して、さっそくお店に行ってみよう！</h6>
+      <h6 class="mt-4">「Map」ボタンから、探すことができるよ！</h6>
     </div>
   </div>
+  
+  <div class="row mt-5 about_content">
+    <div class="col text-center mt-4">
+      <h5>ナチュール好き仲間と交流しよう！</h5>
+      <h6 class="mt-4">
+        他のナチュール好きの仲間を見つけてフォローしたり、</br>
+        投稿にコメントをすることができます。
+      </h6>
+      <h6 class="mt-4">
+        気になった投稿や、飲んでみたいナチュールを見つけたら、</br>
+        <i class="fas fa-heart"></i>（いいね）や　<i class="fas fa-bookmark"></i>（保存）を押してみよう！</h5>
+      </h6>
+    </div>
+    <div class="col text-center">
+      <%= image_tag "top_wine_img2.png", size: "400x270" %>
+    </div>
+  </div>
+  
+  <div class="row my-5">
+    <div class="col text-center">
+      <h2 class="catch-copy">Let's enjoy Naturalwine!!!</h2>
+    </div>
+  </div>
+  
+    <div class="row main-visual_sign justify-content-center">
+      <div class="main-visual_sign_btn col-3 p-5 text-center" style="background-color: #ffd700;">
+        <%= link_to spots_path, class: "main-visual_sign_link" do %>
+         <i class="fas fa-check"></i> Mapからお店を探す
+        <% end %>
+      </div>
+      <div class="main-visual_sign_btn col-3 p-5 mx-3 text-center" style="background-color: #f0e68c;">
+        <%= link_to wines_path, class: "main-visual_sign_link" do %>
+          <i class="fas fa-check"></i> みんなが飲んでるナチュールを見る
+        <% end %>
+      </div>
+      <div class="main-visual_sign_btn col-3 p-5" style="background-color: #90ee90">
+        <%= link_to members_path, class: "main-visual_sign_link" do %>
+          <i class="fas fa-check"></i> ユーザーを見つける
+        <% end %>
+      </div>
+    </div>
+  
 </div>
+
+<style>
+  .top_sign_in_btn {
+    background-color: #3d83bf;
+    color: #ffffff;
+  }
+  .top_log_in_btn {
+    background-color: #3d83bf;
+    color: #ffffff;
+  }
+  .main-visual_sign_btn {
+    width: 200px;
+    height: 150px;
+    border-radius: 20px;
+    text-decoration: none;
+  }
+  .main-visual_sign_link {
+    text-decoration: none;
+    color: #555555;
+  }
+  
+  .about_content {
+    background-color: #f5deb3;
+    border-radius: 20px;
+    padding: 30px;
+    color: #555555;
+  }
+</style>
