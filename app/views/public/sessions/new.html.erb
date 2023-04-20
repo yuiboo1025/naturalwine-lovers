@@ -1,13 +1,13 @@
-<div class="container justify-content-center my-4">
+<div class="container-fluid justify-content-center my-4">
   <div class="row justify-content-center">
-    <div class="col-4">
+    <div class="col-4 text-center">
       <h2>Log in</h2>
     </div>
   </div>
   
   <%= form_with model: @member, url: member_session_path do |f| %>
-  <div class="row justify-content-center">
-    <div class="col-4">
+  <div class="row">
+    <div class="col text-center">
         <div class="field">
           <%#= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: "40" %>
@@ -28,14 +28,14 @@
   </div>
   
   <div class="row justify-content-center">
-    <div class="col-4">
-      <%= f.submit "Log-In", size: "40", class: "btn btn-info btn-block px-5 log_in_btn" %>
+    <div class="col-3 text-center">
+      <%= f.submit "Log-In", class: "btn btn-info btn-block log_in_btn" %>
     </div>
   </div>
 <% end %>
   
   <div class="row justify-content-center mt-4">
-    <div class="col-4 text-center">
+    <div class="col text-center">
       <h6>アカウントをお持ちでない方はこちらから</h6>
       <p><%= link_to "→ 新規登録", new_member_registration_path, class: "underline" %></p>
     </div>

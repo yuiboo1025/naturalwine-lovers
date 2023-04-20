@@ -1,6 +1,6 @@
 <div class="container mb-4">
   <div class="row justify-content-center">
-    <div class="col-8 ml-5">
+    <div class="col-7 ml-5">
 　　　<h3>新規会員登録</h3>
 　　　<h6 style= "color: red;">※の項目は入力が必須です</h6>
 　　</div>
@@ -10,7 +10,7 @@
     <%#= render "public/shared/error_messages", resource: resource %>
 
   <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-8 text-center lg_size">
       <table class="table member_info member_form">
           <tr>
             <th class="table-active"><%= f.label :name, "※ユーザー名(50字以内)" %></th>
@@ -50,19 +50,58 @@
           </tr>
       </table>
     </div>
+    
+    <div class="col-9 md_size">
+      <div class="field my-3">
+        <%= f.label :name, "※ユーザー名(50字以内)" %><br />
+        <%= f.text_field :name %>
+      </div>
+      <div class="field my-3">
+        <%= f.label :email, "※メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <div class="field my-3">
+        <%= f.label :password, "※パスワード(#{@minimum_password_length}文字以上)" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <div class="field my-3">
+        <%= f.label :password_confirmation, "※パスワード(確認用)" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+      <div class="field my-3">
+        <%= f.label :profile_image, "プロフィール画像" %><br />
+        <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
+      <div class="field my-3">
+        <%= f.label :favorite_genre, "好きなワインのジャンル" %><br />
+        <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
+      </div>
+      <div class="field my-3">
+        <%= f.label :prefecture, "在住県" %><br />
+        <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
+      </div>
+       <div class="field my-3">
+        <%= f.label :introduction, "紹介文" %><br />
+        <%= f.text_area :introduction %>
+      </div>
+
+    </div>
+    
   </div>
   <div class="row justify-content-center">
-    <div class="col-4">
-      <%= f.submit "Sign-Up", class: "btn btn-info btn-block px-5 sign_up_btn" %>
+    <div class="col-5 text-center">
+      <%= f.submit "Sign-Up", class: "btn btn-info btn-block sign_up_btn" %>
     </div>
   </div>
   <% end %>
 
   <div class="row justify-content-center mt-5">
-    <div class="col-4 text-right">
+    <div class="col-10 text-center">
       <h5>※既に登録済みの方はこちらから</h5>
     </div>
-    <div class="col-4 text-left">
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-3 text-center">
       <p><%= link_to "→ Log-In", new_member_session_path, class: "underline" %></p>
     </div>
   </div>
@@ -74,5 +113,19 @@
     font-size: 18px;
     font-weight: bold;
   }
+
+/*　画面サイズ 1025px以上から適用　*/
+@media screen and (min-width:1025px) {
+  .md_size {
+    display:none
+  }
+}
+
+/*　画面サイズ 1024px以下から適用　*/
+@media screen and (max-width:1024px) {
+  .lg_size {
+    display:none
+  }
+}
 </style>
 

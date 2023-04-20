@@ -3,7 +3,7 @@
 
 <div class="main-visual">
   <div class="container text-center my-5">
-    
+
     <div class="row justify-content-between align-items-end">
       <div class="col-4 mr-3 mb-3">
         <%= image_tag "top_wine_img.png", size: "350x250" %>
@@ -15,38 +15,73 @@
         <%= image_tag "top_wine_img2.png", size: "350x250" %>
       </div>
     </div>
-    
+
     <div class="row justify-content-center my-3" >
       <div class="col">
         <h2 class="catch-copy">Let's enjoy Naturalwine!!!</h2>
+        <h6>このアプリでは、下記のことができます。</br>
+        ①自分の飲んだナチュラルワインのラベルの記録</br>
+        ②同ナチュラルワイン好きの方との交流<br>
+        ③ナチュラルワインを楽しめる飲食店探し</h6>
       </div>
     </div>
     
+    <div class="row justify-content-center my-3" >
+      
+    </div>
+
     <div class="row justify-content-center" >
-      <div class="col-2">
-        <%= link_to 'Sign-up', new_member_registration_path, class: "btn mb-1 pr-3 pl-3 ml-4 sign_in", method: :post %>
+      <div class="col-2 text-right">
+        <%#= link_to 'Sign-Up', new_member_registration_path, class: "btn btn-sm mb-1 pr-3 pl-3 ml-4 top_sign_in_btn" %>
       </div>
-      <div class="col-2">
-        <%= link_to 'Log-in', new_member_session_path, class: "btn mb-1 pr-3 pl-3 ml-4 log_in", method: :post %>
+      <div class="col-2 text-left">
+        <%#= link_to 'Log-In', new_member_session_path, class: "btn btn-sm mb-1 pr-3 pl-3 ml-4 top_log_in_btn" %>
       </div>
     </div>
     <div class="row justify-content-center mb-3" >
-      <div class="col-3">
-        <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 guest_sign_in", method: :post %>
+      <div class="col-3 text-center">
+        <%#= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "btn btn-secondary btn-sm mb-3 guest_sign_in", method: :post %>
       </div>
     </div>
-    
+
     <div class="row main-visual_sign justify-content-center">
-      <div class="col-3 p-5" style="background-color: #ffd700;">
-        <%= link_to "Mapからお店を探す",spots_path, class: "btn btn-block main-visual_sign-btn" %>
+      <div class="main-visual_sign_btn col-3 p-5 text-center" style="background-color: #ffd700;">
+        <%= link_to spots_path, class: "main-visual_sign_link" do %>
+         <i class="fas fa-check"></i> Mapからお店を探す
+        <% end %>
       </div>
-      <div class="col-3 p-5 mx-3" style="background-color: #f0e68c;">
-        <%= link_to "みんなが飲んでるナチュールを見る",wines_path, class: "btn btn-block main-visual_sign-btn" %>
+      <div class="main-visual_sign_btn col-3 p-5 mx-3 text-center" style="background-color: #f0e68c;">
+        <%= link_to wines_path, class: "main-visual_sign_link" do %>
+          <i class="fas fa-check"></i> みんなが飲んでるナチュールを見る
+        <% end %>
       </div>
-      <div class="col-3 p-5" style="background-color: #90ee90">
-        <%= link_to "ユーザーを見つける",members_path, class: "btn btn-block main-visual_sign-btn" %>
+      <div class="main-visual_sign_btn col-3 p-5" style="background-color: #90ee90">
+        <%= link_to members_path, class: "main-visual_sign_link" do %>
+          <i class="fas fa-check"></i> ユーザーを見つける
+        <% end %>
       </div>
     </div>
-    
+
   </div>
 </div>
+
+<style>
+  .top_sign_in_btn {
+    background-color: #3d83bf;
+    color: #ffffff;
+  }
+  .top_log_in_btn {
+    background-color: #3d83bf;
+    color: #ffffff;
+  }
+  .main-visual_sign_btn {
+    width: 200px;
+    height: 150px;
+    border-radius: 20px;
+    text-decoration: none;
+  }
+  .main-visual_sign_link {
+    text-decoration: none;
+    color: #555555;
+  }
+</style>
