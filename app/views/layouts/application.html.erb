@@ -18,17 +18,19 @@
     </div>
 
     <main>
-      <div class="flash-message">
-        <%#　緑　%>
-        <%= flash_message(flash[:success], :success) if flash[:success] %>
-        <%#　赤　%>
-        <%= flash_message(flash[:error], :danger) if flash[:error] %>
-        <%#　黄　%>
-        <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
-        <%#　青　%>
-        <%= flash_message(flash[:notice], :info) if flash[:notice] %>
+      <div class="naturnote_main">
+        <div class="flash-message">
+          <%#　緑　%>
+          <%= flash_message(flash[:success], :success) if flash[:success] %>
+          <%#　赤　%>
+          <%= flash_message(flash[:error], :danger) if flash[:error] %>
+          <%#　黄　%>
+          <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
+          <%#　青　%>
+          <%= flash_message(flash[:notice], :info) if flash[:notice] %>
+        </div>
+        <%= yield %>
       </div>
-      <%= yield %>
     </main>
 
     <footer>
