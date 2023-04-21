@@ -3,10 +3,11 @@
   <div class="row mt-5 justify-content-center wine_show ">
     <div class="wine_show_contents">
         <div class="col">
-          📍<%= @wine.spot.spot_name %></br>
-           
+          <%= link_to admin_spot_path(@wine.spot) do %>
+            📍<%= @wine.spot.spot_name %></br>
+          <% end %>
            <%= image_tag @wine.get_wine_image(400,400) %></br>
-           
+
            <div id= "wine_<%= @wine.id %>">
              <h4 class="wine_show__under_info d-flex justify-content-end mt-3 mr-3">
                <div class="comments_count ml-1">
@@ -18,7 +19,7 @@
              </h4>
            </div>
         </div>
-        
+
         <div class="col mt-3">
           <table class="table">
             <tr>
@@ -71,7 +72,9 @@
       <div class="wine_show_map justify-content-center text-center p-4 ml-3">
         <h3>Where is...?</h3>
         <div class="wine_show_map_info mb-2 mt-5">
-          📍<%= @wine.spot.spot_name %></br>
+          <%= link_to admin_spot_path(@wine.spot) do %>
+            📍<%= @wine.spot.spot_name %></br>
+          <% end %>
           〒<%= @wine.spot.address %>
           </div>
         <div id='map'></div>
@@ -99,7 +102,7 @@
 }
 
 .wine_show__edit_btn {
-  border-width: 15px;
+  border-width: 7px;
   text-underline-position: above;
   background: linear-gradient(transparent 50%, #66cdaa 0%);
   color: #555555;

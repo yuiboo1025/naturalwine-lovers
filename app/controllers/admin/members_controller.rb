@@ -47,8 +47,13 @@ class Admin::MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    @member.update(member_params)
-    redirect_to admin_member_path(@member.id)
+    if @member.update(member_params)
+      flash[:notice] = "会員情報の更新が完了しました。"
+      redirect_to admin_member_path(@member.id)
+    else
+      flash[:error] = "情報が足りていないか、または情報が正しくありません。"
+      render :edit
+    end
   end
   
   def bookmarks

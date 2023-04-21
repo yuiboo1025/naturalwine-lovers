@@ -12,16 +12,11 @@ class Public::SpotsController < ApplicationController
       spot.save
     end
     redirect_to new_wine_path(spot_id: spot.id)
-
-     #if spot.save
-       # redirect_to new_wine_path(@spot.id)
-     #else
-       # redirect_to :action => "index"
-     #end
   end
 
   def index
     @spots = Spot.all
+    @spots = Spot.where.not(wine_id: nil)
   end
 
   def show
@@ -61,14 +56,6 @@ class Public::SpotsController < ApplicationController
       @wine.update(spot_id: spot.id)
     end
     redirect_to edit_wine_path(params[:spot][:wine_id])
-
-    #if @wine.update(wine_params)
-     # redirect_to wine_path(@wine.id)
-   # else
-     # @message = "※情報が足りません"
-     # render :edit
-   # end
-
   end
 
   private

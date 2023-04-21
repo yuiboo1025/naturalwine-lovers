@@ -10,12 +10,12 @@
     <div class="col text-center">
         <div class="field">
           <%#= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: "40" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: "30" %>
         </div>
 
         <div class="field">
           <%#= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: "40" %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: "30" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
@@ -28,7 +28,7 @@
   </div>
   
   <div class="row justify-content-center">
-    <div class="col-3 text-center">
+    <div class="col-sm-2 text-center">
       <%= f.submit "Log-In", class: "btn btn-info btn-block log_in_btn" %>
     </div>
   </div>

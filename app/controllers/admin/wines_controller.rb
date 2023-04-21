@@ -32,17 +32,23 @@ class Admin::WinesController < ApplicationController
   def update
     @wine = Wine.find(params[:id])
     if @wine.update(wine_params)
+      flash[:notice] = "ナチュール投稿の更新が完了しました。"
       redirect_to admin_wine_path(@wine.id)
     else
-      @message = "※情報が足りません"
+      flash[:error] = "※情報が足りません"
       render :edit
     end
   end
   
   def destroy
     wine = Wine.find(params[:id])
-    wine.destroy
-    redirect_to admin_wines_path
+    if wine.destroy
+      flash[:notice] = "削除が完了しました。"
+      redirect_to admin_wines_path
+    else
+      flash[:error] = "削除が完了できていません。"
+      render :show
+    end
   end
   
   private

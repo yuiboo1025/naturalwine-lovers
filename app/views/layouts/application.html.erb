@@ -25,7 +25,7 @@
           <%#　赤　%>
           <%= flash_message(flash[:error], :danger) if flash[:error] %>
           <%#　黄　%>
-          <%= flash_message(flash[:alert], :warning) if flash[:alert] %>
+          <%= flash_message(flash[:alert], :danger) if flash[:alert] %>
           <%#　青　%>
           <%= flash_message(flash[:notice], :info) if flash[:notice] %>
         </div>

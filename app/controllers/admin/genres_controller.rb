@@ -6,8 +6,13 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    @genre.save
-    redirect_to request.referer
+    if @genre.save
+      flash[:notice] = "ジャンルが追加されました。"
+      redirect_to request.referer
+    else
+      flash[:error] = "※情報が足りません"
+      redirect_to request.referer
+    end
   end
 
   def edit
@@ -17,8 +22,10 @@ class Admin::GenresController < ApplicationController
   def update
     @genre=Genre.find(params[:id])
     if @genre.update(genre_params)
+      flash[:notice] = "ジャンルの更新が完了しました。"
       redirect_to admin_genres_path
     else
+      flash[:error] = "ジャンル編集が完了できていません。"
       render :edit
     end
   end

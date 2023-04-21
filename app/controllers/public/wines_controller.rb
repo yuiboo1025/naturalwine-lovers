@@ -42,7 +42,7 @@ class Public::WinesController < ApplicationController
       flash[:notice] = "ナチュール投稿が成功しました。"
       redirect_to wine_path(@wine.id)
     else
-      flash[:error] = "※情報が足りません"
+      flash[:error] = "情報が足りません。必須項目が入力されているか確認してください。"
       redirect_to request.referer
     end
   end
@@ -53,15 +53,20 @@ class Public::WinesController < ApplicationController
       flash[:notice] = "ナチュール投稿の更新が完了しました。"
       redirect_to wine_path(@wine.id)
     else
-      flash[:error] = "※情報が足りません"
+      flash[:error] = "情報が足りません。必須項目が入力されているか確認してください"
       render :edit
     end
   end
 
   def destroy
     wine = Wine.find(params[:id])
-    wine.destroy
-    redirect_to wines_path
+    if wine.destroy
+      flash[:notice] = "削除が完了しました。"
+      redirect_to wines_myindex_path(current_member)
+    else
+      flash[:error] = "削除が完了できていません。"
+      render :show
+    end
   end
   
 
