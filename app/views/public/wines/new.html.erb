@@ -1,9 +1,15 @@
 <div class="container my-4">
   <div class="row">
     <div class="col">
-      <h4>②ナチュールの情報を入力してください</h4>
+      <h4 class="text_blue text_underline"><span class="h2 font_bold">Step-2</span>&nbsp;&nbsp;&nbsp;ナチュールの情報を入力してください</h4>
     </div>
   </div>
+  <div class="row mt-3">
+    <div class="col-7">
+      <h6 class="text_red">※の項目は入力が必須です</h6>
+    </div>
+  </div>
+
   
   <%= render 'wine_form', wine: @wine, spot: @spot, method:wines_path %>
 
