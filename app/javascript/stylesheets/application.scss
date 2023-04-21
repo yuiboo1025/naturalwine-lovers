@@ -40,8 +40,29 @@ header{
   color: #3d83bf;
 }
 
+body {
+  color: #555555;
+}
+
+.text_red {
+    color: red;
+  }
+.text_blue {
+  color: #3d83bf;
+}
+
+.text_underline {
+  text-decoration: underline;
+}
+  
+.font_bold {
+  font-weight: bold;
+}
+
 footer{
   border-top: 2px solid #3d83bf;
+  color: #3d83bf;
+  width: 100%;
 }
 
   /*ページネーション自体のデザイン*/

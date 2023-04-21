@@ -1,8 +1,8 @@
 <div class="container mb-4">
   <div class="row justify-content-center">
-    <div class="col-6 ml-5 ">
+    <div class="col-sm-6 ml-5 ">
 　　　<h3>新規会員登録</h3>
-　　　<h6 style= "color: red;">※の項目は入力が必須です</h6>
+　　　<h6 class="text_red">※の項目は入力が必須です</h6>
 　　</div>
   </div>
 
@@ -10,43 +10,43 @@
 
   <div class="row justify-content-center">
     
-    <div class="col-8 text-center lg_size">
+    <div class="col-7 text-center lg_size">
       <%= form_with model: @member, url: member_registration_path do |f| %>
       <table class="table member_info member_form">
           <tr>
-            <th class="table-active"><%= f.label :name, "※ユーザー名(50字以内)" %></th>
+            <th class="table-active"><span class="text_red">※</span>ユーザー名(50字以内)</th>
             <td colspan="2"><%= f.text_field :name %></td>
           </tr>
           <tr>
-            <th class="table-active"><%= f.label :email, "※メールアドレス" %></th>
+            <th class="table-active"><span class="text_red">※</span>メールアドレス</th>
             <td colspan="2"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
           </tr>
           <tr>
-            <th class="table-active"><%= f.label :password, "※パスワード(#{@minimum_password_length}文字以上)" %></th>
+            <th class="table-active"><span class="text_red">※</span>パスワード(6文字以上)</th>
             <td colspan="2"><%= f.password_field :password, autocomplete: "new-password" %></td>
           </tr>
           <tr>
-            <th class="table-active"><%= f.label :password_confirmation, "※パスワード(確認用)" %></th>
+            <th class="table-active"><span class="text_red">※</span>パスワード(確認用)</th>
             <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
           </tr>
           <tr>
-            <th class="table-active"><%= f.label :profile_image, "プロフィール画像" %></th>
+            <th class="table-active">プロフィール画像</th>
             <td colspan="2"><%= f.file_field :profile_image, accept: "image/*" %></td>
           </tr>
           <tr>
-            <th class="table-active"><%= f.label :favorite_genre, "好きなワインのジャンル" %></th>
+            <th class="table-active">好きなワインのジャンル</th>
             <td colspan="2">
               <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
             </td>
           </tr>
           <tr>
-            <th class="table-active"><%= f.label :prefecture, "在住県" %></th>
+            <th class="table-active">在住県</th>
             <td colspan="2">
               <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
             </td>
           </tr>
           <tr>
-            <th class="table-active"><%= f.label :introduction, "紹介文" %></th>
+            <th class="table-active">紹介文</th>
             <td colspan="2"><%= f.text_area :introduction %></td>
           </tr>
       </table>
@@ -59,43 +59,43 @@
        <% end %>
     </div>
 
-    <div class="col-9 md_size">
+    <div class="col-sm-4 md_size ml-5">
       <%= form_with model: @member, url: member_registration_path do |f| %>
       <div class="field my-3">
-        <%= f.label :name, "※ユーザー名(50字以内)" %><br />
+        <span class="text_red">※</span>ユーザー名(50字以内)<br />
         <%= f.text_field :name %>
       </div>
       <div class="field my-3">
-        <%= f.label :email, "※メールアドレス" %><br />
+        <span class="text_red">※</span>メールアドレス<br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
       <div class="field my-3">
-        <%= f.label :password, "※パスワード(#{@minimum_password_length}文字以上)" %><br />
+        <span class="text_red">※</span>パスワード(6文字以上)<br />
         <%= f.password_field :password, autocomplete: "new-password" %></td>
       </div>
       <div class="field my-3">
-        <%= f.label :password_confirmation, "※パスワード(確認用)" %><br />
+        <span class="text_red">※</span>パスワード(確認用)<br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
       <div class="field my-3">
-        <%= f.label :profile_image, "プロフィール画像" %><br />
+        プロフィール画像<br />
         <%= f.file_field :profile_image, accept: "image/*" %>
       </div>
       <div class="field my-3">
-        <%= f.label :favorite_genre, "好きなワインのジャンル" %><br />
+        好きなワインのジャンル<br />
         <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
       </div>
       <div class="field my-3">
-        <%= f.label :prefecture, "在住県" %><br />
+        在住県<br />
         <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
       </div>
        <div class="field my-3">
-        <%= f.label :introduction, "紹介文" %><br />
+        紹介文<br />
         <%= f.text_area :introduction %>
       </div>
       
       <div class="row justify-content-center">
-         <div class="col-5 text-center">
+         <div class="col-10 text-center mr-5">
            <%= f.submit "Sign-Up", class: "btn btn-info btn-block sign_up_btn" %>
          </div>
        </div>

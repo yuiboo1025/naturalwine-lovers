@@ -16,7 +16,7 @@ class Public::SpotsController < ApplicationController
 
   def index
     @spots = Spot.all
-    @spots = Spot.where.not(wine_id: nil)
+    #@spots = Spot.where.not(wine_id: nil)
   end
 
   def show
