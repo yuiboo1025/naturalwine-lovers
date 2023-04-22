@@ -14,11 +14,10 @@ class Public::SpotsController < ApplicationController
     redirect_to new_wine_path(spot_id: spot.id)
   end
 
-  def inde
+  def index
     #spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
     #結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
     @spots = Spot.joins(:wines).all.uniq
-    #@spots = Spot.where.not(wine_id: nil)
   end
 
   def show
@@ -34,12 +33,12 @@ class Public::SpotsController < ApplicationController
   end
 
   def edit
+    #wine投稿済のデータからは_wine_formからwine_idが送られてきている。
     #投稿する前に店情報を編集したいとき(まだwine_idを持っていない時)、編集画面ではなく初めの場所投稿画面に遷移するようにする
     if params[:wine_id].blank?
       redirect_to new_spot_path
     else
       @spot = Spot.find(params[:id])
-      @wine_id = params[:wine_id]
     end
   end
 
