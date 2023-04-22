@@ -12,7 +12,7 @@
 
   <div class="row">
     <div class="col">
-      <%= render 'search_form', q: q, url: url %>
+      <%= render 'public/members/search_form', q: q, url: url %>
     </div>
   </div>
 
@@ -32,6 +32,9 @@
           <th></th>
         </thead>
         <% members.each do |member| %>
+         <%# if current_member == member %>
+           <%# next %>
+         <%# end %>
         <tbody>
           <tr>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
@@ -43,8 +46,16 @@
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.prefecture %></td>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.followings.where(is_deleted: false).count %></td>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.followers.where(is_deleted: false).count %></td>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
+              <div class="followings_count">
+                <%= render "public/relationships/followings_counter", member: member %>
+              </div>
+            </td>
+            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
+              <div class="followers_count-<%= member.id %>">
+                <%= render "public/relationships/followers_counter", member: member %>
+              </div>
+            </td>
             <td class="relationships_btn-<%= member.id %>">
               <%= render 'public/relationships/relationship', member: member %>
             </td>

@@ -14,7 +14,7 @@
              <h4 class="wine_show__under_info d-flex justify-content-end mt-3 mr-3">
                <% if @wine.is_again == true && @wine.member == current_member %>
                 <div class ="against mr-5 pr-5">
-                  <i class="fas fa-star"></i>
+                  <i class="fas fa-check"></i>
                 </div>
                <% end %>
                <div class="comments_count ml-1">
@@ -70,17 +70,15 @@
             </tr>
             <tr>
               <th></th>
-              <% if @wine.is_again == false %>
-                <td class="text-success"></td>
-              <% else %>
-                <td class="text-secondary">また飲みたい</td>
+              <% if @wine.is_again == true %>
+                <td class="is_again_text"><i class="fas fa-check"></i>また飲みたい</td>
               <% end %>
             </tr>
           </table>
           <div class="wine_show__edit_destroy_btn text-right">
             <% if @wine.member == current_member %>
-              <%= link_to "編集", edit_wine_path(@wine), class: "wine_show__edit_btn px-2" %>
-              <%= link_to "削除", wine_path(@wine), method: :delete, class: "wine_show__destroy_btn px-2", "data-confirm" => "本当に削除しますか？" %>
+              <%= link_to "Edit", edit_wine_path(@wine), class: "wine_show__edit_btn px-2" %>
+              <%= link_to "Delete", wine_path(@wine), method: :delete, class: "wine_show__destroy_btn px-2", "data-confirm" => "本当に削除しますか？" %>
           　<% end %>
         　</div>
         </div>
@@ -98,10 +96,10 @@
     </div>
   <div class="row justify-content-left mt-3">
     <div class="col-7">
-      <div class="comment">
+      <div class="comment ml-5">
         <%= render "public/comments/comment", wine: @wine %>
       </div>
-      <div class="form">
+      <div class="form ml-5">
         <%= render "public/comments/form", wine: @wine, comment: @comment %>
       </div>
     </div>

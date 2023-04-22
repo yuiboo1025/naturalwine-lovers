@@ -37,7 +37,7 @@ ja:
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
       already_authenticated: すでにログインしています。
-      inactive: 退会済みのアカウントです。再度新規登録を行なってください
+      inactive: 退会済みのアカウントです。再度新規登録を行なってください。
       invalid: "%{authentication_keys}またはパスワードが違います。"
       last_attempt: もう一回誤るとアカウントがロックされます。
       locked: アカウントはロックされています。

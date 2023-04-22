@@ -4,7 +4,7 @@
         <table class="table">
           <tr>
             <td class="d-flex" style="width: 20%">
-              <%= image_tag comment.member.get_profile_image(70,70), class: "rounded-circle" %>
+              <%= image_tag comment.member.get_profile_image(40,40), class: "rounded-circle" %>&ensp;
               <%= link_to wines_myindex_path(wine.member.id), remote: true do %>
                 <%= comment.member.name %>
               <% end %>

@@ -19,7 +19,7 @@
       <% wines.each do |wine| %>
        <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
         <div id="bookmark_list_<%= wine.id %>">
-          <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
+          <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
             <div class ="card">
 
               <div class ="card_spot_name ml-2">
@@ -39,6 +39,11 @@
               </div>
               <div id= "wine_<%= wine.id %>">
                 <div class ="row card_under_info d-flex justify-content-end mx-1 mt-1">
+                  <% if wine.is_again == true %>
+                    <div class ="card_against mr-5 pr-5">
+                      <i class="fas fa-check"></i>
+                    </div>
+                  <% end %>
                   <div class ="card_comment ml-5">
                     <%= link_to admin_wine_path(wine.id) do%>
                       <i class="far fa-comment"></i><%= wine.comments.count %>
@@ -65,7 +70,7 @@
         <% genre.wines.each do |wine| %>
           <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
           <div id="bookmark_list_<%= wine.id %>">
-            <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
+            <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
               <div class ="card">
 
                 <div class ="card_spot_name ml-2">
@@ -86,6 +91,11 @@
 
                 <div id= "wine_<%= wine.id %>">
                   <div class ="row card_under_info d-flex justify-content-end mx-1 mt-1">
+                    <% if wine.is_again == true %>
+                    <div class ="card_against mr-5 pr-5">
+                      <i class="fas fa-check"></i>
+                    </div>
+                  <% end %>
                     <div class ="card_comment ml-5">
                       <%= link_to admin_wine_path(wine.id) do%>
                         <i class="far fa-comment"></i><%= wine.comments.count %>
