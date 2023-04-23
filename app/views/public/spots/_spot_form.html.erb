@@ -11,7 +11,8 @@
 
 <%#map %>
 <div class="row-sm-md ml-5">
-  <div id='map'></div>
+  <%# 新たなmap情報が読み込まれないため、turbolinks機能をfalseにする %>
+  <div id='map' data-turbolinks="false"></div>
 </div>
 
 <%= form_with model: spot, url:method do |f| %>

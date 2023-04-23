@@ -32,9 +32,6 @@
           <th></th>
         </thead>
         <% members.each do |member| %>
-         <%# if current_member == member %>
-           <%# next %>
-         <%# end %>
         <tbody>
           <tr>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
@@ -47,7 +44,7 @@
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
-              <div class="followings_count">
+              <div class="followings_count-<%= member.id %>">
                 <%= render "public/relationships/followings_counter", member: member %>
               </div>
             </td>
