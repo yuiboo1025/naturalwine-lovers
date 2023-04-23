@@ -50,8 +50,9 @@
       <div class="col-9">
         <h5 class="font_bold">③入力完了ボタンをClickし、ナチュール情報入力画面に進む</h5>
         
+        <%# spot編集の場合(params[:wine_id]が存在している場合、wine_idの情報をspotに持たせる %>
         <% if params[:wine_id].present? %>
-          <%= f.hidden_field :wine_id, :value => wine_id %>
+          <%= f.hidden_field :wine_id, :value => params[:wine_id] %>
         <% end %>
         <div class="spot_submit_btn col-7 justify-content-center my-3">
           <%= f.submit "→　店情報の入力完了", class:"btn btn-info btn-block ml-5 px-2" %>

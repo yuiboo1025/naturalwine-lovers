@@ -13,7 +13,9 @@
           <td>
             <%= spot.spot_name %>
             <%= f.hidden_field :spot_id, value: spot.id %>
-              <%= link_to "編集", edit_admin_spot_path(spot.id, wine_id: wine.id) %>
+            <%# リンクに(URLに)wine.idの情報を持たせる＝spotデータの中にwine_idとしてwine.idを持たせる %>
+            <%# spotテーブルでparams[:wine_id]としてデータを取り出すことができるようになる %>
+            <%= link_to "編集", edit_admin_spot_path(spot.id, wine_id: wine.id) %>
           </td>
         </tr>
         <tr>

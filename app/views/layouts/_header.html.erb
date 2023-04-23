@@ -67,9 +67,6 @@
             </li>
           <% end %>
         </ul>
-        <div class="form-group text-right mt-3">
-        	<%#= render 'layouts/search' %>
-        </div>
       </div>
     </nav>
 
@@ -87,10 +84,10 @@
       <% end %>
 
       <div id="sp-menu" class="pt-3 justify-content-center nav-item">
-      <ul class="navbar-nav text-center">
-        <!--管理者ログイン後-->
-        <% if admin_signed_in? %>
-          <li class="nav-item">
+        <ul class="navbar-nav text-center">
+          <!--管理者ログイン後-->
+          <% if admin_signed_in? %>
+            <li class="nav-item">
               <%= link_to "メンバー一覧", admin_members_path, class: 'nav-link btn mx-5 header-link' %>
             </li>
             <li class="nav-item ">
@@ -105,9 +102,12 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn mx-5 header-link' %>
             </li>
-        <!--会員ログイン後-->
-        <% elsif member_signed_in? %>
-          <li class="nav-item ">
+          <!--会員ログイン後-->
+          <% elsif member_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: 'nav-link btn mx-5 header-link' %>
+            </li>
+            <li class="nav-item ">
               <%= link_to "mypage", wines_myindex_path(current_member), class: 'nav-link btn mx-5 header-link' %>
             </li>
             <li class="nav-item ">
@@ -122,10 +122,10 @@
             <li class="nav-item ">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: 'nav-link btn mx-5 header-link' %>
             </li>
-        <!--ログイン前-->
-        <% else %>
-          <li class="nav-item">
-              <%#= link_to "About", about_path, class: 'nav-link btn px-2 mr-2 header-link' %>
+          <!--ログイン前-->
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: 'nav-link btn mx-5 header-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "新規登録", new_member_registration_path, class: 'nav-link btn mx-5 header-link' %>
@@ -136,10 +136,9 @@
             <li class="nav-item">
               <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "nav-link btn mx-5 header-link", method: :post %>
             </li>
-
-        <% end %>
-      </ul>
-    </div>
+          <% end %>
+        </ul>
+      </div>
 
 
     <div id="hm-icon">

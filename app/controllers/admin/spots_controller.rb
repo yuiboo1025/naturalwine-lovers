@@ -1,7 +1,9 @@
 class Admin::SpotsController < ApplicationController
   
   def index
-    @spots = Spot.all
+    #spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
+    #結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
+    @spots = Spot.joins(:wines).all.uniq
   end
 
   def show
@@ -18,7 +20,6 @@ class Admin::SpotsController < ApplicationController
 
   def edit
     @spot = Spot.find(params[:id])
-    @wine_id = params[:wine_id]
   end
 
   def update
