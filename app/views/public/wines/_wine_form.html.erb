@@ -1,6 +1,6 @@
   <%= form_with model: wine, url:method do |f| %>
   <div class="row mt-3">
-    <div class="col-11">
+    <div class="col-sm-md-11">
       <table class="table table-bordered">
         <tr>
           <th class="table-active"><span class="text_red">※</span>記録するナチュール写真</th>
@@ -82,7 +82,6 @@
           <th class="table-active">また飲みたい判定</th>
           <td class="text_left">
             <%= f.radio_button :is_again, true %>&emsp;また飲みたいリストに入れる
-
 　　　　　　<%= f.radio_button :is_again, false %>&emsp;また飲みたいリストには入れない
           </td>
         </tr>
@@ -90,7 +89,7 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-7 justify-content-center">
+    <div class="col-sm-md-7 justify-content-center">
       <%= f.submit '→　投稿する', class:"btn btn-info btn-block mt-4 px-5 py-2" %>
     </div>
   </div>

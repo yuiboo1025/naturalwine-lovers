@@ -1,9 +1,9 @@
 <%= form_with model: wine, url: method do |f| %>
-  <div class="row">
-    <div class="col">
+  <div class="row mt-3">
+    <div class="col-sm-md-11">
       <table class="table table-bordered">
         <tr>
-          <th class="table-active">記録するナチュール写真(※必須)</th>
+          <th class="table-active"><span class="text_red">※</span>記録するナチュール写真</th>
           <td>
             <%= f.file_field :wine_image, accept: "image/*" %>
           </td>
@@ -37,7 +37,7 @@
           </td>
         </tr>
         <tr>
-          <th class="table-active">種類(※必須)</th>
+          <th class="table-active"><span class="text_red">※</span>ワインのジャンル</th>
           <td>
             <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "--選択してください--", class: "form-control border-dark", style: "background-color:#fcfced" %>
           </td>
@@ -80,19 +80,16 @@
         </tr>
         <tr>
           <th class="table-active">また飲みたい判定</th>
-          <td>
-            <%= f.radio_button :is_again, true %>
-　　　　　　<%= f.label :is_again_true, "また飲みたいリストに入れる" %>
-
-　　　　　　<%= f.radio_button :is_again, false %>
-　　　　　　<%= f.label :is_again_false, "また飲みたいリストには入れない" %>
+          <td class="text_left">
+            <%= f.radio_button :is_again, true %>&emsp;また飲みたいリストに入れる
+　　　　　　<%= f.radio_button :is_again, false %>&emsp;また飲みたいリストには入れない
           </td>
         </tr>
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-7 justify-content-center">
+  <div class="row justify-content-cente">
+    <div class="col-sm-md-7 justify-content-center">
       <%= f.submit '→　投稿する', class:"btn btn-info btn-block mt-4 px-5 py-2" %>
     </div>
   </div>

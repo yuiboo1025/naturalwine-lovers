@@ -2,14 +2,14 @@
     <%= render 'public/wines/post_wine-btn' %>
 
 <div class="container justify-content-center wine_show_main my-4">
-  <div class="row mt-5 justify-content-center wine_show ">
+  <div class="row mt-5 justify-content-center">
     <div class="wine_show_contents">
-        <div class="col">
+        <div class="col-sm-md">
          　 <%= link_to spot_path(@wine.spot) do %>
             📍<%= @wine.spot.spot_name %></br>
            <% end %>
-           <%= image_tag @wine.get_wine_image(400,400) %></br>
-           
+           <%= image_tag @wine.get_wine_image(400,400), class: "wine_show_image"%></br>
+
            <div id= "wine_<%= @wine.id %>">
              <h4 class="wine_show__under_info d-flex justify-content-end mt-3 mr-3">
                <% if @wine.is_again == true && @wine.member == current_member %>
@@ -29,8 +29,8 @@
              </h4>
            </div>
         </div>
-        
-        <div class="col mt-3">
+
+        <div class="col-sm-md mt-3">
           <table class="table">
             <tr>
               <th><%= image_tag @wine.member.get_profile_image(50,50), class: "rounded-circle" %></th>
@@ -95,7 +95,7 @@
       </div>
     </div>
   <div class="row justify-content-left mt-3">
-    <div class="col-7">
+    <div class="col-sm-md-7">
       <div class="comment ml-5">
         <%= render "public/comments/comment", wine: @wine %>
       </div>
@@ -139,6 +139,14 @@
 .wine_show_map_info {
   width: 300px;
 }
+
+@media screen and (max-width:425px) {
+  .wine_show_image {
+    width: 200px;
+    height: 300px;
+  }
+ }
+
 
 </style>
 

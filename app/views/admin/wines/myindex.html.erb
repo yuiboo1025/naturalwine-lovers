@@ -3,19 +3,11 @@
   <%= render 'admin/wines/member_info', member: @member %>
   
   <div class="row">
-    <h5 class="col text-center mx-auto",  style="color:#3d83bf;">
+    <h5 class="col-sm-md text-center mx-auto text_blue">
       <%= @member.name %>のナチュール記録🍷<span> (<%= @wines.count %>件)</span>
     </h5>
   </div>
-  <div class='row'>
-    <div class='col'>
 
-      <%= render 'admin/wines/index', wines: @wines, member: @member, genres: @genres %>
+  <%= render 'admin/wines/index', wines: @wines, member: @member, genres: @genres %>
 
-      <div class="d-flex justify-content-center mt-5">
-        <%#= paginate @wines %>
-      </div>
-
-    </div>
-  </div>
 </div>
