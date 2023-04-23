@@ -1,22 +1,22 @@
 <div class="container my-4">
-  
+
   <div class="row justify-content-center">
-    <div class="col-7">
+    <div class="col-sm-md-7">
       <h3><%= @member.name %>のユーザー登録情報編集</h3>
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-7">
+    <div class="col-sm-md-7">
       <h6 class="text_red">※の項目は入力が必須です</h6>
     </div>
   </div>
 
 
-  
+
   <%= form_with model: @member do |f| %>
 
     <div class="row justify-content-center">
-			 <div class ="col-7">
+			 <div class ="col-sm-md-7">
 			   <table class="table table-bordered">
 			     <tr>
               <th class="table-active">プロフィール画像</th>
@@ -51,17 +51,17 @@
     </div>
 
     <div class="row justify-content-center">
-      <div class ="col-7 text-center">
+      <div class ="col-sm-md-7 text-center">
         <%= f.submit "→ Update", class:"btn btn-info px-5 py-1 member_edit__update_btn" %>
       </div>
     </div>
     <div class="row justify-content-center mt-5">
-      <div class="col-7 text-left">
+      <div class="col-sm-md-7 text-left">
         <h6>※退会を希望する方はこちらからこちらから手続きを行なってください</h6>
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-6 text-right">
+      <div class="col-sm-md-6 text-right">
         <%= link_to "→退会する", confirm_unsubscribe_path, class: "btn px-3 py-1 member_edit__withdraw_btn" %>
         <%= link_to "→Back", :back, class:"btn px-3 py-1 ml-3 member_edit__back_btn" %>
       </div>

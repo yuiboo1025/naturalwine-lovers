@@ -1,12 +1,12 @@
 <div class="container my-4 justify-content-center">
   <div class="row">
-    <div class="col">
+    <div class="coll-sm-md">
       <h2>📍ナチュール投稿お店一覧map</h2>
     </div>
   </div>
   
   <div class="row">
-    <div class="col">
+    <div class="coll-sm-md">
       <div id='map'></div>
     </div>
   </div>
@@ -17,6 +17,14 @@
   height: 600px;
   width: 1000px;
 }
+
+@media screen and (max-width:425px) {
+  #map {
+    height: 350px;
+    width: 350px;
+  }
+ }
+
 </style>
 
 <!-- js部分 -->

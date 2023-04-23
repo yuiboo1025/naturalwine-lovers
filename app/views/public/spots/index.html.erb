@@ -1,15 +1,15 @@
 <!-- ナチュール記録ボタン -->
   <%= render 'public/wines/post_wine-btn' %>
-  
+
 <div class="container my-4 justify-content-center">
-  <div class="row">
-    <div class="col">
+  <div class="row-sm-md">
+    <div class="col-sm-md">
       <h2>📍ナチュール投稿お店一覧map</h2>
     </div>
   </div>
-  
+
   <div class="row">
-    <div class="col">
+    <div class="col-sm-md">
       <div id='map'></div>
     </div>
   </div>
@@ -20,6 +20,14 @@
   height: 600px;
   width: 1000px;
 }
+
+@media screen and (max-width:425px) {
+  #map {
+    height: 350px;
+    width: 350px;
+  }
+ }
+
 </style>
 
 <!-- js部分 -->
@@ -50,7 +58,7 @@
       <% @spots.each do |spot|%>
         ( function() {
           // 緯度経度のデータ作成(データがなければ0度のところにピンを立てる。)
-          let markerLatLng = { lat: <%= spot.lat ||= 0 %>, lng: <%= spot.lng ||= 0 %> }; 
+          let markerLatLng = { lat: <%= spot.lat ||= 0 %>, lng: <%= spot.lng ||= 0 %> };
           let marker = new google.maps.Marker({
             position: markerLatLng,
             map: map

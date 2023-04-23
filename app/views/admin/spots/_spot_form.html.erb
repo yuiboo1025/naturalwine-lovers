@@ -1,22 +1,22 @@
-<div class="row mt-4">
+<div class="row-sm-md mt-4">
   <h5 class="font_bold">①お店の名前を検索フォームに入力し、検索ボタンをClick</h3>
 </div>
 
 <%#検索フォーム %>
-<div class="row my-2 ml-5">
+<div class="row-sm-md my-2 ml-5">
   <input id="address" type="textbox" value="">
   <input type="button" value="検索" onclick="codeAddress()">
   <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
 </div>
 
 <%#map %>
-<div class="row ml-5">
+<div class="row-sm-md ml-5">
   <div id='map'></div>
 </div>
 
 <div class="row mt-3 ml-5">
   <%= form_with model: spot, url:method do |f| %>
-    <div class="col actions">
+    <div class="col-sm-md actions">
         <h6 class="mt-2">※mapの検索欄で入力し、「検索」ボタンを押すと自動的に入力されます</h6>
         <table class="table">
           <tr>
@@ -36,9 +36,9 @@
 </div>
 
 <div class="row mt-3">  
-  <div class="col-9">
+  <div class="col-sm-md-9">
         <h5 class="font_bold">②店の名前を入力してください</h5>
-        <table class="table">
+        <table class="table ml-5">
           <tr>
             <th style="width: 10%"><%= f.label :spot_name,"店名" %></th>
             <td><%= f.text_field :spot_name, size: 50 %></td>
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="row mt-3">  
-      <div class="col-9">
+      <div class="col-sm-md-9">
         <h5 class="font_bold">③入力完了ボタンをClickし、ナチュール情報入力画面に進む</h5>
         
         <%# spot編集の場合(params[:wine_id]が存在している場合、wine_idの情報をspotに持たせる %>
@@ -68,6 +68,13 @@
   height: 500px;
   width: 1000px;
 }
+
+@media screen and (max-width:425px) {
+  #map {
+    height: 300px;
+    width: 300px;
+  }
+ }
 </style>
 
 <script>
