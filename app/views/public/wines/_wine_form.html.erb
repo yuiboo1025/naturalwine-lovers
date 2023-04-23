@@ -1,6 +1,6 @@
   <%= form_with model: wine, url:method do |f| %>
   <div class="row mt-3">
-    <div class="col-sm-md-11">
+    <div class="col-sm-md-11 position-static">
       <table class="table table-bordered">
         <tr>
           <th class="table-active"><span class="text_red">※</span>記録するナチュール写真</th>
@@ -50,7 +50,7 @@
               <div class="form-group" id="star"></div>
               <div id="post_raty"></div>
               <script>
-                $(document).on('turbolinks:load', function() {
+                window.onload = function() {　//HTMLを読み込んでからscriptを読み込む
                   let elem = document.querySelector('#post_raty');
                   if (elem == null) return;
 
@@ -62,7 +62,7 @@
                     scoreName: 'wine[rate]',
                    };
                   raty(elem, opt);
-                 });
+                 }
               </script>
             <% else %>
               <div class="form-group">

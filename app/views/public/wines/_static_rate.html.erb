@@ -1,6 +1,6 @@
 <div id="rate_<%= wine.id %>"></div>
 <script>
-$(document).on('turbolinks:load', function() {
+window.onload = function() { //HTMLを読み込んでからscriptを読み込む
   let elem = document.querySelector('#rate_<%= wine.id %>');
   if (elem == null) return;
   
@@ -13,5 +13,5 @@ $(document).on('turbolinks:load', function() {
     readOnly: true,
   };
   raty(elem, opt);
-});
+}
 </script>

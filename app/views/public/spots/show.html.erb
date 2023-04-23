@@ -15,8 +15,8 @@
 
   <%#map %>
   <div class="row justify-content-center">
-    <%# 新たなmap情報が読み込まれないため、turbolinks機能をfalseにする %>
-    <div id='map' data-turbolinks="false"></div>
+    
+    <div id='map'></div>
   </div>
 
   <%= render 'public/wines/index', wines: @wines, genres: @genres, spot: @spot %>

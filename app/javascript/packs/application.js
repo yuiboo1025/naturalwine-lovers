@@ -17,7 +17,8 @@ import "../src/sample"
 
 
 Rails.start()
-Turbolinks.start()
+//新たなmap情報が読み込まれないため、turbolinks機能をoffにする
+//Turbolinks.start()
 ActiveStorage.start()
 
 global.$ = jQuery;

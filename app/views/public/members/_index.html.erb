@@ -43,6 +43,7 @@
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.prefecture %></td>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
+          <%# フォロー数、フォロワー数、フォローボタンを非同期化 %>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
               <div class="followings_count-<%= member.id %>">
                 <%= render "public/relationships/followings_counter", member: member %>
