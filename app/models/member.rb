@@ -64,9 +64,9 @@ class Member < ApplicationRecord
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
       member.name = "guestuser"
-      #member.prefecture = 13
-      #member.favorite_genre = 2
-      #member.introduction = "ゲストユーザーです。"
+      member.prefecture = 13
+      member.favorite_genre = 2
+      member.introduction = "ゲストユーザーです。"
     end
   end
 
