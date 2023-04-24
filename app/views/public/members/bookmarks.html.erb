@@ -83,8 +83,8 @@
         <% @genres.each do |genre| %>
           <div id="tab-<%= genre.genre_name %>" class="tab">
             <%# ブックマークした一覧 %>
-            <% genre.wines.where(member_id: member.id).each do |wine| %>
-            <%# genre.wines.each do |wine| %>
+             <%#.wineに関連するブックマークテーブルをまとめて取得(include)し、bookmarksの中でmember_idを %>
+            <% genre.wines.includes(:bookmarks).where(member_id: @member.id, bookmarks: {member_id: @member.id}).each do |wine| %>
               <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
               <div id="bookmark_list_<%= wine.id %>">
                 <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
@@ -138,22 +138,5 @@
     </div>
   </div>
 
-  <script>
-    //初期設定で表示されるのはtab-Allのコンテンツだけにして、それ以外の内容は非表示にする
-      $('#tab-contents .tab[id != "tab-All"]').hide();
-
-　　//id="tab-menu"のaタグがクリックされたときに、処理を実行
-      $('#tab-menu a').on('click', function(event) {
-        //id="tab-contents"内のいずれかのタブがクリックされたときに、そのタブ内の全コンテンツをいったん非表示
-        $("#tab-contents .tab").hide();
-        //activeクラスを削除する(CSSを対応させるため)
-        $("#tab-menu .active").removeClass("active");
-        //$(this)のとき(タブがクリックされたとき)activeクラスを追加する
-        $(this).addClass("active");
-        //href属性を取得し、取得したhref属性の中身を表示
-        $($(this).attr("href")).show();
-        event.preventDefault();
-      });
-  </script>
 
 
