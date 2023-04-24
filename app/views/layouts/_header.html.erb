@@ -1,6 +1,7 @@
 <header class="d-flex flex-column">
   <div class="container-fluid">
-
+    
+    <%#.レスポンシブ対応 画面サイズ 1025px以上から適用 %>
     <nav class="navbar navbar lg_size">
       <% if admin_signed_in? %>
         <a class="navbar-brand" href="/admin">
@@ -71,7 +72,7 @@
     </nav>
 
 
-    <%# レスポンシブ対応 %>
+    <%#.レスポンシブ対応 画面サイズ 1024px以下から適用 %>
     <nav class="navbar navbar md_size">
       <% if admin_signed_in? %>
         <a class="navbar-brand" href="/admin">
@@ -119,6 +120,9 @@
             <li class="nav-item ">
               <%= link_to "Map", spots_path, class: 'nav-link btn mx-5 header-link' %>
             </li>
+            <li class="nav-item">
+              <%= link_to "ナチュール投稿", new_spot_path, class: 'nav-link btn mx-5 header-link' %>
+            </li>
             <li class="nav-item ">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: 'nav-link btn mx-5 header-link' %>
             </li>
@@ -140,113 +144,18 @@
         </ul>
       </div>
 
-
-    <div id="hm-icon">
-      <a class="menu-trigger nav-item" href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-    </div>
+      <%# ハンバーガーアイコン %>
+      <div id="hm-icon">
+        <a class="menu-trigger nav-item" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
 
     </nav>
-
-
   </div>
 </header>
-
-
-<style>
-/*　画面サイズ 1025px以上から適用　*/
-@media screen and (min-width:1025px) {
-  .md_size {
-    display:none
-  }
-}
-
-/*　画面サイズ 1024px以下から適用　*/
-@media screen and (max-width:1024px) {
-  .lg_size {
-    display:none
-  }
-}
-
-  /* ---------------------------- */
-/* ---- ハンバーガーアイコン ---- */
-/* ---------------------------- */
-
-#hm-icon {
-  right: 30px;
-  top: 20px;
-  z-index: 10;
-}
-.menu-trigger,
-.menu-trigger span {
-  display: inline-block;
-  transition: all .4s;
-  box-sizing: border-box;
-}
-.menu-trigger {
-  position: relative;
-  width: 50px;
-  height: 44px;
-}
-.menu-trigger span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background-color: #3d83bf;
-  border-radius: 4px;
-}
-.menu-trigger span:nth-child(1) {
-  top: 0;
-}
-.menu-trigger span:nth-child(2) {
-  top: 20px;
-}
-.menu-trigger span:nth-child(3) {
-  bottom: 0;
-}
-.menu-trigger.active span:nth-child(1) {
-  -webkit-transform: translateY(20px) rotate(-45deg);
-  transform: translateY(20px) rotate(-45deg);
-  background-color: #fff;
-}
-.menu-trigger.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-trigger.active span:nth-child(3) {
-  -webkit-transform: translateY(-20px) rotate(45deg);
-  transform: translateY(-20px) rotate(45deg);
-  background-color: #fff;
-}
-/* ------------------------ */
-/* ------ spメニュー ------ */
-/* ------------------------ */
-#sp-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #4d8abf;
-  color: #fff;
-  width: 100%;
-  min-height: 20%;
-  display: none;
-  z-index: 9;
-}
-#sp-menu li {
-  text-align: center;
-  margin-bottom: 30px;
-  list-style: none;
-}
-#sp-menu a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-</style>
 
 <script>
   $(function() {

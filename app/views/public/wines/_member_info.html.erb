@@ -5,27 +5,27 @@
           <%= image_tag member.get_profile_image(70,70), class: "rounded-circle" %>
           <%= member.name %>
           <% if member == current_member %>
-            <%= link_to member_path(member), class: "member_info_content" do %>
-              <i class="fas fa-user-cog"></i>
+            <%= link_to member_path(member), class: "text_blue" do %>
+              &nbsp;<i class="fas fa-user-cog"></i>
             <% end %>
           <% end %>
         </h4>
 
         <div class="mt-3 text-center">
-        <%= link_to followings_member_path(member), class: "member_info_content" do %>
+        <%= link_to followings_member_path(member), class: "text_blue" do %>
           フォロー数　：<span class="followings_count"><%= render "public/relationships/followings_counter", member: member %></span>
         <% end %>
         </div>
         <div class="mt-3 text-center">
-        <%= link_to followers_member_path(member), class: "member_info_content" do %>
+        <%= link_to followers_member_path(member), class: "text_blue" do %>
           フォロワー数：<span class="followers_count-<%= member.id %>"><%= render "public/relationships/followers_counter", member: member %></span>
         <% end %>
         </div>
 
     </div>
 
-    <div class="col-sm-md-4 myindex_show_table" style="color: #555555;">
-      <table class="table table-sm">
+    <div class="col-sm-md-4 myindex_show_table">
+      <table class="table table-sm" style="color: #555555;">
         <tr>
           <th class="text-left">在住県</th>
           <td class="text-left"><%= member.prefecture %></td>
@@ -43,24 +43,24 @@
 
     <div class="col-sm-3">
       <div class="btn">
-        <%= link_to wines_myindex_path(member), class: "member_info_content" do %>
-          <h7><i class="fas fa-wine-bottle"></i>ナチュール記録all</h7>
+        <%= link_to wines_myindex_path(member), class: "member_info_content_list" do %>
+          <h7><i class="fas fa-wine-bottle"></i>&nbsp;ナチュール記録all</h7>
         <% end %>
         </div>
       <div class="btn">
-        <%= link_to wines_again_index_path(member), class: "member_info_content" do %>
-          <i class="fas fa-check"></i>また飲みたいナチュール
+        <%= link_to wines_again_index_path(member), class: "member_info_content_list" do %>
+          <i class="fas fa-check"></i>&nbsp;また飲みたいナチュール
         <% end %>
       </div>
       <% if current_member == member %>
       <div class="btn">
-        <%=link_to followings_wine_member_path(member), class: "member_info_content" do %>
-          <i class="fas fa-bookmark"></i>ブックマークした投稿
+        <%=link_to bookmarks_member_path(member), class: "member_info_content_list" do %>
+          <i class="fas fa-bookmark"></i>&nbsp;ブックマークした投稿
         <% end %>
       </div>
       <div class="btn">
-        <%=link_to followings_wine_member_path(member), class: "member_info_content" do %>
-          <i class="fas fa-users"></i>フォローユーザーの投稿
+        <%=link_to followings_wine_member_path(member), class: "member_info_content_list" do %>
+          <i class="fas fa-users"></i>&nbsp;フォローユーザーの投稿
         <% end %>
       </div>
       <% end %>
@@ -72,16 +72,3 @@
   </div>
 
 </div>
-
-<style>
-  .member_info_content {
-    text-decoration: none;
-    color: #3d83bf;
-    font-size: 16px;
-  }
-
-  .myindex_show_profile {
-    text-decoration: none;
-    color: #555555;
-  }
-</style>

@@ -4,7 +4,7 @@
 
   <div class="row">
     <h5 class="col-sm-md text-center mx-auto text_blue">
-      <%= @member.name %>がブックマークした投稿🍷<!--<span> (<%#= @bookmark_wines.count %>件)</span> %> -->
+      <i class="fas fa-bookmark"></i>&nbsp;&nbsp;<%= @member.name %>がブックマークした投稿🍷<!--<span> (<%#= @bookmark_wines.count %>件)</span> %> -->
     </h5>
   </div>
 
@@ -82,7 +82,7 @@
        <!-- ジャンルごとに表示-->
         <% @genres.each do |genre| %>
           <div id="tab-<%= genre.genre_name %>" class="tab">
-            <%# ブックマークした %>
+            <%# ブックマークした一覧 %>
             <% genre.wines.where(member_id: member.id).each do |wine| %>
             <%# genre.wines.each do |wine| %>
               <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->

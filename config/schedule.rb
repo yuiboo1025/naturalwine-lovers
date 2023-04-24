@@ -9,7 +9,7 @@ set :output, "#{Rails.root}/log/cron.log"
 
 #30分に一度、data_resetメゾッドが実行される記述
 #テストする際は下記を3.minuteとかに変えた方がいいかもしれません。
-every 30.minute do
+every 3.minute do
   begin
     runner "Guestuser::DataGuest.data_reset"
   rescue => e

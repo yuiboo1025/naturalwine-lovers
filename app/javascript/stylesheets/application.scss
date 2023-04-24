@@ -1,32 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Noto+Sans+JP&family=Secular+One&display=swap');
-@import 'public/homes';
-@import 'public/wines';
+@import 'homes';
+@import 'wines';
+@import 'relationships';
+@import 'members';
+@import 'comments';
 
-//header body footer {
-//  font-family: 'M PLUS Rounded 1c' ,'sans-serif';
-//}
 
+//header
 .nav-item {
   font-family: 'Noto Sans JP', sans-serif;
-}
-
-.naturnote_main {
-  font-family: 'Secular One', sans-serif;
-}
-
-//.catch-copy {
- // font-family: 'Secular One', sans-serif;
-  //font-weight: bold;
-//}
-
-.main-visual_sign {
-  font-family: 'Noto Sans JP', sans-serif;
-}
-
-.main-visual_sign-btn {
-  color: #555555;
 }
 
 header{
@@ -40,13 +24,28 @@ header{
   color: #3d83bf;
 }
 
+//body
 body {
   color: #555555;
 }
 
+//main
+.naturnote_main {
+  font-family: 'Secular One', sans-serif;
+}
+
+//footer
+footer{
+  border-top: 2px solid #3d83bf;
+  color: #3d83bf;
+  width: 100%;
+}
+
+//共通クラス
 .text_red {
     color: red;
   }
+  
 .text_blue {
   color: #3d83bf;
 }
@@ -57,12 +56,6 @@ body {
   
 .font_bold {
   font-weight: bold;
-}
-
-footer{
-  border-top: 2px solid #3d83bf;
-  color: #3d83bf;
-  width: 100%;
 }
 
   /*ページネーション自体のデザイン*/
@@ -82,4 +75,101 @@ footer{
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
+}
+
+//ログインボタン(sessionページ)
+.session_log_in_btn {
+  font-size: 18px;
+  font-weight: bold;
+}
+//新規登録ボタン(registrationページ)
+.sign_up_btn {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+//レスポンシブ対応
+/*　画面サイズ 1025px以上から適用　*/
+@media screen and (min-width:1025px) {
+  .md_size {
+    display:none
+  }
+}
+/*　画面サイズ 1024px以下から適用　*/
+@media screen and (max-width:1024px) {
+  .lg_size {
+    display:none
+  }
+}
+
+//_headerファイル
+/* ---- ハンバーガーアイコン ---- */
+#hm-icon {
+  right: 30px;
+  top: 20px;
+  z-index: 10;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 50px;
+  height: 44px;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #3d83bf;
+  border-radius: 4px;
+}
+.menu-trigger span:nth-child(1) {
+  top: 0;
+}
+.menu-trigger span:nth-child(2) {
+  top: 20px;
+}
+.menu-trigger span:nth-child(3) {
+  bottom: 0;
+}
+.menu-trigger.active span:nth-child(1) {
+  -webkit-transform: translateY(20px) rotate(-45deg);
+  transform: translateY(20px) rotate(-45deg);
+  background-color: #fff;
+}
+.menu-trigger.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-child(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+  background-color: #fff;
+}
+
+/* ------ spメニュー ------ */
+#sp-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #4d8abf;
+  color: #fff;
+  width: 100%;
+  min-height: 20%;
+  display: none;
+  z-index: 9;
+}
+#sp-menu li {
+  text-align: center;
+  margin-bottom: 30px;
+  list-style: none;
+}
+#sp-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }

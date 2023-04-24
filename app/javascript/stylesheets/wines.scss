@@ -1,0 +1,149 @@
+//wine_showページ
+.wine_show_main {
+  color: #555555;
+  .table{
+    color: #555555;
+  }
+}
+
+.wine_show_contents {
+  border: double 10px #3d83bf;
+  padding: 1%;
+  display: flex;
+}
+
+.wine_show_map {
+  background-color: #f5deb3;
+  border-radius: 70px;
+}
+
+.wine_show__edit_btn {
+  border-width: 15px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 50%, #66cdaa 0%);
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wine_show__destroy_btn {
+  border-width: 7px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 50%, #ffa07a 0%);
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wine_show_map_info {
+  width: 300px;
+}
+
+@media screen and (max-width:425px) { //レスポンシブ対応(タブ)
+  .wine_show_image {
+    width: 200px;
+    height: 300px;
+  }
+ }
+
+
+//myindexページ
+.myindex_show_profile {
+  background-color: #ffffe0;
+  border : double 10px #f0e68c;
+  border-radius: 20px;
+  padding: 2%;
+}
+
+
+//indexページ
+#tab-menu {
+  display: flex;
+}
+
+#tab-menu li {
+  list-style-type: none;
+  width: 20%;
+  border-bottom: 2px solid #3d83bf;
+}
+
+@media screen and (max-width:425px) { //レスポンシブ対応(タブ)
+  #tab-menu {
+    padding: 0px;
+  }
+  #tab-menu li {
+    width: 15%;
+  }
+}
+
+#tab-menu li a {
+  color: #3d83bf;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  background: #f7f6ed;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#tab-menu li a:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+  background-color: #dcdcdc;
+}
+
+#tab-menu .active {
+  background: #3d83bf;
+  color: #fff;
+}
+
+.tab{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tab-contents .tab {
+  width: 100%;
+  padding: 10px;
+}
+
+.card {
+  background: #f7f6ed;
+  border: double 3px #3d83bf;
+}
+
+.card_under_info {
+  border-top: dashed 2px #3d83bf;
+}
+
+
+//_member_info部分
+.member_info_contents {
+  text-decoration: none;
+  color: #555555;
+}
+.member_info_content_list {
+  color: #bf7a3d;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.member_info_content_list:hover{
+  color: #bf9673;
+}
+
+
+//_post_wine-btn 投稿ボタン
+.post_wine {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+}
+
+@media screen and (max-width:1024px) { //レスポンシブ対応(PCサイズ以下は被ってしまうため表示しない)
+  .post_wine {
+    display:none
+  }
+}
+

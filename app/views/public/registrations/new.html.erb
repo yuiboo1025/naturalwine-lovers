@@ -10,6 +10,7 @@
 
   <div class="row justify-content-center">
     
+    <%#.レスポンシブ対応 画面サイズ 1025px以上から適用 %>
     <div class="col-7 text-center lg_size">
       <%= form_with model: @member, url: member_registration_path do |f| %>
       <table class="table member_info member_form">
@@ -58,53 +59,52 @@
        </div>
        <% end %>
     </div>
-
+     
+     <%#.レスポンシブ対応 画面サイズ 1024px以下から適用 %>
     <div class="col-sm-4 md_size ml-5">
       <%= form_with model: @member, url: member_registration_path do |f| %>
-      <div class="field my-3">
-        <span class="text_red">※</span>ユーザー名(50字以内)<br />
-        <%= f.text_field :name %>
-      </div>
-      <div class="field my-3">
-        <span class="text_red">※</span>メールアドレス<br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-      <div class="field my-3">
-        <span class="text_red">※</span>パスワード(6文字以上)<br />
-        <%= f.password_field :password, autocomplete: "new-password" %></td>
-      </div>
-      <div class="field my-3">
-        <span class="text_red">※</span>パスワード(確認用)<br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-      <div class="field my-3">
-        プロフィール画像<br />
-        <%= f.file_field :profile_image, accept: "image/*" %>
-      </div>
-      <div class="field my-3">
-        好きなワインのジャンル<br />
-        <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
-      </div>
-      <div class="field my-3">
-        在住県<br />
-        <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
-      </div>
-       <div class="field my-3">
-        紹介文<br />
-        <%= f.text_area :introduction %>
-      </div>
-      
-      <div class="row justify-content-center">
-         <div class="col-10 text-center mr-5">
-           <%= f.submit "Sign-Up", class: "btn btn-info btn-block sign_up_btn" %>
-         </div>
-       </div>
+        <div class="field my-3">
+          <span class="text_red">※</span>ユーザー名(50字以内)<br />
+          <%= f.text_field :name %>
+        </div>
+        <div class="field my-3">
+          <span class="text_red">※</span>メールアドレス<br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="field my-3">
+          <span class="text_red">※</span>パスワード(6文字以上)<br />
+          <%= f.password_field :password, autocomplete: "new-password" %></td>
+        </div>
+        <div class="field my-3">
+          <span class="text_red">※</span>パスワード(確認用)<br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+        <div class="field my-3">
+          プロフィール画像<br />
+          <%= f.file_field :profile_image, accept: "image/*" %>
+        </div>
+        <div class="field my-3">
+          好きなワインのジャンル<br />
+          <%= f.select :favorite_genre, Member.favorite_genres.keys, {}, :placeholder =>"#{@member.favorite_genre}" %>
+        </div>
+        <div class="field my-3">
+          在住県<br />
+          <%= f.select :prefecture, Member.prefectures.keys, {}, :placeholder =>"#{@member.prefecture}" %>
+        </div>
+         <div class="field my-3">
+          紹介文<br />
+          <%= f.text_area :introduction %>
+        </div>
+        
+        <div class="row justify-content-center">
+          <div class="col-10 text-center mr-5">
+            <%= f.submit "Sign-Up", class: "btn btn-info btn-block sign_up_btn" %>
+          </div>
+        </div>
       
       <% end %>
     </div>
 
-  
-  
   </div>
 
   <div class="row justify-content-center mt-5">
@@ -119,25 +119,3 @@
   </div>
 
 </div>
-
-<style>
-  .sign_up_btn {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-/*　画面サイズ 1025px以上から適用　*/
-@media screen and (min-width:1025px) {
-  .md_size {
-    display:none
-  }
-}
-
-/*　画面サイズ 1024px以下から適用　*/
-@media screen and (max-width:1024px) {
-  .lg_size {
-    display:none
-  }
-}
-</style>
-

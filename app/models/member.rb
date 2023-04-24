@@ -54,7 +54,7 @@ class Member < ApplicationRecord
     super && (is_deleted == false)
   end
 
-  #ransack使用する際、出てきたエラーに下記文を記載するよう指示
+  #ransack使用する際、出てきたエラーに下記文を記載するよう指示文があったので記述。
   def self.ransackable_attributes(auth_object = nil)
     ["email", "encrypted_password", "favorite_genre", "id", "introduction", "is_deleted", "name", "prefecture", "activated_true"]
   end
@@ -64,6 +64,9 @@ class Member < ApplicationRecord
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
       member.name = "guestuser"
+      #member.prefecture = 13
+      #member.favorite_genre = 2
+      #member.introduction = "ゲストユーザーです。"
     end
   end
 

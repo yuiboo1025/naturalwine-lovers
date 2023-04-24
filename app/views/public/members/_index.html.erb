@@ -72,35 +72,16 @@
     </div>
   </div>
 
-  　<div class="d-flex justify-content-center">
-        <%= paginate members, theme: 'bootstrap-5' %>
-      </div>
-
+  <div class="d-flex justify-content-center">
+     <%= paginate members, theme: 'bootstrap-5' %>
+  </div>
 
 </div>
 
-
-<style>
-  .follow_btn {
-    color: #fff;
-    background-color: #20b2aa;
-  }
-
-  .unfollow_btn {
-    color: #fff;
-    background-color: #a9a9a9;
-  }
-
-  .member_index_table tbody tr:hover {
-    background-color: #f7f2c6;
-  }
-
-</style>
-
 <script>
-  $(document).on("turbolinks:load", function() {
+  window.onload = function() { //HTMLを読み込んでからscriptを読み込む
     $(".member_index_tbody_td").on('click', function() {
       window.location = $(this).data("href");
     });
-  });
+  }
 </script>
