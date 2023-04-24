@@ -83,7 +83,7 @@
         <% @genres.each do |genre| %>
           <div id="tab-<%= genre.genre_name %>" class="tab">
             <%# ブックマークした一覧 %>
-             <%#.wineに関連するブックマークテーブルをまとめて取得(include)し、bookmarksの中でmember_idを %>
+             <%#.wineに関連するブックマークテーブルをまとめて取得(include)し、bookmarksの中でmember_idを指定 %>
             <% genre.wines.includes(:bookmarks).where(member_id: @member.id, bookmarks: {member_id: @member.id}).each do |wine| %>
               <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
               <div id="bookmark_list_<%= wine.id %>">
