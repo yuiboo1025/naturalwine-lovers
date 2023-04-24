@@ -54,8 +54,13 @@
       </div>
       <% if current_member == member %>
       <div class="btn">
-        <%=link_to bookmarks_member_path(member), class: "member_info_content" do %>
+        <%=link_to followings_wine_member_path(member), class: "member_info_content" do %>
           <i class="fas fa-bookmark"></i>ブックマークした投稿
+        <% end %>
+      </div>
+      <div class="btn">
+        <%=link_to followings_wine_member_path(member), class: "member_info_content" do %>
+          <i class="fas fa-users"></i>フォローユーザーの投稿
         <% end %>
       </div>
       <% end %>

@@ -55,21 +55,35 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise'
-gem "enum_help"
-gem 'jquery-rails'
-gem 'dotenv-rails'
-gem 'google_places'
-gem 'ransack'
 
+# ログイン機能
+gem 'devise'
+#enumで定義した値をi18n化させる
+gem "enum_help"
+#jQuery
+gem 'jquery-rails'
+#環境変数を管理することができるgem(envファイル読み込み)
+gem 'dotenv-rails'
+
+gem 'google_places'
+#ユーザー検索機能
+gem 'ransack'
+#番環境でMySQLを利用するための設定
 group :production do
   gem 'mysql2'
 end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+# ページネーション
 gem 'kaminari','~> 1.2.1'
+# ページネーションデザイン
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
+# 画像投稿(丸くするときに使用)
 gem 'mini_magick'
+# 多言語化
 gem 'rails-i18n'
+#アプリ名変更
 gem 'rename'
+# バッチ（定時）処理(ゲストユーザーデータ自動削除)
+gem 'whenever', require: false

@@ -18,6 +18,12 @@ module NaturNote
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    
+    #日本語化
     config.i18n.default_locale = :ja
+    #タイムゾーンを日本時間にする
+    config.time_zone = 'Tokyo'
+    #data_guest.rb(ゲストユーザーのデータ削除)が読み込まれるため
+    config.paths.add 'lib', eager_load: true
   end
 end

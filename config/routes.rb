@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
   	  #member doを使うと、ユーザーidが含まれてるurlを使えるようになる。
   	  member do
-        get :bookmarks, :followings, :followers
+        get :bookmarks, :followings, :followers, :followings_wine
       end
     end
     get 'wines/myindex/:id' => 'wines#myindex', as: 'wines_myindex'

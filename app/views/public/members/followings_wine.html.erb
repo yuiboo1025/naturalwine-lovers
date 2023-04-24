@@ -4,7 +4,7 @@
 
   <div class="row">
     <h5 class="col-sm-md text-center mx-auto text_blue">
-      <%= @member.name %>がブックマークした投稿🍷<!--<span> (<%#= @bookmark_wines.count %>件)</span> %> -->
+      <%= @member.name %>がフォローしているユーザーのナチュール投稿🍷<!--<span> (<%#= @bookmark_wines.count %>件)</span> %> -->
     </h5>
   </div>
 
@@ -31,7 +31,7 @@
     
         <!-- Allを表示-->
         <div id="tab-All" class="tab">
-          <% @bookmark_wines.each do |wine| %>
+          <% @followings_wines.each do |wine| %>
            <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
             <div id="bookmark_list_<%= wine.id %>">
               <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
@@ -82,8 +82,8 @@
        <!-- ジャンルごとに表示-->
         <% @genres.each do |genre| %>
           <div id="tab-<%= genre.genre_name %>" class="tab">
-            <%# ブックマークした %>
-            <% genre.wines.where(member_id: member.id).each do |wine| %>
+            <%# ブックマークした一覧 %>
+            <% genre.wines.where(member_id: @member.followings.where(is_deleted: false)).each do |wine| %>
             <%# genre.wines.each do |wine| %>
               <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
               <div id="bookmark_list_<%= wine.id %>">
@@ -155,5 +155,3 @@
         event.preventDefault();
       });
   </script>
-
-
