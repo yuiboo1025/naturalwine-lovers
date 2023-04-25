@@ -25,7 +25,7 @@ set :output, "#{Rails.root}/log/cron.log"
 
 #6時間に一度、data_resetメゾッドが実行される記述
 #テストする際は下記を3.minuteとかに変えた方がいいかもしれません。
-every 1.minute do
+every 30.minute do
 #every 6.hours do
   begin
     runner "DataGuest.data_reset"
