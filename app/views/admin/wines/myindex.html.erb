@@ -8,6 +8,122 @@
     </h5>
   </div>
 
-  <%= render 'admin/wines/index', wines: @wines, member: @member, genres: @genres %>
+  <%#= render 'admin/wines/index', wines: @wines, member: @member, genres: @genres %>
+  
+  <!-- タブ作成-->
+<div class ="row justify-content-center mt-3" >
+  <div class ="col">
+    <ul id="tab-menu">
+        <li><a href="#tab-All" class="active">All</a></li>
+      <% @genres.each do |genre| %>
+        <li><a href="#tab-<%= genre.genre_name %>" class=""><%= genre.genre_name %></a></li>
+      <% end %>
+      </ul>
+   </div>
+</div>
+
+  <!-- タブの内容作成-->
+  <div class ="row">
+    <div id="tab-contents">
+  
+      <!-- Allを表示-->
+      <div id="tab-All" class="tab">
+        <% @wines.each do |wine| %>
+         <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
+          <div id="bookmark_list_<%= wine.id %>">
+            <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
+              <div class ="card">
+  
+                <div class ="card_spot_name ml-2">
+                  <%= link_to admin_spot_path(wine.spot) do %>
+                    📍<%= wine.spot.spot_name %>
+                  <% end %>
+                </div>
+                <div class ="card_wine_image text-center">
+                  <%= link_to admin_wine_path(wine) do %>
+                    <%= image_tag wine.get_wine_image(260,290) %>
+                  <% end %>
+                </div>
+                <div class ="card_member_name ml-4 mt-1">
+                 <%= link_to admin_wines_myindex_path(wine.member.id) do %>
+                    <%= wine.member.name %>
+                  <% end %>
+                </div>
+                <div id= "wine_<%= wine.id %>">
+                  <div class ="row card_under_info d-flex justify-content-end mx-1 mt-1">
+                    <% if wine.is_again == true %>
+                      <div class ="card_against mr-5 pr-5">
+                        <i class="fas fa-check"></i>
+                      </div>
+                    <% end %>
+                    <div class ="card_comment ml-5">
+                      <%= link_to admin_wine_path(wine.id) do%>
+                        <i class="far fa-comment"></i><%= wine.comments.count %>
+                      <% end %>
+                    </div>
+                    <div class ="card_favorites favorite-btn mx-3">
+                       ♡<%= wine.favorites.count %>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  
+     <!-- ジャンルごとに表示-->
+      <% @genres.each do |genre| %>
+        <div id="tab-<%= genre.genre_name %>" class="tab">
+          <% genre.wines.where(member_id: @member.id).each do |wine| %>
+            <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
+            <div id="bookmark_list_<%= wine.id %>">
+              <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
+                <div class ="card">
+  
+                  <div class ="card_spot_name ml-2">
+                    <%= link_to admin_spot_path(wine.spot) do %>
+                     📍<%= wine.spot.spot_name %>
+                    <% end %>
+                  </div>
+                  <div class ="card_wine_image text-center">
+                    <%= link_to admin_wine_path(wine) do %>
+                      <%= image_tag wine.get_wine_image(260,290) %>
+                    <% end %>
+                  </div>
+                  <div class ="card_member_name ml-4 mt-1">
+                    <%= link_to admin_wines_myindex_path(wine.member.id) do %>
+                      <%= wine.member.name %>
+                    <% end %>
+                  </div>
+  
+                  <div id= "wine_<%= wine.id %>">
+                    <div class ="row card_under_info d-flex justify-content-end mx-1 mt-1">
+                      <% if wine.is_again == true %>
+                      <div class ="card_against mr-5 pr-5">
+                        <i class="fas fa-check"></i>
+                      </div>
+                    <% end %>
+                      <div class ="card_comment ml-5">
+                        <%= link_to admin_wine_path(wine.id) do%>
+                          <i class="far fa-comment"></i><%= wine.comments.count %>
+                        <% end %>
+                      </div>
+                      <div class ="card_favorites favorite-btn mx-3">
+                        ♡<%= wine.favorites.count %>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+  
+    </div>
+  </div>
 
 </div>

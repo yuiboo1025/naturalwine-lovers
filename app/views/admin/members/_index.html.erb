@@ -69,9 +69,9 @@
 </div>
 
 <script>
-  $(document).on("turbolinks:load", function() {
+  window.onload = function() { //HTMLを読み込んでからscriptを読み込む
     $(".member_index_tbody_tr").on('click', function() {
       window.location = $(this).data("href");
     });
-  });
+  }
 </script>

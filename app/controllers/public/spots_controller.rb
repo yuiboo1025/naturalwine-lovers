@@ -24,12 +24,6 @@ class Public::SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @wines = @spot.wines.all
     @genres = Genre.all
-    if params[:genre_id]
-		  @genre = Genre.find(params[:genre_id])
-		  @wines = @genre.wines
-    else
-      @wines = @spot.wines.all
-    end
   end
 
   def edit
