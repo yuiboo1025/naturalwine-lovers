@@ -4,18 +4,24 @@
 <div class="container text-center my-5">
 
   <div class="row my-5">
-    <div class="col-sm text-center">
-      <h1 class="catch-copy">＼ Let's enjoy Naturalwine!!! ／</h1>
+    <div class="col-sm text-center text_blue">
+      <h1>＼ Let's enjoy Naturalwine!!! ／</h1>
     </div>
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-sm-md-4">
+    <div class="col-sm-md-3 align-self-center mr-2 mt-2">
+      <%= image_tag "top_heart_left.png", size: "130x130" %>
+    </div>
+    <div class="col-sm-md-3">
       <%= image_tag "top_wine_img2.png", size: "350x250" %>
     </div>
 
-    <div class="col-sm-md-4 ml-2">
+    <div class="col-sm-md-3 ml-2">
       <%= image_tag "top_wine_img.png", size: "350x250" %>
+    </div>
+    <div class="col-sm-md-3 align-self-center ml-4 mt-4">
+      <%= image_tag "top_heart_right.png", size: "130x130" %>
     </div>
   </div>
 
@@ -24,13 +30,13 @@
       <h2 class="catch-copy"></h2>
     </div>
   </div>
-  
-   <div class="row justify-content-center" >
+
+   <div class="row justify-content-center mt-4" >
     <div class="col-sm-2 text-right">
-      <%= link_to 'Sign-Up', new_member_registration_path, class: "btn mb-1 pr-3 pl-3 ml-4 top_sign_in_btn" %>
+      <%= link_to 'Sign-Up', new_member_registration_path, class: "btn mb-1 pr-3 pl-3 py-1 ml-4 top_sign_in_btn" %>
     </div>
     <div class="col-sm-2 text-left">
-      <%= link_to 'Log-In', new_member_session_path, class: "btn mb-1 pr-3 pl-3 ml-1 top_log_in_btn" %>
+      <%= link_to 'Log-In', new_member_session_path, class: "btn mb-1 pr-3 pl-3 py-1 ml-1 top_log_in_btn" %>
     </div>
   </div>
   <div class="row justify-content-center mb-3" >
@@ -40,12 +46,15 @@
   </div>
 
 
-  
-  <div class="row justify-content-center about_link" >
+
+  <div class="row justify-content-center mt-3" >
+    <div class="col-sm-md align-self-end mb-1">
+      <h3 class="about_text_point"><i class="far fa-hand-point-right"></i>&nbsp;<i class="far fa-hand-point-right"></i>&emsp;</h3>
+    </div>
     <div class="col-sm-md">
-      <%= link_to about_path do %>
-      <h3 class="about_link_text">
-        <i class="far fa-hand-point-right"></i>&nbsp;<i class="far fa-hand-point-right"></i>&emsp;What about...    <span class="about_logo_link">NaturNote </span>??</h2>
+      <%= link_to about_path, class: "btn" do %>
+      <h4 class="about_link_text">
+        What about...    <span class="about_logo_link">NaturNote </span>??</h4>
       <% end %>
     </div>
   </div>
@@ -53,37 +62,48 @@
 </div>
 
 <style>
-.catch-copy{
-  color: #3d83bf;
+.about_text_point {
+  color: #808080;
 }
 
 .about_link_text {
   color: #808080;
+  border-width: 15px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 70%, #ffc966 0%);
+  text-decoration: none;
+}
+
+.about_link_text:hover {
+  color: #696969;
+  border-width: 15px;
+  text-underline-position: above;
+  background: linear-gradient(transparent 70%, #ffa500 0%);
+  text-decoration: none;
 }
 
 .about_logo_link {
   font-family: 'Carter One', cursive;
-  font-size: 50px;
-  color: #808080;
+  font-size: 40px;
 }
 
 .top_sign_in_btn {
   background-color: #3d83bf;
   color: #ffffff;
   font-size: 18px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .top_log_in_btn {
   background-color: #3d83bf;
   color: #ffffff;
   font-size: 18px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .guest_sign_in_btn{
-  font-size: 16px;
-  border-radius: 10px;
+  font-size: 15px;
+  border-radius: 5px;
 }
 
 

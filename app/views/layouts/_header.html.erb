@@ -4,7 +4,7 @@
     <%#.レスポンシブ対応 画面サイズ 1025px以上から適用 %>
     <nav class="navbar navbar lg_size">
       <% if admin_signed_in? %>
-        <a class="navbar-brand" href="/admin">
+        <a class="navbar-brand" href="/">
           <%= image_tag "logo.remove-bg2.png", size: "120x90" %>
         </a>
       <% else %>
@@ -17,6 +17,9 @@
         <ul class="navbar-nav list-group list-group-horizontal" >
           <% if admin_signed_in? %>
             <!--管理者ログイン後-->
+            <li class="nav-item mr-5">
+                <h5 class="text_blue text_bold text_underline">~管理者でlogin中~</h5>
+            </li>
             <li class="nav-item">
               <%= link_to "メンバー一覧", admin_members_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
@@ -57,14 +60,23 @@
             <li class="nav-item">
               <%= link_to "About", about_path, class: 'nav-link btn pr-4 pl-4 ml-4 header-link' %>
             </li>
+            <li class="nav-item ">
+              <%= link_to "メンバー一覧", members_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "投稿一覧", wines_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "Map", spots_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
+            </li>
             <li class="nav-item">
-              <%= link_to "新規登録", new_member_registration_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
+              <%#= link_to "新規登録", new_member_registration_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "ログイン", new_member_session_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "nav-link btn pr-3 pl-3 ml-4 header-link", method: :post %>
+              <%#= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "nav-link btn pr-3 pl-3 ml-4 header-link", method: :post %>
             </li>
           <% end %>
         </ul>
@@ -131,14 +143,23 @@
             <li class="nav-item">
               <%= link_to "About", about_path, class: 'nav-link btn mx-5 header-link' %>
             </li>
+            <li class="nav-item ">
+              <%= link_to "メンバー一覧", members_path, class: 'nav-link btn mx-5 header-link' %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "投稿一覧", wines_path, class: 'nav-link btn mx-5 header-link' %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "Map", spots_path, class: 'nav-link btn mx-5 header-link' %>
+            </li>
             <li class="nav-item">
-              <%= link_to "新規登録", new_member_registration_path, class: 'nav-link btn mx-5 header-link' %>
+              <%#= link_to "新規登録", new_member_registration_path, class: 'nav-link btn mx-5 header-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "ログイン", new_member_session_path, class: 'nav-link btn mx-5 header-link' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "nav-link btn mx-5 header-link", method: :post %>
+              <%#= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "nav-link btn mx-5 header-link", method: :post %>
             </li>
           <% end %>
         </ul>
