@@ -5,42 +5,36 @@
 
   <div class="row my-5">
     <div class="col-sm text-center text_blue">
-      <h1>＼ Let's enjoy Naturalwine!!! ／</h1>
+      <h1 class="top_catch_copy">＼ Let's enjoy Naturalwine!!! ／</h1>
     </div>
   </div>
 
   <div class="row justify-content-center">
     <div class="col-sm-md-3 align-self-center mr-2 mt-2">
-      <%= image_tag "top_heart_left.png", size: "130x130" %>
+      <%= image_tag "top_heart_left.png", size: "130x130", class: "top_heart" %>
     </div>
     <div class="col-sm-md-3">
-      <%= image_tag "top_wine_img2.png", size: "350x250" %>
+      <%= image_tag "top_wine_img2.png", size: "350x250", class: "top_wine_img" %>
     </div>
 
     <div class="col-sm-md-3 ml-2">
-      <%= image_tag "top_wine_img.png", size: "350x250" %>
+      <%= image_tag "top_wine_img.png", size: "350x250", class: "top_wine_img" %>
     </div>
     <div class="col-sm-md-3 align-self-center ml-4 mt-4">
-      <%= image_tag "top_heart_right.png", size: "130x130" %>
+      <%= image_tag "top_heart_right.png", size: "130x130", class: "top_heart" %>
     </div>
   </div>
 
-  <div class="row justify-content-center my-3" >
-    <div class="col-sm-md">
-      <h2 class="catch-copy"></h2>
-    </div>
-  </div>
-
-   <div class="row justify-content-center mt-4" >
-    <div class="col-sm-2 text-right">
+   <div class="row justify-content-center mt-5" >
+    <div class="col-sm-md-2 text-right mr-4">
       <%= link_to 'Sign-Up', new_member_registration_path, class: "btn mb-1 pr-3 pl-3 py-1 ml-4 top_sign_in_btn" %>
     </div>
-    <div class="col-sm-2 text-left">
+    <div class="col-sm-md-2 text-left mr-3">
       <%= link_to 'Log-In', new_member_session_path, class: "btn mb-1 pr-3 pl-3 py-1 ml-1 top_log_in_btn" %>
     </div>
   </div>
   <div class="row justify-content-center mb-3" >
-    <div class="col-sm-3 text-center">
+    <div class="col-sm-md-3 text-center">
       <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "btn btn-secondary my-3 guest_sign_in_btn", method: :post %>
     </div>
   </div>
@@ -60,52 +54,3 @@
   </div>
 
 </div>
-
-<style>
-.about_text_point {
-  color: #808080;
-}
-
-.about_link_text {
-  color: #808080;
-  border-width: 15px;
-  text-underline-position: above;
-  background: linear-gradient(transparent 70%, #ffc966 0%);
-  text-decoration: none;
-}
-
-.about_link_text:hover {
-  color: #696969;
-  border-width: 15px;
-  text-underline-position: above;
-  background: linear-gradient(transparent 70%, #ffa500 0%);
-  text-decoration: none;
-}
-
-.about_logo_link {
-  font-family: 'Carter One', cursive;
-  font-size: 40px;
-}
-
-.top_sign_in_btn {
-  background-color: #3d83bf;
-  color: #ffffff;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-.top_log_in_btn {
-  background-color: #3d83bf;
-  color: #ffffff;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-.guest_sign_in_btn{
-  font-size: 15px;
-  border-radius: 5px;
-}
-
-
-
-</style>
