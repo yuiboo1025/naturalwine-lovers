@@ -114,16 +114,16 @@
                           </div>
                         <% end %>
                         <div class ="card_comment ml-5">
-                        <%= link_to wine_path(wine.id) do%>
-                          <i class="far fa-comment"></i><%= wine.comments.count %>
-                        <% end %>
-                      </div>
-                      <div class ="card_favorites favorite-btn mx-3">
-                         <%= render 'public/favorites/favorite-btn', wine: wine %>
-                      </div>
-                      <div class ="card_bookmark bookmark-btn mr-3">
-                         <%= render 'public/bookmarks/bookmark-btn', wine: wine %>
-                      </div>
+                          <%= link_to wine_path(wine.id) do%>
+                            <i class="far fa-comment"></i><%= wine.comments.count %>
+                          <% end %>
+                        </div>
+                        <div class ="card_favorites favorite-btn mx-3">
+                           <%= render 'public/favorites/favorite-btn', wine: wine %>
+                        </div>
+                        <div class ="card_bookmark bookmark-btn mr-3">
+                           <%= render 'public/bookmarks/bookmark-btn', wine: wine %>
+                        </div>
                       </div>
                     </div>
 

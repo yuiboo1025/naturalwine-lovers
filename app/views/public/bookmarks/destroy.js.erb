@@ -1,3 +1,5 @@
 $("#wine_<%= @wine.id %> .bookmark-btn").html("<%= j(render 'public/bookmarks/bookmark-btn', wine: @wine) %>");
 <%# ・ブックマークが「destroy」されたときにリストから投稿を削除する記述。_indexファイルにidを記載 %>
+<%# allのtabとgenreのtabに同じidがありどちらも削除したいため2回記述 %>
+$("#bookmark_list_<%= @wine.id %>").remove();
 $("#bookmark_list_<%= @wine.id %>").remove();
