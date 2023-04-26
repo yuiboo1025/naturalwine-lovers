@@ -24,7 +24,8 @@ Rails.application.routes.draw do
     resources :wines, only: [:index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:destroy]
     end
-    resources :spots, only: [:index, :show, :edit, :update]
+    get 'spots/spots_list' => 'spots#spots_list'
+    resources :spots, only: [:index, :show, :edit, :update, :destroy]
   end
 
   scope module: :public do

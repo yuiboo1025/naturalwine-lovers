@@ -1,7 +1,7 @@
 class Admin::WinesController < ApplicationController
   
   def index
-    @wines = Wine.all
+    @wines = Wine.includes(:member).where(member: { is_deleted: false })
     @genres = Genre.all
   end
   

@@ -7,7 +7,11 @@ class Admin::SpotsController < ApplicationController
     #結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
     @spots = Spot.joins(:wines).where(wines: {member_id: member}).all.uniq
   end
-
+  
+  def spots_list
+    @spots_list = Spot.all
+  end
+    
   def show
     @spot = Spot.find(params[:id])
     @wines = @spot.wines.all
@@ -38,6 +42,12 @@ class Admin::SpotsController < ApplicationController
       @wine.update(spot_id: spot.id)
     end
     redirect_to edit_admin_wine_path(params[:spot][:wine_id])
+  end
+  
+  def destroy
+    @spot = Spot.find(params[:id])
+    @spot.destroy
+    redirect_to admin_spots_spots_list_path
   end
 
 

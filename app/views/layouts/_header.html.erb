@@ -1,6 +1,6 @@
 <header class="d-flex flex-column">
   <div class="container-fluid">
-    
+
     <%#.レスポンシブ対応 画面サイズ 1025px以上から適用 %>
     <nav class="navbar navbar lg_size">
       <% if admin_signed_in? %>
@@ -28,6 +28,9 @@
             </li>
             <li class="nav-item ">
               <%= link_to "Map", admin_spots_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "Spot登録一覧",admin_spots_spots_list_path, class: 'nav-link btn pr-3 pl-3 ml-4 header-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link btn pr-1 pl-1 ml-4 header-link' %>
@@ -102,6 +105,9 @@
             </li>
             <li class="nav-item ">
               <%= link_to "Map", admin_spots_path, class: 'nav-link btn mx-5 header-link' %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "Spot登録一覧",admin_spots_spots_list_path, class: 'nav-link btn mx-5 header-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link btn mx-5 header-link' %>
