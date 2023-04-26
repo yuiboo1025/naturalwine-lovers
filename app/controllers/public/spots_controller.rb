@@ -6,7 +6,7 @@ class Public::SpotsController < ApplicationController
   end
 
   def create
-    if Spot.exists?(lat: params[:spot][:lat], lng: params[:spot][:lng])
+    if Spot.exists?(lat: params[:spot][:lat].floor(3).to_f, lng: params[:spot][:lng].floor(4).to_f)
       spot = Spot.find_by(lat: params[:spot][:lat], lng: params[:spot][:lng])
     else
      spot = Spot.new(spot_params)
