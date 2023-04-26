@@ -6,9 +6,10 @@ class Public::SpotsController < ApplicationController
   end
 
   def create
-    spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
-    if spot.blank?
-      spot = Spot.new(spot_params)
+    if Spot.exists?(lat: params[:spot][:lat], lng: params[:spot][:lng])
+      spot = Spot.find_by(lat: params[:spot][:lat], lng: params[:spot][:lng])
+    else
+     spot = Spot.new(spot_params)
       spot.save
     end
     redirect_to new_wine_path(spot_id: spot.id)

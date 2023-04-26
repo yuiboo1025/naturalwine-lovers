@@ -14,7 +14,7 @@ class Admin::SpotsController < ApplicationController
     
   def show
     @spot = Spot.find(params[:id])
-    @wines = @spot.wines.all
+    @wines = @spot.wines
     @genres = Genre.all
   end
 
