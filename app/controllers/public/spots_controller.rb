@@ -15,9 +15,11 @@ class Public::SpotsController < ApplicationController
   end
 
   def index
+    #退会しているメンバーの投稿情報は表示させない
+    member = Member.where(is_deleted: false)
     #spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
     #結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
-    @spots = Spot.joins(:wines).all.uniq
+    @spots = Spot.joins(:wines).where(wines: {member_id: member}).all.uniq
   end
 
   def show

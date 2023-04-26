@@ -32,8 +32,6 @@
         <!-- Allを表示-->
         <div id="tab-All" class="tab">
           <% @followings_wines.each do |wine| %>
-           <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
-            <div id="bookmark_list_<%= wine.id %>">
               <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
                 <div class ="card">
     
@@ -75,18 +73,14 @@
     
                 </div>
               </div>
-            </div>
           <% end %>
         </div>
     
        <!-- ジャンルごとに表示-->
         <% @genres.each do |genre| %>
           <div id="tab-<%= genre.genre_name %>" class="tab">
-            <%# ブックマークした一覧 %>
+            <%# フォローした人の投稿一覧 %>
             <% genre.wines.where(member_id: @member.followings.where(is_deleted: false)).each do |wine| %>
-            <%# genre.wines.each do |wine| %>
-              <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
-              <div id="bookmark_list_<%= wine.id %>">
                 <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
                   <div class ="card">
     
@@ -129,7 +123,6 @@
     
                   </div>
                 </div>
-              </div>
             <% end %>
           </div>
         <% end %>
