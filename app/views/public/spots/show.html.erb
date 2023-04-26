@@ -39,6 +39,8 @@
       <!-- Allを表示-->
       <div id="tab-All" class="tab">
         <% @wines.each do |wine| %>
+
+          <div>
             <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
               <div class ="card">
   
@@ -80,6 +82,7 @@
   
               </div>
             </div>
+          </div>
         <% end %>
       </div>
   
@@ -88,6 +91,8 @@
         <div id="tab-<%= genre.genre_name %>" class="tab">
            <!-- Spotでwineを絞り込む-->
           <% genre.wines.where(spot_id: @spot.id).each do |wine| %>
+            
+            <div>
               <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
                 <div class ="card">
   
@@ -130,6 +135,7 @@
   
                 </div>
               </div>
+            </div>
           <% end %>
         </div>
       <% end %>

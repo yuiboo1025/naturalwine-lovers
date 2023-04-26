@@ -32,6 +32,8 @@
     <!-- Allを表示-->
     <div id="tab-All" class="tab">
       <% @again_wines.each do |wine| %>
+
+        <div>
           <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
             <div class ="card">
 
@@ -73,6 +75,7 @@
 
             </div>
           </div>
+        </div>
       <% end %>
     </div>
 
@@ -80,6 +83,8 @@
     <% @genres.each do |genre| %>
       <div id="tab-<%= genre.genre_name %>" class="tab">
         <% genre.wines.where(member_id: @member.id, is_again: true).each do |wine| %>
+
+          <div>
             <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
               <div class ="card">
 
@@ -122,6 +127,7 @@
 
               </div>
             </div>
+          </div>
         <% end %>
       </div>
     <% end %>
