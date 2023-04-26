@@ -68,6 +68,8 @@ SNSに投稿されたワインのラベルデザインを見て惹かれたこ�
 ## 設計書
 ### ER図
 
+###テーブル定義書
+https://docs.google.com/spreadsheets/d/1SYGTK0zK4FWmsrQ7IXT0MSyBQLI5YpgI-mqA3OP61Ko/edit#gid=857942792
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
