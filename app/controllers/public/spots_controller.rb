@@ -42,20 +42,18 @@ class Public::SpotsController < ApplicationController
   def update
     #編集からワインを取ってくる
     @wine = Wine.find(params[:spot][:wine_id])
-    #編集画面で入力した緯度経度からspotを検索
-    spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
-    #spotが存在すれば
-    if spot.blank?
+    #過去のspotの情報を＠wineから取得
+    spot = @wine.spot
+    #spotと、paramsから送られたspotのaddressのデータが一致しない場合
+    if spot.address != params[:spot][:address]
+      if Spot.exists?(address: params[:spot][:address])
+        spot = Spot.find_by(address: params[:spot][:address])
+      else
       #新しいspotを作成
-      spot = Spot.new(spot_params)
-      spot.save
+        spot = Spot.new(spot_params)
+        spot.save
        #wineを更新をする(カラム名：↑で作成されたspotのid)
-      @wine.update(spot_id: spot.id)
-    #spotが存在しなければ
-    else
-      #同じとこをろ探す
-      spot = Spot.where(lat: params[:spot][:lat]).where(lng: params[:spot][:lng]).first
-      #wineを更新をする(カラム名：↑で検索されたspotのid)
+      end
       @wine.update(spot_id: spot.id)
     end
     redirect_to edit_wine_path(params[:spot][:wine_id])
