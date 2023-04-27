@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'top' => 'homes#top', as: 'top'
+    #get 'top' => 'homes#top', as: 'top'
+    root 'homes#top'
     get 'wines/myindex/:id' => 'wines#myindex', as: 'wines_myindex'
     get 'wines/again_index/:id' => 'wines#again_index', as: 'wines_again_index'
     resources :members, only: [:index, :show, :edit, :update] do

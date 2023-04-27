@@ -8,9 +8,9 @@ class Admin::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "全てのユーザー"
     end
-      @members = @q.result.page(params[:page]).per(5)
+      @members = @q.result.page(params[:page]).per(10)
   end
-  
+
   def followings
     @member = Member.find(params[:id])
     @members = @member.followings
@@ -21,7 +21,7 @@ class Admin::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "フォローしているユーザー"
     end
-      @members = @q.result.page(params[:page]).per(5)
+      @members = @q.result.page(params[:page]).per(10)
   end
 
   def followers
@@ -34,7 +34,7 @@ class Admin::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "フォロワー"
     end
-      @members = @q.result.page(params[:page]).per(5)
+      @members = @q.result.page(params[:page]).per(10)
   end
 
   def show
@@ -55,7 +55,7 @@ class Admin::MembersController < ApplicationController
       render :edit
     end
   end
-  
+
   def bookmarks
     @member = Member.find(params[:id])
     #ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
