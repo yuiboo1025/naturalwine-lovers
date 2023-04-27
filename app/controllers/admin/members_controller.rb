@@ -8,7 +8,7 @@ class Admin::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "全てのユーザー"
     end
-      @members = @q.result.page(params[:page]).per(10)
+      @members = @q.result.page(params[:page]).per(6)
   end
 
   def followings
@@ -21,7 +21,7 @@ class Admin::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "フォローしているユーザー"
     end
-      @members = @q.result.page(params[:page]).per(10)
+      @members = @q.result.page(params[:page]).per(6)
   end
 
   def followers
@@ -34,7 +34,7 @@ class Admin::MembersController < ApplicationController
       @q = @members.ransack(activated_true: true)
       @title = "フォロワー"
     end
-      @members = @q.result.page(params[:page]).per(10)
+      @members = @q.result.page(params[:page]).per(6)
   end
 
   def show
