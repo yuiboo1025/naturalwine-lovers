@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,7 +14,7 @@
   </head>
 
   <body style='background-color:#f7f6ed'>
-    
+
     <div class="naturnote_container">
       <div class = "header" style="background-color:#f7f6ed">
         <%= render 'layouts/header' %>
@@ -34,10 +34,11 @@
           </div>
           <%= yield %>
         </div>
+
       </main>
-      
+
       <div class="footer-space"></div>
-    
+
     <%#
     <footer>
       <div class="d-flex justify-content-center my-3">
@@ -45,7 +46,7 @@
       </div>
     </footer>
     %>
-    
+
     </div>
   </body>
 </html>

@@ -30,3 +30,8 @@ window.raty = function(elem,opt) {
   raty.init();
   return raty;
 }
+
+//フラッシュメッセージがフェードアウトする
+$(function() {
+  setTimeout("$('.flash-message').fadeOut('slow')", 2000);
+});
