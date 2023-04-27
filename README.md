@@ -3,11 +3,11 @@
 ### トップ画面
 <img src="app/assets/images/readme_top_img.png" width="">
 ### URL
-http://http://54.168.194.130/.  
-**一般ユーザー**.  
+http://54.168.194.130/  
+**一般ユーザー**   
 新規会員登録、もしくはゲストログインをご利用ください。  
 ※ゲストログインのデータは一定時間経過すると削除されます。
-**管理者用**  
+**管理者用**   
 メールアドレス:admin@admmin
 パスワード:adminadmin
 管理者用ログインURL: /admin/sign_in 
