@@ -25,7 +25,7 @@ class Public::SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
-    @wines = @spot.wines.all
+    @wines = @spot.wines.order(id: "DESC")
     @genres = Genre.all
   end
 
