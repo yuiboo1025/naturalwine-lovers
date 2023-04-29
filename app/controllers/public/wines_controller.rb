@@ -4,20 +4,20 @@ class Public::WinesController < ApplicationController
   def index
     #アソシエーション先での検索方法。(wineからmemberを指定して取り出したいときの書き方)
     #@wines = Wine.includes(:member).where(member: { is_deleted: false }).page(params[:page]).per(8)
-    @wines = Wine.includes(:member).where(member: { is_deleted: false })
+    @wines = Wine.includes(:member).where(member: { is_deleted: false }).order(id: "DESC")
     @genres = Genre.all
   end
 
   def myindex
     @member = Member.find(params[:id])
-    @wines = @member.wines.all
+    @wines = @member.wines.all.order(id: "DESC")
     @genres = Genre.all
   end
   
   def again_index
     @member = Member.find(params[:id])
     @wines = @member.wines.all
-    @again_wines = @wines.where(is_again: true)
+    @again_wines = @wines.where(is_again: true).order(id: "DESC")
     @genres = Genre.all
   end
 

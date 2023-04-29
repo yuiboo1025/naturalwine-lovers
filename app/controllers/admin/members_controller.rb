@@ -55,7 +55,8 @@ class Admin::MembersController < ApplicationController
       render :edit
     end
   end
-
+  
+  #ブックマークした投稿一覧
   def bookmarks
     @member = Member.find(params[:id])
     #ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
@@ -64,6 +65,15 @@ class Admin::MembersController < ApplicationController
     @bookmark_wines = Wine.find(bookmarks)
     @genres = Genre.all
   end
+  
+  #フォローした人の投稿一覧
+  def followings_wine
+    @member = Member.find(params[:id])
+    @members = @member.followings.where(is_deleted: false)
+    @followings_wines = Wine.where(member_id: @members).order(id: "DESC")
+    @genres = Genre.all
+  end
+  
 
   private
 

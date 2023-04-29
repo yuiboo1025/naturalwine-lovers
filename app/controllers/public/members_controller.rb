@@ -77,7 +77,7 @@ class Public::MembersController < ApplicationController
   def followings_wine
     @member = Member.find(params[:id])
     @members = @member.followings.where(is_deleted: false)
-    @followings_wines = Wine.where(member_id: @members)
+    @followings_wines = Wine.where(member_id: @members).order(id: "DESC")
     @genres = Genre.all
   end
 

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'wines/again_index/:id' => 'wines#again_index', as: 'wines_again_index'
     resources :members, only: [:index, :show, :edit, :update] do
       member do
-        get :bookmarks, :followings, :followers
+        get :bookmarks, :followings, :followers, :followings_wine
       end
     end
     resources :genres, only: [:index, :edit, :create, :update]
