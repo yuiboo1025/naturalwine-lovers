@@ -40,7 +40,8 @@
         </tr>
         <tr>
           <th class="table-active">紹介文</th>
-          <td><%= @member.introduction %></td>
+          <%# 改行が反映されるように記述 %>
+          <td><%#= @member.introduction %><%=safe_join(@member.introduction.split("\n"),tag(:br))%></td>
         </tr>
         <tr>
           <th class="table-active">ステータス</th>

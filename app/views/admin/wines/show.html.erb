@@ -61,7 +61,7 @@
             </tr>
             <tr>
               <th>感想</th>
-              <td><%= @wine.impression %> </td>
+              <td><%#= @wine.impression %><%=safe_join(@wine.impression.split("\n"),tag(:br))%></td>
             </tr>
             <tr>
               <th></th>
