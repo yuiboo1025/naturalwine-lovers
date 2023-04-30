@@ -50,7 +50,7 @@
               </div>
               <div id= "wine_<%= wine.id %>">
                 <div class ="row card_under_info d-flex justify-content-end mx-1 mt-1">
-                  <% if wine.is_again == true && wine.member == current_member %>
+                  <% if wine.is_again == true %>
                     <div class ="card_against mr-4 pr-5">
                       <i class="fas fa-check"></i>
                     </div>
@@ -102,7 +102,7 @@
 
                 <div id= "wine_<%= wine.id %>">
                   <div class ="row card_under_info d-flex justify-content-end mx-1 mt-1">
-                    <% if wine.is_again == true && wine.member == current_member %>
+                    <% if wine.is_again == true %>
                       <div class ="card_against mr-4 pr-5">
                         <i class="fas fa-check"></i>
                       </div>

@@ -69,7 +69,10 @@ class Public::MembersController < ApplicationController
     #ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
     #bookmarksには、あるユーザーがブックマークした投稿のidが入っている
     @bookmarks= Bookmark.where(member_id: @member.id).pluck(:wine_id)
+    #データが配列で格納されている
     @bookmark_wines = Wine.find(@bookmarks)
+    #配列の降順メソッドを使用する
+    @bookmark_wines = @bookmark_wines.reverse
     @genres = Genre.all
   end
 
