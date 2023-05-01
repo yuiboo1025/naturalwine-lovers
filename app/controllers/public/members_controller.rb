@@ -1,47 +1,47 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!, except: [:index]
-  #ゲストユーザーにはユーザー情報編集できないようにするため
+  # ゲストユーザーにはユーザー情報編集できないようにするため
   before_action :ensure_guest_member, only: [:edit]
 
   def index
-    #params[:q]で、欲しいデータが送られてきているかチェック
-    #送られてきている、かつ、データが存在しているか確認している。
-    #左側のparams[:q]の記述がないと、そもそもデータが送られてきていない場合、エラーが出てきてしまう。
+    # params[:q]で、欲しいデータが送られてきているかチェック
+    # 送られてきている、かつ、データが存在しているか確認している。
+    # 左側のparams[:q]の記述がないと、そもそもデータが送られてきていない場合、エラーが出てきてしまう。
     @exist_members = Member.where(is_deleted: false)
-    if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+    if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
       @q = @exist_members.ransack(search_params, activated_true: true)
       @title = "検索結果"
     else
       @q = @exist_members.ransack(activated_true: true)
       @title = "全てのユーザー"
     end
-      @members = @q.result.page(params[:page]).per(6)
+    @members = @q.result.page(params[:page]).per(6)
   end
 
   def followings
     @member = Member.find(params[:id])
     @members = @member.followings.where(is_deleted: false)
-    if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+    if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
       @q = @members.ransack(search_params, activated_true: true)
       @title = "検索結果(フォローしているユーザー)"
     else
       @q = @members.ransack(activated_true: true)
       @title = "フォローしているユーザー"
     end
-      @members = @q.result.page(params[:page]).per(6)
+    @members = @q.result.page(params[:page]).per(6)
   end
 
   def followers
     @member = Member.find(params[:id])
     @members = @member.followers.where(is_deleted: false)
-    if params[:q] && params[:q].reject { |key,value| value.blank? }.present?
+    if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
       @q = @members.ransack(search_params, activated_true: true)
       @title = "検索結果(フォロワー)"
     else
       @q = @members.ransack(activated_true: true)
       @title = "フォロワー"
     end
-      @members = @q.result.page(params[:page]).per(6)
+    @members = @q.result.page(params[:page]).per(6)
   end
 
   def show
@@ -63,20 +63,20 @@ class Public::MembersController < ApplicationController
     end
   end
 
-  #ブックマークした投稿一覧
+  # ブックマークした投稿一覧
   def bookmarks
     @member = Member.find(params[:id])
-    #ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
-    #bookmarksには、あるユーザーがブックマークした投稿のidが入っている
-    @bookmarks= Bookmark.where(member_id: @member.id).pluck(:wine_id)
-    #データが配列で格納されている
+    # ユーザーidが、このユーザーの、ブックマークのレコードを全て取得。そのwine_idも一緒に持ってくる
+    # bookmarksには、あるユーザーがブックマークした投稿のidが入っている
+    @bookmarks = Bookmark.where(member_id: @member.id).pluck(:wine_id)
+    # データが配列で格納されている
     @bookmark_wines = Wine.find(@bookmarks)
-    #配列の降順メソッドを使用する
+    # 配列の降順メソッドを使用する
     @bookmark_wines = @bookmark_wines.reverse
     @genres = Genre.all
   end
 
-  #フォローした人の投稿一覧
+  # フォローした人の投稿一覧
   def followings_wine
     @member = Member.find(params[:id])
     @members = @member.followings.where(is_deleted: false)
@@ -97,27 +97,25 @@ class Public::MembersController < ApplicationController
   end
 
   private
-
-  #ユーザーの編集画面へのURLを直接入力された場合にはメッセージを表示してユーザー詳細画面へリダイレクトさせる。
-  #before_actionでeditアクション実行前に処理を行う。
-  def ensure_guest_member
-    @member = Member.find(params[:id])
-    if @member.name == "guestuser"
-      flash[:error] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
-      redirect_to member_path(current_member)
+    # ユーザーの編集画面へのURLを直接入力された場合にはメッセージを表示してユーザー詳細画面へリダイレクトさせる。
+    # before_actionでeditアクション実行前に処理を行う。
+    def ensure_guest_member
+      @member = Member.find(params[:id])
+      if @member.name == "guestuser"
+        flash[:error] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+        redirect_to member_path(current_member)
+      end
     end
-  end
 
-  def set_current_member
-    @member = current_member
-  end
+    def set_current_member
+      @member = current_member
+    end
 
-  def member_params
-    params.require(:member).permit(:name, :email, :profile_image, :favorite_genre, :prefecture, :introduction)
-  end
+    def member_params
+      params.require(:member).permit(:name, :email, :profile_image, :favorite_genre, :prefecture, :introduction)
+    end
 
-  def search_params
-    params.require(:q).permit(:name_cont)
-  end
-
+    def search_params
+      params.require(:q).permit(:name_cont)
+    end
 end

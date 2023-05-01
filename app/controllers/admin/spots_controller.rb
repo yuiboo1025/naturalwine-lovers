@@ -1,11 +1,10 @@
 class Admin::SpotsController < ApplicationController
-
   def index
-   #退会しているメンバーの投稿情報は表示させない
+    # 退会しているメンバーの投稿情報は表示させない
     member = Member.where(is_deleted: false)
-    #spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
-    #結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
-    @spots = Spot.joins(:wines).where(wines: {member_id: member}).all.uniq
+    # spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
+    # 結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
+    @spots = Spot.joins(:wines).where(wines: { member_id: member }).all.uniq
   end
 
   def spots_list
@@ -23,19 +22,19 @@ class Admin::SpotsController < ApplicationController
   end
 
   def update
-    #編集からワインを取ってくる
+    # 編集からワインを取ってくる
     @wine = Wine.find(params[:spot][:wine_id])
-    #過去のspotの情報を＠wineから取得
+    # 過去のspotの情報を＠wineから取得
     spot = @wine.spot
-    #spotと、paramsから送られたspotのaddressのデータが一致しない場合
+    # spotと、paramsから送られたspotのaddressのデータが一致しない場合
     if spot.address != params[:spot][:address]
       if Spot.exists?(address: params[:spot][:address])
         spot = Spot.find_by(address: params[:spot][:address])
       else
-      #新しいspotを作成
+        # 新しいspotを作成
         spot = Spot.new(spot_params)
         spot.save
-       #wineを更新をする(カラム名：↑で作成されたspotのid)
+        # wineを更新をする(カラム名：↑で作成されたspotのid)
       end
       @wine.update(spot_id: spot.id)
     end
@@ -50,9 +49,7 @@ class Admin::SpotsController < ApplicationController
 
 
   private
-
-  def spot_params
-    params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
-  end
-
+    def spot_params
+      params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
+    end
 end

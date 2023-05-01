@@ -6,8 +6,7 @@ class Admin::CommentsController < ApplicationController
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:wine_id, :member_id, :comment)
-  end
+    def comment_params
+      params.require(:comment).permit(:wine_id, :member_id, :comment)
+    end
 end

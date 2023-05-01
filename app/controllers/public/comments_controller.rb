@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_member!
-  
+
   def create
     @wine = Wine.find(params[:wine_id])
     @comment = current_member.comments.new(comment_params)
@@ -8,7 +8,7 @@ class Public::CommentsController < ApplicationController
     @comment.save
     @comment = Comment.new
   end
-  
+
   def destroy
     Comment.find(params[:id]).destroy
     @comment = Comment.new
@@ -16,9 +16,7 @@ class Public::CommentsController < ApplicationController
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:wine_id, :member_id, :comment)
-  end
-
+    def comment_params
+      params.require(:comment).permit(:wine_id, :member_id, :comment)
+    end
 end

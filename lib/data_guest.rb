@@ -1,5 +1,4 @@
 class DataGuest
-
   # guestuserの投稿を削除
   def self.data_reset
     member = Member.find_by(email: "guest@example.com")
@@ -8,5 +7,4 @@ class DataGuest
     member.favorites.destroy_all
     member.bookmarks.destroy_all
   end
-  
 end

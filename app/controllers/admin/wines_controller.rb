@@ -1,16 +1,15 @@
 class Admin::WinesController < ApplicationController
-  
   def index
     @wines = Wine.includes(:member).where(member: { is_deleted: false }).order(id: "DESC")
     @genres = Genre.all
   end
-  
+
   def myindex
     @member = Member.find(params[:id])
     @wines = @member.wines.order(id: "DESC")
     @genres = Genre.all
   end
-  
+
   def again_index
     @member = Member.find(params[:id])
     @wines = @member.wines.all
@@ -18,17 +17,17 @@ class Admin::WinesController < ApplicationController
     @genres = Genre.all
   end
 
-  
+
   def show
     @wine = Wine.find(params[:id])
     @comment = Comment.new
   end
-  
+
   def edit
     @wine = Wine.find(params[:id])
     @spot = @wine.spot
   end
-  
+
   def update
     @wine = Wine.find(params[:id])
     if @wine.update(wine_params)
@@ -39,7 +38,7 @@ class Admin::WinesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     wine = Wine.find(params[:id])
     if wine.destroy
@@ -50,18 +49,17 @@ class Admin::WinesController < ApplicationController
       render :show
     end
   end
-  
+
   private
+    def wine_params
+      params.require(:wine).permit(:member_id, :genre_id, :spot_id, :wine_name, :production_country, :production_year, :rate, :impression, :is_again, :wine_image)
+    end
 
-  def wine_params
-    params.require(:wine).permit(:member_id, :genre_id, :spot_id, :wine_name, :production_country, :production_year, :rate, :impression, :is_again, :wine_image)
-  end
+    def member_params
+      params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction, :is_deleted)
+    end
 
-  def member_params
-    params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction, :is_deleted)
-  end
-  
-  def spot_params
-    params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
-  end
+    def spot_params
+      params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
+    end
 end

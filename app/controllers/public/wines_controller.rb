@@ -1,9 +1,9 @@
 class Public::WinesController < ApplicationController
   before_action :authenticate_member!, except: [:index]
-  
+
   def index
-    #アソシエーション先での検索方法。(wineからmemberを指定して取り出したいときの書き方)
-    #@wines = Wine.includes(:member).where(member: { is_deleted: false }).page(params[:page]).per(8)
+    # アソシエーション先での検索方法。(wineからmemberを指定して取り出したいときの書き方)
+    # @wines = Wine.includes(:member).where(member: { is_deleted: false }).page(params[:page]).per(8)
     @wines = Wine.includes(:member).where(member: { is_deleted: false }).order(id: "DESC")
     @genres = Genre.all
   end
@@ -13,7 +13,7 @@ class Public::WinesController < ApplicationController
     @wines = @member.wines.all.order(id: "DESC")
     @genres = Genre.all
   end
-  
+
   def again_index
     @member = Member.find(params[:id])
     @wines = @member.wines.all
@@ -68,20 +68,18 @@ class Public::WinesController < ApplicationController
       render :show
     end
   end
-  
+
 
   private
+    def wine_params
+      params.require(:wine).permit(:member_id, :genre_id, :spot_id, :wine_name, :production_country, :production_year, :rate, :impression, :is_again, :wine_image)
+    end
 
-  def wine_params
-    params.require(:wine).permit(:member_id, :genre_id, :spot_id, :wine_name, :production_country, :production_year, :rate, :impression, :is_again, :wine_image)
-  end
+    def member_params
+      params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction, :is_deleted)
+    end
 
-  def member_params
-    params.require(:member).permit(:name, :profile_image, :favorite_genre, :prefecture, :introduction, :is_deleted)
-  end
-  
-  def spot_params
-    params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
-  end
-
+    def spot_params
+      params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
+    end
 end
