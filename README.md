@@ -70,7 +70,10 @@ SNSに投稿されたワインのラベルデザインを見て惹かれたこ�
 |  14  |  rails/devise日本語化 |  rails-i18n |
 |  15  |  レスポンシブ対応 |  Bootstrap |
 |  16  |  アイコン導入 |  FontAwesome |
-|  17  |  自動デプロイ |  AWS, Github Actions(CI/CDツール) |
+|  17  |  コード解析 |  RuboCop |
+|  18  |  自動デプロイ |  AWS, Github Actions(CI/CDツール) |
+|  19  |  https設定 |  Certbot |
+|  20  |  ドメイン指定 |  お名前.com / AWSRoute 53 |
 
 ## 設計書
 ### ER図
