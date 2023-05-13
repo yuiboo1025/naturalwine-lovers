@@ -3,7 +3,6 @@ class Public::WinesController < ApplicationController
 
   def index
     # アソシエーション先での検索方法。(wineからmemberを指定して取り出したいときの書き方)
-    # @wines = Wine.includes(:member).where(member: { is_deleted: false }).page(params[:page]).per(8)
     @wines = Wine.includes(:member).where(member: { is_deleted: false }).order(id: "DESC")
     @genres = Genre.all
   end
