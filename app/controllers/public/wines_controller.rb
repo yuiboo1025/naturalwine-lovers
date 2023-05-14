@@ -13,6 +13,13 @@ class Public::WinesController < ApplicationController
     @genres = Genre.all
   end
 
+  def mymap
+    @member = Member.find(params[:id])
+    # spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
+    # 結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
+    @spots = Spot.joins(:wines).where(wines: {member_id: @member}).all.uniq
+  end
+
   def again_index
     @member = Member.find(params[:id])
     @wines = @member.wines.all
