@@ -29,6 +29,17 @@ class Admin::GenresController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    @genre = Genre.find(params[:id])
+    if @genre.destroy
+      flash[:notice] = "削除が完了しました。"
+      redirect_to admin_genres_path
+    else
+      flash[:error] = "削除が完了できていません。"
+      render :show
+    end
+  end
 
   private
     def genre_params

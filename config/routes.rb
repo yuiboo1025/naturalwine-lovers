@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         get :bookmarks, :followings, :followers, :followings_wine
       end
     end
-    resources :genres, only: [:index, :edit, :create, :update]
+    resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :wines, only: [:index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:destroy]
     end
