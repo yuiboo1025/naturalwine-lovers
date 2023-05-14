@@ -76,7 +76,7 @@
          //マーカーをクリックしたとき、詳細情報を表示
           let infowindow = new google.maps.InfoWindow({
             position: markerLatLng,
-            content: "<a href='<%= spot_path(spot.id) %>' data-turbolinks='false'><%= spot.spot_name %></a>"
+            content: "<a href='<%= admin_spot_path(spot.id) %>' data-turbolinks='false'><%= spot.spot_name %></a>"
           }); //ここで詳細ページへのリンクを表示させる
           marker.addListener('click', function() {
             infowindow.open(map, marker);

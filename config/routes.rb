@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     root "homes#top"
     get "wines/myindex/:id" => "wines#myindex", as: "wines_myindex"
     get "wines/again_index/:id" => "wines#again_index", as: "wines_again_index"
+    get "wines/mymap/:id" => "wines#mymap", as: "wines_mymap"
     resources :members, only: [:index, :show, :edit, :update] do
       member do
         get :bookmarks, :followings, :followers, :followings_wine
