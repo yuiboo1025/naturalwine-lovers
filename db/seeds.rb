@@ -77,14 +77,12 @@ Wine.create!(member_id: 2, genre_id: 2, spot_id: 4, wine_name: "不明", product
 Wine.create!(member_id: 2, genre_id: 1, spot_id: 4, wine_name: "Fidesser Sauvignon blanc", production_country: "オーストラリア", production_year: "2020", rate: 4.0, impression: "飲みやすい", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_6.jpeg")),filename: 'yui_6.jpeg'))
 Wine.create!(member_id: 2, genre_id: 2, spot_id: 1, wine_name: "Cariboum 2017 SARL l'Octavian", production_country: "フランス", production_year: "2017", rate: 5.0, impression: "可愛すぎるサンタ柄", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_7.jpeg")),filename: 'yui_7.jpeg'))
 Wine.create!(member_id: 2, genre_id: 2, spot_id: 1, wine_name: "Heiter Bis Wolkig", production_country: "ドイツ", production_year: "不明", rate: 3.0, impression: "", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_8.jpeg")),filename: 'yui_8.jpeg'))
-
 #sakuraの投稿
 Wine.create!(member_id: 3, genre_id: 1, spot_id: 7, wine_name: "Soumah Chardonnay d'Soumah", production_country: "オーストラリア", production_year: "2021", rate: 3.0, impression: "飲みやすい", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_5.jpeg")),filename: 'sakura_5.jpeg'))
 Wine.create!(member_id: 3, genre_id: 1, spot_id: 7, wine_name: "Els Bassotets", production_country: "スペイン", production_year: "2018", rate: 4.0, impression: "	濁りがあって美味しい！", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_4.jpeg")),filename: 'sakura_4.jpeg'))
 Wine.create!(member_id: 3, genre_id: 2, spot_id: 5, wine_name: "不明", production_country: "フランス", production_year: "2021", rate: 4.0, impression: "重め", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_3.jpeg")),filename: 'sakura_3.jpeg'))
 Wine.create!(member_id: 3, genre_id: 3, spot_id: 5, wine_name: "Cerdon", production_country: "フランス", production_year: "2021", rate: 5.0, impression: "色も綺麗でグビグビ飲んじゃう", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_2.jpeg")),filename: 'sakura_2.jpeg'))
 Wine.create!(member_id: 3, genre_id: 1, spot_id: 5, wine_name: "Little Bastard", production_country: "ドイツ", production_year: "2018", rate: 4.0, impression: "柑橘の香り！", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_1.jpeg")),filename: 'sakura_1.jpeg'))
-
 #hanaの投稿
 Wine.create!(member_id: 4, genre_id: 1, spot_id: 4, wine_name: "Baudili", production_country: "スペイン", production_year: "2019", rate: 4.0, impression: "美味しかった", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_6.jpeg")),filename: 'hana_6.jpeg'))
 Wine.create!(member_id: 4, genre_id: 1, spot_id: 8, wine_name: "Edel", production_country: "フランス", production_year: "2020", rate: 4.0, impression: "", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_5.jpeg")),filename: 'hana_5.jpeg'))
@@ -92,15 +90,60 @@ Wine.create!(member_id: 4, genre_id: 2, spot_id: 8, wine_name: "Bonarda Il Vei",
 Wine.create!(member_id: 4, genre_id: 2, spot_id: 8, wine_name: "不明", production_country: "フランス", production_year: "不明", rate: 3.0, impression: "", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_3.jpeg")),filename: 'hana_3.jpeg'))
 Wine.create!(member_id: 4, genre_id: 1, spot_id: 8, wine_name: "Les Ardilles", production_country: "フランス", production_year: "2020", rate: 4.0, impression: "お肉に合う", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_2.jpeg")),filename: 'hana_2.jpeg'))
 Wine.create!(member_id: 4, genre_id: 4, spot_id: 3, wine_name: "Try'O", production_country: "フランス", production_year: "2020", rate: 5.0, impression: "少し渋い", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_1.jpeg")),filename: 'hana_1.jpeg'))
-
 #umeの投稿
 Wine.create!(member_id: 5, genre_id: 1, spot_id: 1, wine_name: "FUNPY", production_country: "不明", production_year: "不明", rate: 3.0, impression: "色が綺麗", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/ume_3.jpeg")),filename: 'ume_3.jpeg'))
 Wine.create!(member_id: 5, genre_id: 4, spot_id: 1, wine_name: "ヴィーノビアンコ", production_country: "イタリア", production_year: "不明", rate: 5.0, impression: "綺麗なオレンジ色！", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/ume_2.jpeg")),filename: 'ume_2.jpeg'))
 Wine.create!(member_id: 5, genre_id: 3, spot_id: 1, wine_name: "RIESLING GLOUGLOU", production_country: "フランス", production_year: "2018", rate: 3.0, impression: "飲みやすい", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/ume_1.jpeg")),filename: 'ume_1.jpeg'))
-
 #fujiの投稿
 Wine.create!(member_id: 6, genre_id: 1, spot_id: 2, wine_name: "Malvasia IL VEI", production_country: "イタリア", production_year: "2021", rate: 5.0, impression: "横画像でも投稿できます。", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/ume_1.jpeg")),filename: 'ume_1.jpeg'))
 Wine.create!(member_id: 6, genre_id: 3, spot_id: 2, wine_name: "Frauen Power", production_country: "ドイツ", production_year: "2021", rate: 5.0, impression: "飲みやすくてラベルがポップ！", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/ume_2.jpeg")),filename: 'ume_2.jpeg'))
 Wine.create!(member_id: 6, genre_id: 2, spot_id: 2, wine_name: "FOLIES ROUGE", production_country: "不明", production_year: "2018", rate: 4.0, impression: "ラベルが印象的", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/ume_3.jpeg")),filename: 'ume_3.jpeg'))
 Wine.create!(member_id: 6, genre_id: 2, spot_id: 2, wine_name: "Les Petites Fleurs", production_country: "フランス", production_year: "2021", rate: 1.0, impression: "苦味がある", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/ume_4.jpeg")),filename: 'ume_4.jpeg'))
 
+
+#いいね
+#yui
+Favorite.create!(wine_id: 10, member_id: 2)
+Favorite.create!(wine_id: 15, member_id: 2)
+Favorite.create!(wine_id: 20, member_id: 2)
+Favorite.create!(wine_id: 25, member_id: 2)
+#sakura
+Favorite.create!(wine_id: 1, member_id: 3)
+Favorite.create!(wine_id: 3, member_id: 3)
+Favorite.create!(wine_id: 20, member_id: 3)
+#hana
+Favorite.create!(wine_id: 1, member_id: 4)
+Favorite.create!(wine_id: 25, member_id: 4)
+Favorite.create!(wine_id: 18, member_id: 4)
+Favorite.create!(wine_id: 6, member_id: 4)
+Favorite.create!(wine_id: 9, member_id: 4)
+#ume
+Favorite.create!(wine_id: 2, member_id: 5)
+Favorite.create!(wine_id: 13, member_id: 5)
+Favorite.create!(wine_id: 15, member_id: 5)
+
+#ブックマーク
+#yui
+Bookmark.create!(wine_id: 14, member_id: 2)
+Bookmark.create!(wine_id: 20, member_id: 2)
+Bookmark.create!(wine_id: 25, member_id: 2)
+Bookmark.create!(wine_id: 11, member_id: 2)
+#sakura
+Bookmark.create!(wine_id: 1, member_id: 3)
+Bookmark.create!(wine_id: 17, member_id: 3)
+Bookmark.create!(wine_id: 18, member_id: 3)
+Bookmark.create!(wine_id: 4, member_id: 3)
+#hana
+Bookmark.create!(wine_id: 2, member_id: 4)
+Bookmark.create!(wine_id: 7, member_id: 4)
+Bookmark.create!(wine_id: 8, member_id: 4)
+Bookmark.create!(wine_id: 19, member_id: 4)
+Bookmark.create!(wine_id: 10, member_id: 4)
+#ume
+Bookmark.create!(wine_id: 10, member_id: 5)
+Bookmark.create!(wine_id: 11, member_id: 5)
+Bookmark.create!(wine_id: 12, member_id: 5)
+
+
+#コメント
+Comment.create!(wine_id: 5, member_id: 4, comment: "美味しそう")

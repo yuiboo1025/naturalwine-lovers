@@ -60,6 +60,7 @@
           <i class="fas fa-check"></i>&nbsp;また飲みたいナチュール
         <% end %>
       </div>
+      <%# 自分のmypageにのみ表示する %>
       <% if current_member == member %>
       <div class="btn">
         <%=link_to bookmarks_member_path(member), class: "member_info_content_list" do %>

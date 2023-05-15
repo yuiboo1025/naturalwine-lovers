@@ -140,9 +140,10 @@
   position: fixed;
   right: 20px;
   bottom: 30px;
+  z-index: 100; //ボタンを前面に配置
 }
 
-@media screen and (max-width:1024px) { //レスポンシブ対応(PCサイズ以下は被ってしまうため表示しない)
+@media screen and (max-width:1024px) { //レスポンシブ対応(PCサイズ以下は被ってしまうためボタンを表示しない)
   .post_wine {
     display:none
   }
