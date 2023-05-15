@@ -10,23 +10,23 @@
 Admin.create!(email: "admin@admin", password: "adminadmin")
 
 #ユーザー
-Member.create!(name: "yui", email: "yui@yui", encrypted_password: "yuiyui", favorite_genre: 5, prefecture: 18, introduction: "ワイン大好きです。", is_deleted: "false")
+Member.create!(name: "yui", email: "yui@yui", encrypted_password: "yuiyui", favorite_genre: 5, prefecture: 18, introduction: "ワイン大好きです。", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/yui.jpg")),filename: 'yui.jpg'))
 
-Member.create!(name: "sakura", email: "sakura@sakura", encrypted_password: "sakurasakura", favorite_genre: 4, prefecture: 13, introduction: "ナチュラルワイン好き!", is_deleted: "false")
+Member.create!(name: "sakura", email: "sakura@sakura", encrypted_password: "sakurasakura", favorite_genre: 4, prefecture: 13, introduction: "ナチュラルワイン好き!", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/sakura.jpg")),filename: 'sakura.jpg'))
 
-Member.create!(name: "hana", email: "hana@hana", encrypted_password: "hanahana", favorite_genre: 2, prefecture: 17, introduction: "白ワイン好きです！", is_deleted: "false")
+Member.create!(name: "hana", email: "hana@hana", encrypted_password: "hanahana", favorite_genre: 2, prefecture: 17, introduction: "白ワイン好きです！", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/hana.jpg")),filename: 'hana.jpg'))
 
-Member.create!(name: "ume", email: "ume@ume", encrypted_password: "umeume", favorite_genre: 3, prefecture: 15, introduction: "よろしくお願いします", is_deleted: "false")
+Member.create!(name: "ume", email: "ume@ume", encrypted_password: "umeume", favorite_genre: 3, prefecture: 15, introduction: "よろしくお願いします", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/ume.jpg")),filename: 'ume.jpg'))
 
-Member.create!(name: "fuji", email: "fuji@fuji", encrypted_password: "fujifuji", favorite_genre: 0, prefecture: 22, introduction: "仲良くしてください", is_deleted: "false")
+Member.create!(name: "fuji", email: "fuji@fuji", encrypted_password: "fujifuji", favorite_genre: 0, prefecture: 22, introduction: "仲良くしてください", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/fuji.jpg")),filename: 'fuji.jpg'))
 
-Member.create!(name: "sumire", email: "sumire@sumire", encrypted_password: "sumiresumire", favorite_genre: 4, prefecture: 12, introduction: "ワイン仲間増やしたい！", is_deleted: "false")
+Member.create!(name: "sumire", email: "sumire@sumire", encrypted_password: "sumiresumire", favorite_genre: 4, prefecture: 12, introduction: "ワイン仲間増やしたい！", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/sumire.jpg")),filename: 'sumire.jpg'))
 
-Member.create!(name: "kiku", email: "kiku@kiku", encrypted_password: "kikukiku", favorite_genre: 1, prefecture: 23, introduction: "", is_deleted: "false")
+Member.create!(name: "kiku", email: "kiku@kiku", encrypted_password: "kikukiku", favorite_genre: 1, prefecture: 23, introduction: "", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/kiku.jpg")),filename: 'kiku.jpg'))
 
-Member.create!(name: "suzu", email: "suzu@suzu", encrypted_password: "suzusuzu", favorite_genre: 0, prefecture: 1, introduction: "", is_deleted: "false")
+Member.create!(name: "suzu", email: "suzu@suzu", encrypted_password: "suzusuzu", favorite_genre: 0, prefecture: 1, introduction: "", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/suzu.jpg")),filename: 'suzu.jpg'))
 
-Member.create!(name: "popo", email: "popo@popo", encrypted_password: "popopopo", favorite_genre: 5, prefecture: 20, introduction: "", is_deleted: "false")
+Member.create!(name: "popo", email: "popo@popo", encrypted_password: "popopopo", favorite_genre: 5, prefecture: 20, introduction: "", is_deleted: "false", profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/profile_image/popo.jpg")),filename: 'popo.jpg'))
 
 #フォロー(member1中心)
 Relationship.create!(follower_id:1,followed_id:2)
@@ -60,12 +60,37 @@ Spot.create!(spot_name:"ｒｉｔｍｏ", address:"栃木県宇都宮市駅前�
 Spot.create!(spot_name:"iomare（イオマレ）", address:"石川県金沢市高岡町１８−２", lat:"36.5665", lng:"136.652")
 
 #ワインジャンル
-Genre.create!(genre_name:"White")
-Genre.create!(genre_name:"Red")
-Genre.create!(genre_name:"Rose")
-Genre.create!(genre_name:"Orange")
-Genre.create!(genre_name:"Sparkling")
-Genre.create!(genre_name:"Others")
+Genre.create!(genre_name: "White")
+Genre.create!(genre_name: "Red")
+Genre.create!(genre_name: "Rose")
+Genre.create!(genre_name: "Orange")
+Genre.create!(genre_name: "Sparkling")
+Genre.create!(genre_name: "Others")
 
 #wine投稿
-Wine.create!(member_id:, genre_id:, spot_id:, wine_name:"", production_country:"", production_year:"", rate:, impression:"", is_again:"")
+#yuiの投稿
+Wine.create!(member_id: 2, genre_id: 2, spot_id: 6, wine_name: "Giandon", production_country: "イタリア", production_year: "不明", rate: 5.0, impression :"ラベルが可愛い", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_1.jpeg")),filename: 'yui_1.jpeg'))
+Wine.create!(member_id: 2, genre_id: 3, spot_id: 6, wine_name: "Weeping Juan", production_country: "オーストラリア", production_year: "2022", rate: 4.0, impression:"ピンク色ではないけどロゼワイン！", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_2.jpeg")),filename: 'yui_2.jpeg'))
+Wine.create!(member_id: 2, genre_id: 4, spot_id: 6, wine_name: "Lunaria", production_country: "イタリア", production_year: "不明", rate: 3.0, impression: "色濃いめのオレンジワイン", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_3.jpeg")),filename: 'yui_3.jpeg'))
+Wine.create!(member_id: 2, genre_id: 2, spot_id: 6, wine_name: "Libre Pensée", production_country: "フランス", production_year: "2019", rate: 3.0, impression: "チョコに合う！", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_4.jpeg")),filename: 'yui_4.jpeg'))
+Wine.create!(member_id: 2, genre_id: 2, spot_id: 4, wine_name: "不明", production_country: "不明", production_year: "不明", rate: 5.0, impression: "ラベルがおしゃれすぎる。。", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_5.jpeg")),filename: 'yui_5.jpeg'))
+Wine.create!(member_id: 2, genre_id: 1, spot_id: 4, wine_name: "Fidesser Sauvignon blanc", production_country: "オーストラリア", production_year: "2020", rate: 4.0, impression: "飲みやすい", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_6.jpeg")),filename: 'yui_6.jpeg'))
+Wine.create!(member_id: 2, genre_id: 2, spot_id: 1, wine_name: "Cariboum 2017 SARL l'Octavian", production_country: "フランス", production_year: "2017", rate: 5.0, impression: "可愛すぎるサンタ柄", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_7.jpeg")),filename: 'yui_7.jpeg'))
+Wine.create!(member_id: 2, genre_id: 2, spot_id: 1, wine_name: "Heiter Bis Wolkig", production_country: "ドイツ", production_year: "不明", rate: 3.0, impression: "", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/yui_8.jpeg")),filename: 'yui_8.jpeg'))
+
+#sakuraの投稿
+Wine.create!(member_id: 3, genre_id: 1, spot_id: 7, wine_name: "Soumah Chardonnay d'Soumah", production_country: "オーストラリア", production_year: "2021", rate: 3.0, impression: "飲みやすい", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_1.jpeg")),filename: 'sakura_1.jpeg'))
+Wine.create!(member_id: 3, genre_id: 1, spot_id: 7, wine_name: "Els Bassotets", production_country: "スペイン", production_year: "2018", rate: 4.0, impression: "	濁りがあって美味しい！", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_2.jpeg")),filename: 'sakura_2.jpeg'))
+Wine.create!(member_id: 3, genre_id: 2, spot_id: 5, wine_name: "不明", production_country: "フランス", production_year: "2021", rate: 4.0, impression: "重め", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_3.jpeg")),filename: 'sakura_3.jpeg'))
+Wine.create!(member_id: 3, genre_id: 3, spot_id: 5, wine_name: "Cerdon", production_country: "フランス", production_year: "2021", rate: 5.0, impression: "色も綺麗でグビグビ飲んじゃう", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_4.jpeg")),filename: 'sakura_4.jpeg'))
+Wine.create!(member_id: 3, genre_id: 1, spot_id: 5, wine_name: "Little Bastard", production_country: "ドイツ", production_year: "2018", rate: 4.0, impression: "柑橘の香り！", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/sakura_5.jpeg")),filename: 'sakura_5.jpeg'))
+
+#hanaの投稿
+Wine.create!(member_id: 4, genre_id: 1, spot_id: 4, wine_name: "Baudili", production_country: "スペイン", production_year: "2019", rate: 4.0, impression: "美味しかった", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_1.jpeg")),filename: 'hana_1.jpeg'))
+Wine.create!(member_id: 4, genre_id: 1, spot_id: 8, wine_name: "Edel", production_country: "フランス", production_year: "2020", rate: 4.0, impression: "", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_2.jpeg")),filename: 'hana_2.jpeg'))
+Wine.create!(member_id: 4, genre_id: 2, spot_id: 8, wine_name: "Bonarda Il Vei", production_country: "イタリア", production_year: "不明", rate: 4.0, impression: "オレンジ色っぽい", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_3.jpeg")),filename: 'hana_3.jpeg'))
+Wine.create!(member_id: 4, genre_id: 2, spot_id: 8, wine_name: "不明", production_country: "フランス", production_year: "不明", rate: 3.0, impression: "", is_again: false, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_4.jpeg")),filename: 'hana_4.jpeg'))
+Wine.create!(member_id: 4, genre_id: 1, spot_id: 8, wine_name: "Les Ardilles", production_country: "フランス", production_year: "2020", rate: 4.0, impression: "お肉に合う", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_5.jpeg")),filename: 'hana_5.jpeg'))
+Wine.create!(member_id: 4, genre_id: 4, spot_id: 3, wine_name: "Try'O", production_country: "フランス", production_year: "2020", rate: 5.0, impression: "少し渋い", is_again: true, profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_6.jpeg")),filename: 'hana_6.jpeg'))
+
+Wine.create!(member_id: 4, genre_id: 2, spot_id: 1, wine_name: "", production_country: "", production_year: "", rate: , impression: "", is_again: , profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/wine_image/hana_1.jpeg")),filename: 'hana_1.jpeg'))
