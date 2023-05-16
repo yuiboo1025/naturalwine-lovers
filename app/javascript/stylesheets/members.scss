@@ -40,13 +40,21 @@
   color: #fff;
   background-color: #20b2aa;
 }
-
 .unfollow_btn {
   color: #fff;
   background-color: #a9a9a9;
 }
-
 .member_index_table tbody tr:hover {
   background-color: #f7f2c6;
 }
 
+.member_index_search {
+  margin-left: 100px;
+}
+
+@media screen and (max-width:425px) {
+  .member_index_search {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+}

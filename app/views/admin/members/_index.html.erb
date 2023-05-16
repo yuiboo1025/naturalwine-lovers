@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row member_index_search">
     <div class="col-sm-md">
       <%= render 'search_form', q: q, url: url %>
     </div>
@@ -21,27 +21,25 @@
       <table class="table member_index_table">
         <thead>
           <th>ユーザー名</th>
-          <th>在住県</th>
-          <th>好きなワインのジャンル</th>
-          <th>ナチュール記録数</th>
-          <th>フォロー数</th>
-          <th>フォロワー数</th>
+          <th class="sm_size">在住県</th>
+          <th class="sm_size">好きなワインのジャンル</th>
+          <th class="sm_size">ナチュール記録数</th>
+          <th class="sm_size">フォロー数</th>
+          <th class="sm_size">フォロワー数</th>
           <th>ステータス</th>
         </thead>
         <% members.each do |member| %>
         <tbody>
           <tr class="member_index_tbody_tr" data-href="../../../admin/wines/myindex/<%= member.id%>">
             <td>
-              <%#= link_to wines_myindex_path(member) do %>
-                <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
-                <%= member.name %>
-              <%# end %>
+              <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
+              <%= member.name %>
             </td>
-            <td><%= member.prefecture %></td>
-            <td><%= member.favorite_genre %></td>
-            <td><%= member.wines.count %></td>
-            <td><%= member.followings.where(is_deleted: false).count %></td>
-            <td><%= member.followers.where(is_deleted: false).count %></td>
+            <td class="sm_size"><%= member.prefecture %></td>
+            <td class="sm_size"><%= member.favorite_genre %></td>
+            <td class="sm_size"><%= member.wines.count %></td>
+            <td class="sm_size"><%= member.followings.where(is_deleted: false).count %></td>
+            <td class="sm_size"><%= member.followers.where(is_deleted: false).count %></td>
 　　　　　　<% if member.is_deleted == false %>
               <td class="text-success">有効</td>
             <% else %>
