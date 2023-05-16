@@ -13,7 +13,7 @@ import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 import "../src/wine.js"
-
+import "../src/member.js"
 
 
 Rails.start()
