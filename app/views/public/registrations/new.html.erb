@@ -1,3 +1,5 @@
+<%= render "layouts/error_messages", resource: resource %>
+
 <div class="container mb-4">
   <div class="row justify-content-center">
     <div class="col-sm-6 ml-5 ">
@@ -6,12 +8,12 @@
 　　</div>
   </div>
 
-  
-
   <div class="row justify-content-center">
-    
+
     <%#.レスポンシブ対応 画面サイズ 1025px以上から適用 %>
     <div class="col-7 text-center lg_size">
+      
+
       <%= form_with model: @member, url: member_registration_path do |f| %>
       <table class="table member_info member_form">
           <tr>
@@ -51,7 +53,7 @@
             <td colspan="2"><%= f.text_area :introduction %></td>
           </tr>
       </table>
-      
+
        <div class="row justify-content-center">
          <div class="col-5 text-center">
            <%= f.submit "Sign-Up", class: "btn btn-info btn-block sign_up_btn" %>
@@ -59,7 +61,7 @@
        </div>
        <% end %>
     </div>
-     
+
      <%#.レスポンシブ対応 画面サイズ 1024px以下から適用 %>
     <div class="col-sm-4 md_size ml-5">
       <%= form_with model: @member, url: member_registration_path do |f| %>
@@ -95,13 +97,13 @@
           紹介文<br />
           <%= f.text_area :introduction %>
         </div>
-        
+
         <div class="row justify-content-center">
           <div class="col-10 text-center mr-5">
             <%= f.submit "Sign-Up", class: "btn btn-info btn-block sign_up_btn" %>
           </div>
         </div>
-      
+
       <% end %>
     </div>
 

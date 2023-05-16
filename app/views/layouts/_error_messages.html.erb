@@ -1,0 +1,9 @@
+<% if resource.errors.any? %>
+  <div class="devise-alert" style="background-color:#F8D7DA; padding:3px; width:100%; margin-bottom:10px;">
+    <ul style="list-style: none;">
+      <% resource.errors.full_messages.each do |message| %>
+        <li style="color:rgb(114, 31, 31)"><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
