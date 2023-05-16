@@ -3,18 +3,16 @@
 
 <div class="container my-4">
 
-  <div class="row mr-5">
-    <div class="col text-center mr-5">
+  <div class="row">
+    <div class="col text-center">
       <% provide(:title,'ユーザー検索') %>
       <h4><%= title %></h4>
     </div>
   </div>
 
-  <div class="row ml-5">
-    <div class="col-sm-md-6 ml-5">
+  <div class="row member_index_search">
+    <div class="col-sm-md">
       <%= render 'public/members/search_form', q: q, url: url %>
-    </div>
-    <div class="col-sm-md-6">
     </div>
   </div>
 
@@ -77,3 +75,16 @@
   </div>
 
 </div>
+
+<style>
+  .member_index_search {
+    margin-left: 100px;
+  }
+
+  @media screen and (max-width:425px) {
+    .member_index_search {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+  }
+</style>

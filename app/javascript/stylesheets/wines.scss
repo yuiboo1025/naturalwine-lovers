@@ -134,6 +134,26 @@
   color: #bf9673;
 }
 
+@media screen and (max-width:425px) { //レスポンシブ対応
+  .myindex_show_table {
+    font-size: 15px;
+  }
+  .member_info_follow {
+    font-size: 15px;
+  }
+  .member_info_profile_image {
+    height: 50px;
+    width: 50px;
+  }
+  .member_info_content_list {
+    font-size: 15px;
+    margin-left: 60px;
+  }
+  .member_info_follow_content {
+    display: flex;
+    justify-content: space-between;
+  }
+}
 
 
 //_post_wine-btn 投稿ボタン

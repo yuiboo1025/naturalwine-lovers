@@ -1,8 +1,8 @@
 <div class="member_info_contents">
   <div class="row mb-5 member_info_profile">
-    <div class="col-sm-3">
+    <div class="col-sm-3 member_info_top">
         <h4 class="text-left">
-          <%= image_tag member.get_profile_image(70,70), class: "rounded-circle" %>
+          <%= image_tag member.get_profile_image(70,70), class: "rounded-circle member_info_profile_image" %>
           <%= member.name %>
           <% if member == current_member %>
             <%= link_to member_path(member), class: "text_blue" do %>
@@ -10,18 +10,18 @@
             <% end %>
           <% end %>
         </h4>
-
-        <div class="mt-3 text-center">
+      <div class="member_info_follow_content">
+        <div class="mt-3 text-center member_info_follow">
         <%= link_to followings_member_path(member), class: "text_blue" do %>
           フォロー数　：<span class="followings_count"><%= render "public/relationships/followings_counter", member: member %></span>
         <% end %>
         </div>
-        <div class="mt-3 text-center">
+        <div class="mt-3 text-center member_info_follow">
         <%= link_to followers_member_path(member), class: "text_blue" do %>
           フォロワー数：<span class="followers_count-<%= member.id %>"><%= render "public/relationships/followers_counter", member: member %></span>
         <% end %>
         </div>
-
+      </div>
     </div>
 
     <div class="col-sm-md-4 myindex_show_table">
@@ -81,11 +81,3 @@
   </div>
 
 </div>
-
-<style>
-  @media screen and (max-width:425px) {
-    .myindex_show_table {
-      font-size: 15px;
-    }
-  }
-</style>
