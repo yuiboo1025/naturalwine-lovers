@@ -133,6 +133,11 @@
 .member_info_content_list:hover{
   color: #bf9673;
 }
+@media screen and (max-width:425px) { //レスポンシブ対応(タブ)
+  .myindex_show_table {
+    font-size: 10px;
+  }
+ }
 
 
 //_post_wine-btn 投稿ボタン
