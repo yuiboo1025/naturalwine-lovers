@@ -101,6 +101,13 @@ footer{
     display:none
   }
 }
+/*　画面サイズ 425px以下から適用　スマホサイズ*/
+@media screen and (max-width:425px) {
+  .sm_size {
+    display:none
+  }
+}
+
 
 //_headerファイル
 /* ---- ハンバーガーアイコン ---- */

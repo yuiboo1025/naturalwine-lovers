@@ -10,13 +10,15 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-md">
+  <div class="row ml-5">
+    <div class="col-sm-md-6 ml-5">
       <%= render 'public/members/search_form', q: q, url: url %>
+    </div>
+    <div class="col-sm-md-6">
     </div>
   </div>
 
-  <div class="row my-4 text-center">
+  <div class="row my-4 text-center justify-content-center">
     <div class="col-sm-md">
 
       <% unless members.empty? %>
@@ -24,32 +26,30 @@
       <table class="table member_index_table">
         <thead>
           <th>ユーザー名</th>
-          <th>在住県</th>
-          <th>好きなワインのジャンル</th>
-          <th>ナチュール記録数</th>
-          <th>フォロー数</th>
-          <th>フォロワー数</th>
+          <th class="sm_size">在住県</th>
+          <th class="sm_size">好きなワインのジャンル</th>
+          <th class="sm_size">ナチュール記録数</th>
+          <th class="sm_size">フォロー数</th>
+          <th class="sm_size">フォロワー数</th>
           <th></th>
         </thead>
         <% members.each do |member| %>
         <tbody>
           <tr>
             <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
-              <%#= link_to wines_myindex_path(member) do %>
-                <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
-                <%= member.name %>
-              <%# end %>
+              <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
+              <%= member.name %>
             </td>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.prefecture %></td>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
+            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.prefecture %></td>
+            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
+            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
           <%# フォロー数、フォロワー数、フォローボタンを非同期化 %>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
+            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>">
               <div class="followings_count-<%= member.id %>">
                 <%= render "public/relationships/followings_counter", member: member %>
               </div>
             </td>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
+            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>">
               <div class="followers_count-<%= member.id %>">
                 <%= render "public/relationships/followers_counter", member: member %>
               </div>
