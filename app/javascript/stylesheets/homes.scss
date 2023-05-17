@@ -115,6 +115,9 @@
   background: linear-gradient(transparent 70%, #f5deb3 0%);
   text-decoration: none;
   }
+.about_text_enjoy {
+    font-size: 36px;
+  }
 
 @media screen and (max-width:1025px) { //レスポンシブ対応(タブレットサイズ)
   .about_catch-copy {
@@ -137,4 +140,10 @@
     width: 300px;
     height: 200px;
   }
+}
+
+@media screen and (max-width:425px) {
+  .about_text_enjoy {
+      font-size: 23px;
+   }
 }
