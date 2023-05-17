@@ -21,7 +21,7 @@
         <table class="table-responsive">
           <tr>
             <th style="width: 20%"><%= f.label :address,"住所" %></th>
-            <td><%= f.text_field :address, size: 60 %></td>
+            <td><%= f.text_field :address, size: 60 %><%#= f.text_field :address %></td>
           </tr>
           <tr>
             <th style="width: 15%"><%= f.label :lat,"緯度" %></th>
@@ -73,6 +73,13 @@
     height: 300px;
     width: 300px;
   }
+ }
+
+ @media screen and (max-width:425px) {
+    input[type="text"] {
+        width: 250px;
+        height: 30px;
+    }
  }
 </style>
 

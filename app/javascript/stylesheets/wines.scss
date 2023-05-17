@@ -5,18 +5,15 @@
     color: #555555;
   }
 }
-
 .wine_show_contents {
   border: double 10px #3d83bf;
   padding: 1%;
   display: flex;
 }
-
 .wine_show_map {
   background-color: #f5deb3;
   border-radius: 70px;
 }
-
 .wine_show__edit_btn {
   border-width: 15px;
   text-underline-position: above;
@@ -25,7 +22,6 @@
   font-size: 20px;
   font-weight: bold;
 }
-
 .wine_show__destroy_btn {
   border-width: 7px;
   text-underline-position: above;
@@ -34,16 +30,12 @@
   font-size: 20px;
   font-weight: bold;
 }
-
 .wine_show_map_info {
   width: 300px;
 }
 
 @media screen and (max-width:425px) { //レスポンシブ対応(タブ)
-  .wine_show_image {
-    width: 200px;
-    height: 300px;
-  }
+
  }
 
 

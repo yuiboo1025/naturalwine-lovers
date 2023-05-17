@@ -1,3 +1,5 @@
+<%# レスポンシブ対応　スマホサイズには表示されない(テーブルが崩れるため) %>
+<div class="sm_size">
   <%= form_with model: wine, url:method do |f| %>
   <div class="row mt-3">
     <div class="col-sm-md-11 position-static">
@@ -93,4 +95,88 @@
       <%= f.submit '→　投稿する', class:"btn btn-info btn-block mt-4 px-5 py-2" %>
     </div>
   </div>
-<% end %>
+ <% end %>
+</div>
+
+
+<%# レスポンシブ対応　スマホサイズにのみ表示 %>
+<div class="medium_size">
+  <%= form_with model: wine, url:method do |f| %>
+    <div class="field my-3 font_bold">
+      <span class="text_red">※</span>記録するナチュール写真<br />
+      <%= f.file_field :wine_image, accept: "image/*" %>
+    </div>
+    <div class="field my-3 font_bold">
+      飲食店<br />
+      <%= spot.spot_name %>
+      <%= f.hidden_field :spot_id, value: spot.id %>
+      <%# リンクに(URLに)wine.idの情報を持たせる＝spotデータの中にwine_idとしてwine.idを持たせる %>
+      <%# spotテーブルでparams[:wine_id]としてデータを取り出すことができるようになる %>
+      <%= link_to "編集", edit_spot_path(spot.id, wine_id: wine.id) %>
+    </div>
+    <div class="field my-3 font_bold">
+      商品名<br />
+      <%= f.text_field :wine_name, size: 40 %></td>
+    </div>
+    <div class="field my-3 font_bold">
+      生産国<br />
+      <%= f.text_field :production_country %>
+    </div>
+    <div class="field my-3 font_bold">
+      生産年<br />
+      <%= f.text_field :production_year %>
+    </div>
+    <div class="field my-3 font_bold">
+      <span class="text_red">※</span>ワインのジャンル<br />
+      <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "--選択してください--", class: "form-control border-dark" %>
+    </div>
+    <div class="field my-3 font_bold">
+      評価<br />
+      
+      <div>
+      <% if wine.id.nil? %>
+        <div class="form-group" id="star"></div>
+        <div id="post_raty"></div>
+        <script>
+          window.onload = function() {　//HTMLを読み込んでからscriptを読み込む
+            let elem = document.querySelector('#post_raty');
+            if (elem == null) return;
+
+            elem.innerHTML = ""
+            let opt = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'wine[rate]',
+             };
+            raty(elem, opt);
+           }
+        </script>
+      <% else %>
+        <div class="form-group">
+          <%= render "static_rate", wine: wine %>
+        </div>
+      <% end %>
+      </div>
+      
+    </div>
+    <div class="field my-3 font_bold">
+      感想<br />
+      <%= f.text_area :impression, size: "40x5" %>
+    </div>
+    <div class="field mt-3 font_bold">
+      また飲みたい判定
+    </div>
+    <div>
+      <%= f.radio_button :is_again, true %>&emsp;また飲みたいリストに入れる<br />
+      <%= f.radio_button :is_again, false %>&emsp;また飲みたいリストには入れない
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-sm-md-7 justify-content-center">
+        <%= f.submit '→　投稿する', class:"btn btn-info btn-block mt-4 px-5 py-2" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

@@ -3,8 +3,8 @@
 
 <div class="container my-4 wine_index_container">
   <div class="row justify-content-center">
-    <div class="col-sm-md">
-      <h2>📍<%= @spot.spot_name %></h2>
+    <div class="col-sm-md map_headline">
+      📍<%= @spot.spot_name %>
     </div>
   </div>
   <div class="row justify-content-center">
@@ -19,7 +19,7 @@
   </div>
 
   <%#= render 'public/wines/index', wines: @wines, genres: @genres, spot: @spot %>
-  
+
     <!-- タブ作成-->
   <div class ="row justify-content-center mt-3" >
     <div class ="col">
@@ -31,11 +31,11 @@
         </ul>
      </div>
   </div>
-  
+
   <!-- タブの内容作成-->
   <div class ="row">
     <div id="tab-contents">
-  
+
       <!-- Allを表示-->
       <div id="tab-All" class="tab">
         <% @wines.each do |wine| %>
@@ -43,7 +43,7 @@
           <div>
             <div class="card-deck wine_card my-2 pt-1 px-1 text_blue" style="width:310px;">
               <div class ="card">
-  
+
                 <div class ="card_spot_name ml-2">
                   <%= link_to spot_path(wine.spot) do %>
                     📍<%= wine.spot.spot_name %>
@@ -79,23 +79,23 @@
                     </div>
                   </div>
                 </div>
-  
+
               </div>
             </div>
           </div>
         <% end %>
       </div>
-  
+
      <!-- ジャンルごとに表示-->
       <% @genres.each do |genre| %>
         <div id="tab-<%= genre.genre_name %>" class="tab">
            <!-- Spotでwineを絞り込む-->
           <% genre.wines.where(spot_id: @spot.id).each do |wine| %>
-            
+
             <div>
               <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
                 <div class ="card">
-  
+
                   <div class ="card_spot_name ml-2">
                     <%= link_to spot_path(wine.spot) do %>
                      📍<%= wine.spot.spot_name %>
@@ -111,7 +111,7 @@
                       <%= wine.member.name %>
                     <% end %>
                   </div>
-  
+
                   <div id= "wine_<%= wine.id %>">
                     <div class ="row card_under_info d-flex justify-content-end mx-1 mt-1">
                       <% if wine.is_again == true %>
@@ -132,14 +132,14 @@
                     </div>
                     </div>
                   </div>
-  
+
                 </div>
               </div>
             </div>
           <% end %>
         </div>
       <% end %>
-  
+
     </div>
   </div>
 

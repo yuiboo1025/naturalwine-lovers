@@ -102,6 +102,12 @@ footer{
     display:none
   }
 }
+/*　画面サイズ 425px以上から適用　*/
+@media screen and (min-width:425px) {
+  .medium_size {
+    display:none
+  }
+}
 /*　画面サイズ 425px以下から適用　スマホサイズ*/
 @media screen and (max-width:425px) {
   .sm_size {
