@@ -6,6 +6,7 @@
 @import 'relationships';
 @import 'members';
 @import 'comments';
+@import 'spots';
 
 
 //header
@@ -45,7 +46,7 @@ footer{
 .text_red {
     color: red;
   }
-  
+
 .text_blue {
   color: #3d83bf;
 }
@@ -53,7 +54,7 @@ footer{
 .text_underline {
   text-decoration: underline;
 }
-  
+
 .font_bold {
   font-weight: bold;
 }
@@ -69,7 +70,7 @@ footer{
 /* 表示しているページ番号のデザイン */
 .page-item.active .page-link {
   background-color: #3d83bf;
-  border-radius: 15px; 
+  border-radius: 15px;
 }
 
 /*ホバー時のデザイン*/
