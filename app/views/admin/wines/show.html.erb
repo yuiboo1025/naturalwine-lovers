@@ -2,7 +2,7 @@
 <div class="container justify-content-center wine_show_main my-4">
   <div class="row mt-5 justify-content-center">
     <div class="wine_show_contents">
-        <div class="col-sm-md">
+        <div class="col-sm-md wine_show_content">
           <%= link_to admin_spot_path(@wine.spot) do %>
             📍<%= @wine.spot.spot_name %></br>
           <% end %>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-sm-md mt-3">
-          <table class="table">
+          <table class="table wine_show_table">
             <tr>
               <th><%= image_tag @wine.member.get_profile_image(50,50), class: "rounded-circle" %></th>
               <td>

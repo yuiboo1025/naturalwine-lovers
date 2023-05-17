@@ -1,10 +1,10 @@
-<div class="comment_contents"> 
+<div class="comment_contents">
   <% wine.comments.each do |comment| %>
-      
-        <table class="table">
+
+        <table class="table comment_table">
           <tr>
             <td class="d-flex" style="width: 20%">
-              <%= image_tag comment.member.get_profile_image(40,40), class: "rounded-circle" %>&ensp;
+              <%= image_tag comment.member.get_profile_image(40,40), class: "rounded-circle comment_image" %>&ensp;
               <%= link_to wines_myindex_path(wine.member.id), remote: true do %>
                 <%= comment.member.name %>
               <% end %>
@@ -12,10 +12,11 @@
             <td style="width: 20%"><%= comment.created_at.strftime('%Y/%m/%d') %></td>
             <td style="width: 40%"><%= comment.comment %></td>
             <td style="width: 20%">
-                <%= link_to "削除", admin_wine_comment_path(comment.wine, comment), remote: true, method: :delete %>
+                <%= link_to "Delete", admin_wine_comment_path(comment.wine, comment), remote: true, method: :delete %>
             </td>
           </tr>
         </table>
 
   <% end %>
-</div> 
+</div>
+

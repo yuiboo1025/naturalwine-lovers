@@ -34,9 +34,21 @@
   width: 300px;
 }
 
-@media screen and (max-width:425px) { //レスポンシブ対応(タブ)
-
+@media screen and (max-width:425px) { //レスポンシブ対応
+  .wine_show_image {
+    width: 270px;
+    margin-left: 40px;
+  }
+  .wine_show_contents {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .wine_show_map {
+    margin-top: 30px;
+  }
  }
+
 
 
 //indexページ
