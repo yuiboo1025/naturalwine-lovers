@@ -17,6 +17,20 @@ RSpec.describe Genre, type: :model do
         expect(genre_name.errors[:genre_name]).to include("を入力してください")
       end
     end
-
   end
+  
+  describe 'アソシエーションのテスト' do
+    let(:association) do
+      described_class.reflect_on_association(target)
+    end
+
+    context 'Wineモデルとの関係' do
+      let(:target) { :wines }
+
+      it 'Wineとの関連付けはhas_manyであること' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+  end
+  
 end

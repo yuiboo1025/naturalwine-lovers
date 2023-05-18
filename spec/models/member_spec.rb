@@ -5,7 +5,7 @@ RSpec.describe Member, type: :model do
   describe 'モデルのテスト' do
     it "有効なmemberの場合は保存されるか" do
       # FactoryBotで作ったデータが有効であるか確認しています
-      expect(build(:member)).to be_valid
+      expect(FactoryBot.build(:member)).to be_valid
     end
 
     context "空白のバリデーションチェック" do
@@ -69,6 +69,89 @@ RSpec.describe Member, type: :model do
         member = build(:member, password: "password1", password_confirmation: "password2")
         member.valid?
         expect(member.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
+      end
+    end
+
+  end
+
+  describe 'アソシエーションのテスト' do
+    let(:association) do
+      # context＞it内に下記を記述するのと同じ
+      # expect(Member.reflect_on_association(:wines).macro).to eq :has_many
+      # expect(Member.reflect_on_association(:followings).class_name).to eq 'User'
+      described_class.reflect_on_association(target)
+    end
+
+    context 'Wineモデルとの関係' do
+      let(:target) { :wines }
+
+      it 'Wineとの関連付けはhas_manyであること' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context "Commentモデルとの関係" do
+      let(:target) { :comments }
+      it "Commentとの関連付けはhas_manyであること" do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context "Favoriteモデルとの関係" do
+      let(:target) { :favorites }
+      it "Favoriteとの関連付けはhas_manyであること" do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context "Bookmarkモデルとの関係" do
+      let(:target) { :bookmarks }
+      it "Bookmarkとの関連付けはhas_manyであること" do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context 'Relationshipモデル(relationships)との関係' do
+      let(:target) { :relationships }
+
+      it 'relationshipsとの関連付けはhas_many' do
+        expect(association.macro).to eq :has_many
+      end
+      it '結合するモデルのクラスはRelationship' do
+        expect(association.class_name).to eq 'Relationship'
+      end
+    end
+
+    context '自分がフォローしているユーザーとの関連' do
+      let(:target) { :followings }
+
+      it 'followingsとの関連付けはhas_many' do
+        expect(association.macro).to eq :has_many
+      end
+      it '結合するモデルのクラスはMember' do
+        expect(association.class_name).to eq 'Member'
+      end
+    end
+
+    context 'Relationshipモデル(reverse_relationships)との関係' do
+      let(:target) { :reverse_of_relationships }
+
+      it 'reverse_relationshipsとの関連付けはhas_many' do
+        expect(association.macro).to eq :has_many
+      end
+      it '結合するモデルのクラスはRelationship' do
+        expect(association.class_name).to eq 'Relationship'
+      end
+    end
+
+    context '自分がフォローされるユーザーとの関連' do
+      let(:target) { :followers }
+
+      it 'followersとの関連付けはhas_many' do
+        expect(association.macro).to eq :has_many
+      end
+      it '結合するモデルのクラスはMember' do
+        expect(association.class_name).to eq 'Member'
       end
     end
 
