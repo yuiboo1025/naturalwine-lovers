@@ -62,11 +62,19 @@
     height: 90px;
     width: 110px;
   }
-  .about_text_point{
-    display:none
-  }
   .top_catch_copy {
     font-size: 23px;
+  }
+  .about_text_point_right{
+    display:none
+  }
+  .about_text_point_down{
+    font-size: 20px;
+  }
+}
+@media screen and (min-width:768px) { //レスポンシブ対応
+  .about_text_point_down{
+    display:none
   }
 }
 
