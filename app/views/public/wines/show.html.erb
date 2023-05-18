@@ -66,7 +66,9 @@
             </tr>
             <tr>
               <th>感想</th>
-              <td><%#= @wine.impression %><%=safe_join(@wine.impression.split("\n"),tag(:br))%></td>
+              <%# 改行をviewページに反映させる %>
+              <%# split("\n")で改行コードを取得、tag(:br)でbrタグに変更 %>
+              <td><%=safe_join(@wine.impression.split("\n"),tag(:br))%></td>
             </tr>
             <tr>
               <th></th>
