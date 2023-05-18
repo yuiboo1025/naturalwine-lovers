@@ -1,7 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe Wine, type: :model do
-  
+
+  describe 'モデルのテスト' do
+    it "有効なwineの場合は保存されるか" do
+      # FactoryBotで作ったデータが有効であるか確認しています
+      expect(FactoryBot.build(:wine)).to be_valid
+    end
+
+    context "空白のバリデーションチェック" do
+      it "wine_imageが空白の場合にエラーメッセージが返ってくるか" do
+        # wineにwine_imageカラムを空で保存したものを代入
+        wine = build(:wine, wine_image: nil)
+        # バリデーションチェックを行う
+        wine.valid?
+        # wine_imageカラムでエラーが出て、エラーメッセージに"を入力してください"が含まれているか？
+        expect(wine.errors[:wine_image]).to include("を入力してください")
+      end
+    end
+
+    context "空白のバリデーションチェック" do
+      it "genreが空白の場合にエラーメッセージが返ってくるか" do
+        # genreにwine_imageカラムを空で保存したものを代入
+        genre = build(:genre, genre_name: nil)
+        # バリデーションチェックを行う
+        genre.valid?
+        # wine_imageカラムでエラーが出て、エラーメッセージに"を入力してください"が含まれているか？
+        expect(genre.errors[:genre_name]).to include("を入力してください")
+      end
+    end
+  end
+
   describe 'アソシエーションのテスト' do
     let(:association) do
       described_class.reflect_on_association(target)
