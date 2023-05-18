@@ -4,6 +4,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
   before do
     @member = FactoryBot.build(:member)
   end
+
   context 'ユーザー新規登録ができるとき' do
     it '正しい情報を入力すればユーザー新規登録ができてトップページに移動する' do
       # トップページに移動する
@@ -13,14 +14,17 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       # 新規登録ページへ移動する
       visit new_member_registration_path
       # ユーザー情報を入力する
-      fill_in 'member[name]', with: @member.name
-      fill_in 'member[email]', with: @member.email
-      fill_in 'member[password]', with: @member.password
-      fill_in 'member[password_confirmation]', with: @member.password_confirmation
+      fill_in 'member[name]', with: @member.name, match: :first
+      fill_in 'member[email]', with: @member.email, match: :first
+      fill_in 'member[password]', with: @member.password, match: :first
+      fill_in 'member[password_confirmation]', with: @member.password_confirmation, match: :first
       # サインアップボタンを押すとユーザーモデルのカウントが1上がることを確認する
-      expect{find('input[name="commit"]').click}.to change { Member.count }.by(1)
+      expect{click_on 'Sign-Up', match: :first}.to change { Member.count }.by(1)
       # トップページへ遷移する
-      expect(current_path).to eq(root_path)
+
+      member = Member.find_by(email: @member.email)
+
+      expect(current_path).to eq(wines_myindex_path(member))
       # カーソルを合わせるとログアウトボタンが表示されることを確認する
       expect(page).to have_content('ログアウト')
     end
@@ -35,21 +39,21 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       # 新規登録ページへ移動する
       visit new_member_registration_path
       # ユーザー情報を入力する
-      fill_in 'member[name]', with: ''
-      fill_in 'member[email]', with: ''
-      fill_in 'member[password]', with: ''
-      fill_in 'member[password_confirmation]', with: ''
+      fill_in 'member[name]', with: '', match: :first
+      fill_in 'member[email]', with: '', match: :first
+      fill_in 'member[password]', with: '', match: :first
+      fill_in 'member[password_confirmation]', with: '', match: :first
       # サインアップボタンを押してもユーザーモデルのカウントが上がらないことを確認する
-      expect{find('input[name="commit"]').click}.to change { Member.count }.by(0)
+      expect{click_on 'Sign-Up', match: :first}.to change { Member.count }.by(0)
       # 新規登録ページへ戻されることを確認する
-      expect(current_path).to eq(new_member_registration_path)
+      expect(current_path).to eq(members_path)
     end
   end
 end
 
 RSpec.describe 'ログイン', type: :system do
   before do
-    @member = FactoryBot.build(:member)
+    @member = FactoryBot.create(:member)
   end
   context 'ログインができるとき' do
     it '保存されているユーザーの情報と合致すればログインができる' do
@@ -67,10 +71,10 @@ RSpec.describe 'ログイン', type: :system do
       fill_in 'member[password]', with: @member.password
 
       # ログインボタンを押す
-      find('input[name="commit"]').click
+      click_on 'Log-In'
 
       # マイページへ遷移することを確認する
-      expect(current_path).to eq{wines_myindex_path(@member)}
+      expect(current_path).to eq wines_myindex_path(@member)
     end
   end
   context 'ログインができないとき' do
@@ -89,10 +93,10 @@ RSpec.describe 'ログイン', type: :system do
       fill_in 'member[password]', with: ''
 
       # ログインボタンを押す
-      find('input[name="commit"]').click
+      click_on 'Log-In'
 
       # ログインページへ戻されることを確認する
-      expect(current_path).to eq(new_member_session_path)
+      expect(current_path).to eq new_member_session_path
     end
   end
 end

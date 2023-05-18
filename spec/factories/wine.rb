@@ -9,5 +9,10 @@ FactoryBot.define do
     rate { 4.0 }
     impression { Faker::Lorem.characters(number: 30) }
     is_again { true }
+
+    after(:build) do |wine|
+      wine.wine_image.attach(io: File.open('spec/fixtures/sakura_1.jpg'), filename: 'sakura_1.jpg', content_type: 'image/jpg')
+    end
+
   end
 end

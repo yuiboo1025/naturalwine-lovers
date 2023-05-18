@@ -6,7 +6,7 @@ class Wine < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  validates :wine_image,  presence: true
+  validates :wine_image, presence: true
 
   has_one_attached :wine_image
 

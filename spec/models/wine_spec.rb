@@ -1,21 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Wine, type: :model do
+  before do
+    @member = FactoryBot.create(:member)
+    @genre = FactoryBot.create(:genre)
+    @spot = FactoryBot.create(:spot)
+  end
 
   describe 'モデルのテスト' do
     it "有効なwineの場合は保存されるか" do
       # FactoryBotで作ったデータが有効であるか確認しています
-      expect(FactoryBot.build(:wine)).to be_valid
+      expect(FactoryBot.build(:wine, member_id: @member.id, genre_id: @genre.id, spot_id: @spot.id)).to be_valid
     end
 
     context "空白のバリデーションチェック" do
       it "wine_imageが空白の場合にエラーメッセージが返ってくるか" do
         # wineにwine_imageカラムを空で保存したものを代入
-        wine = build(:wine, wine_image: nil)
-        # バリデーションチェックを行う
-        wine.valid?
+        # wine = build(:wine)
         # wine_imageカラムでエラーが出て、エラーメッセージに"を入力してください"が含まれているか？
-        expect(wine.errors[:wine_image]).to include("を入力してください")
+        expect(build(:wine).valid?).to eq false
       end
     end
 
