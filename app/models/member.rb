@@ -6,18 +6,22 @@ class Member < ApplicationRecord
 
   validates :name,  presence: true, uniqueness: true, length: { maximum: 50 }
   validates :email, presence: true, uniqueness: true, length: { maximum: 255 }
+  #  備考：パスワードデフォルトで６文字以上を要求している
+  #  備考：メールアドレスはデフォルトで一意であることを要求している
 
   has_many :wines, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  # 自分がフォローする（与フォロー）側の関係性
+  # A：自分がフォローしているユーザーとの関連(与フォロー)
+  # フォローする場合の中間テーブルを「relationships」と名付ける。外部キーは「follower_id」
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
-  # 自分がフォローされる（被フォロー）側の関係性
+  # B：自分がフォローされるユーザーとの関連(被フォロー)
+  # フォローする場合の中間テーブルを「reverse_of_relationships」と名付ける。外部キーは「followed_id」
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # 被フォロー関係を通じて参照→自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
