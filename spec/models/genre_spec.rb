@@ -13,7 +13,6 @@ RSpec.describe Genre, type: :model do
         # バリデーションチェックを行う
         genre_name.valid?
         # genre_nameカラムでエラーが出て、フラッシュメッセージに"を入力してください"が含まれているか？
-        #expect(page).to have_content '足りません'
         expect(genre_name.errors[:genre_name]).to include("を入力してください")
       end
     end

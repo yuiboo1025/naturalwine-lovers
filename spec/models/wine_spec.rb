@@ -14,11 +14,12 @@ RSpec.describe Wine, type: :model do
     end
 
     context "空白のバリデーションチェック" do
-      it "wine_imageが空白の場合にエラーメッセージが返ってくるか" do
+      it "wine_imageが空白の場合保存されないか" do
         # wineにwine_imageカラムを空で保存したものを代入
         # wine = build(:wine)
+        wine = build(:wine, wine_image: nil)
         # wine_imageカラムでエラーが出て、エラーメッセージに"を入力してください"が含まれているか？
-        expect(build(:wine).valid?).to eq false
+        expect(wine.valid?).to eq false
       end
     end
 

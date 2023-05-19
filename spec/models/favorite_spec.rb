@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Favorite, type: :model do
+  
+  
+  
   describe 'アソシエーションのテスト' do
     let(:association) do
       described_class.reflect_on_association(target)
