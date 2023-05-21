@@ -3,46 +3,42 @@ require 'rails_helper'
 RSpec.describe "Wines", type: :system do
     before do
       @member = FactoryBot.create(:member)
-      @spot = FactoryBot.create(:spot)
       @genre = FactoryBot.create(:genre)
+      @spot = FactoryBot.create(:spot)
+      @wine = FactoryBot.create(:wine, genre_id: @genre.id, member_id: @member.id, spot_id: @spot.id)
     end
 
-    context 'wine投稿' do
-      it 'spotの情報入力' do
-        # ログインする
-        sign_in(@member)
-
-        # Mypageに遷移する
-        visit wines_myindex_path(@member)
-
-        # 右下の投稿ボタンをクリックする
-        find('.plus-button').click
-
-        #店情報入力画面が表示される
-        visit new_spot_path
-
-        # 情報を入力する
-        fill_in 'spot[address]',  with: @spot.address
-
-        #「→ 店情報の入力完了ボタン」をクリックすると、Spotが新たに作られている
-        click_on '→　店情報の入力完了'
-      end
-
+    describe 'wine投稿画面のテスト' do
       it 'wineの情報入力' do
+        sign_in @member
          # wine投稿ページに遷移する
-        visit new_wine_path
-
+        visit new_wine_path(spot_id: @spot.id)
         #画像を選択
-        #attach_file 'wine[wine_image]', "#{Rails.root}/spec/fixtures/sakura_1.jpg"
-
-        #情報を入力する
-        #fill_in 'wine[genre_id]',  with: @genre.id
-        #find("#wine_genre_id").find("option[value='White']").select_option
-        #select(value = 'White', from: "wine[genre_id]")
-        #select "White", from: "wine_genre_id"
-
+        attach_file 'wine[wine_image]', "#{Rails.root}/spec/fixtures/sakura_1.jpg", match: :first
+        #ワインジャンルを選ぶ
+        find("#wine_genre_id", match: :first).find("option[value='1']").select_option
         #wineが作成される
-        expect{click_on '→　投稿する'}.to change { Wine.count }.by(1)
+        expect{click_on '→　投稿する', match: :first}.to change { Wine.count }.by(1)
       end
     end
+
+    describe '詳細画面のテスト' do
+      before do
+        sign_in @member
+        visit wine_path(@wine.id)
+      end
+	    context '表示の確認' do
+        it 'wineの情報が画面に表示されていること' do
+          #sign_in @member
+          #visit wine_path(@wine.id)
+	        expect(page).to have_content @wine.wine_name
+	        expect(page).to have_content @wine.production_country
+	        expect(page).to have_content @wine.production_year
+	        expect(page).to have_content @wine.impression
+	      end
+	      it 'Editリンクが表示される' do
+	        expect(page).to have_content('Edit')
+				end
+	    end
+	  end
 end

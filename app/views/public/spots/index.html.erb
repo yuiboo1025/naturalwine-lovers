@@ -64,6 +64,7 @@
       <% @spots.each do |spot|%>
         ( function() {
           // 緯度経度のデータ作成(データがなければ0度のところにピンを立てる。)
+            // 論理和代入演算子 (x ||= y) は、x が偽値である場合にのみ代入を行います。
           let markerLatLng = { lat: <%= spot.lat ||= 0 %>, lng: <%= spot.lng ||= 0 %> };
           let marker = new google.maps.Marker({
             position: markerLatLng,

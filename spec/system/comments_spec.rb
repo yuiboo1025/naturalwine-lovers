@@ -8,7 +8,7 @@ RSpec.describe 'Comment', type: :system do
     @wine = FactoryBot.create(:wine, member_id: @member.id, genre_id: @genre.id, spot_id: @spot.id)
   end
 
-  context 'commentの投稿' do
+  describe 'commentの投稿' do
     it 'commentの投稿ができる' do
       # 投稿詳細ページへ移動する
       visit wine_path(@wine)

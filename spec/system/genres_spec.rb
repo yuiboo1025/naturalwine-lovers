@@ -6,7 +6,7 @@ RSpec.describe 'Genre', type: :system do
     @genre = FactoryBot.create(:genre)
   end
 
-  context 'genreの追加' do
+  describe 'genreの追加,削除' do
     it 'genreの追加ができる' do
       # ジャンル一覧ページへ移動する
       visit admin_genres_path
@@ -15,9 +15,7 @@ RSpec.describe 'Genre', type: :system do
       # サインアップボタンを押すとユーザーモデルのカウントが1上がることを確認する
       expect{click_on '新規登録'}.to change { Genre.count }.by(1)
     end
-  end
 
-  context 'genreの削除' do
     it 'genreの削除ができる' do
       # ジャンル一覧ページへ移動する
       visit admin_genres_path

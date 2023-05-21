@@ -32,6 +32,19 @@ window.raty = function(elem,opt) {
 }
 
 //フラッシュメッセージがフェードアウトする
+//setTimeoutとは、指定した秒数だけ処理の実行を遅らせることのできるJavaScriptのメソッド
 $(function() {
   setTimeout("$('.flash-message').fadeOut('slow')", 2000);
+});
+
+//headerハンバーガーメニュー
+//「this」は、イベントが発生した要素のみ変化させたいときに使います。
+$(function() {
+  $('.menu-trigger').on('click', function(event) {
+    //toggleClass()を設定すると、アイコンがクリックされたときにactiveクラスが追加され、もう一度クリックすると削除されます。
+    $(this).toggleClass('active');
+    //fadeToggle()は、要素のフェードイン・フェードアウトを切り替えるメソッド
+    $('#sp-menu').fadeToggle();
+    event.preventDefault();
+  });
 });
