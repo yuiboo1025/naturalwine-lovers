@@ -59,20 +59,15 @@ RSpec.describe 'ログイン', type: :system do
     it '保存されているユーザーの情報と合致すればログインができる' do
       # トップページに移動する
       visit root_path
-
       # トップページにログインページへ遷移するボタンがあることを確認する
       expect(page).to have_content('Log-In')
-
       # ログインページへ遷移する
       visit new_member_session_path
-
       # 正しいユーザー情報を入力する
       fill_in 'member[email]', with: @member.email
       fill_in 'member[password]', with: @member.password
-
       # ログインボタンを押す
       click_on 'Log-In'
-
       # マイページへ遷移することを確認する
       expect(current_path).to eq wines_myindex_path(@member)
     end
@@ -81,20 +76,15 @@ RSpec.describe 'ログイン', type: :system do
     it '保存されているユーザーの情報と合致しないとログインができない' do
       # トップページに移動する
       visit root_path
-
       # トップページにログインページへ遷移するボタンがあることを確認する
       expect(page).to have_content('Log-In')
-
       # ログインページへ遷移する
       visit new_member_session_path
-
       # ユーザー情報を入力する
       fill_in 'member[email]',  with: ''
       fill_in 'member[password]', with: ''
-
       # ログインボタンを押す
       click_on 'Log-In'
-
       # ログインページへ戻されることを確認する
       expect(current_path).to eq new_member_session_path
     end
