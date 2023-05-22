@@ -48,6 +48,7 @@
         <% if @member.name != "guestuser" %>
           <%= link_to "→ Edit", edit_member_path(@member), class:"btn btn-info btn-info px-5 py-1 member_show__edit_btn" %>
         <% end %>
+        <%= link_to "→Mypage", wines_myindex_path, class:"btn px-3 py-1 ml-3 member_edit__back_btn" %>
       </div>
     </div>
 </div>

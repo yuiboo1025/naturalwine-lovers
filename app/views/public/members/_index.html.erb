@@ -21,50 +21,61 @@
 
       <% unless members.empty? %>
 
-      <table class="table member_index_table">
-        <thead>
-          <th>ユーザー名</th>
-          <th class="sm_size">在住県</th>
-          <th class="sm_size">好きなワインのジャンル</th>
-          <th class="sm_size">ナチュール記録数</th>
-          <th class="sm_size">フォロー数</th>
-          <th class="sm_size">フォロワー数</th>
-          <th></th>
-        </thead>
-        <% members.each do |member| %>
-        <tbody>
-          <tr>
-            <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
-              <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
-              <%= member.name %>
-            </td>
-            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.prefecture %></td>
-            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
-            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
-          <%# フォロー数、フォロワー数、フォローボタンを非同期化 %>
-            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>">
-              <div class="followings_count-<%= member.id %>">
-                <%= render "public/relationships/followings_counter", member: member %>
-              </div>
-            </td>
-            <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>">
-              <div class="followers_count-<%= member.id %>">
-                <%= render "public/relationships/followers_counter", member: member %>
-              </div>
-            </td>
-            <td class="relationships_btn-<%= member.id %>">
-              <%= render 'public/relationships/relationship', member: member %>
-            </td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
+        <table class="table member_index_table">
+          <%#
+          <thead>
+            <th>ユーザー名</th>
+            <th class="sm_size">在住県</th>
+            <th class="sm_size">好きなワインのジャンル</th>
+            <th class="sm_size">ナチュール記録数</th>
+            <th class="sm_size">フォロー数</th>
+            <th class="sm_size">フォロワー数</th>
+            <th></th>
+          </thead>
+          %>
+          <thead>
+            <th><%= sort_link(@q, :name, "ユーザー名") %></th>
+            <th class="sm_size"><%= sort_link(@q, :prefecture, "在住県") %></th>
+            <th class="sm_size"><%= sort_link(@q, :genre_genre_name, "好きなワインのジャンル") %></th>
+            <th class="sm_size">ナチュール記録数</th>
+            <th class="sm_size">フォロー数</th>
+            <th class="sm_size">フォロワー数</th>
+            <th></th>
+          </thead>
+          <% members.each do |member| %>
+          <tbody>
+            <tr>
+              <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
+                <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
+                <%= member.name %>
+              </td>
+              <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.prefecture %></td>
+              <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.favorite_genre %></td>
+              <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>"><%= member.wines.count %></td>
+            <%# フォロー数、フォロワー数、フォローボタンを非同期化 %>
+              <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>">
+                <div class="followings_count-<%= member.id %>">
+                  <%= render "public/relationships/followings_counter", member: member %>
+                </div>
+              </td>
+              <td class="member_index_tbody_td sm_size" data-href="../../wines/myindex/<%= member.id%>">
+                <div class="followers_count-<%= member.id %>">
+                  <%= render "public/relationships/followers_counter", member: member %>
+                </div>
+              </td>
+              <td class="relationships_btn-<%= member.id %>">
+                <%= render 'public/relationships/relationship', member: member %>
+              </td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
 
       <% else %>
-      <p>
-      ユーザーが見つかりませんでした。<br>
-      お探しのユーザー名を確認してください。
-      </p>
+        <p>
+        ユーザーが見つかりませんでした。<br>
+        お探しのユーザー名を確認してください。
+        </p>
       <% end %>
 
     </div>

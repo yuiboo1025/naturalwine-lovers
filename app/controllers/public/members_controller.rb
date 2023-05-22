@@ -1,9 +1,13 @@
 class Public::MembersController < ApplicationController
+  # ログイン前はユーザー一覧だけ見れるようにする
   before_action :authenticate_member!, except: [:index]
   # ゲストユーザーにはユーザー情報編集できないようにするため
   before_action :ensure_guest_member, only: [:edit]
 
   def index
+    # params[:q]には検索パラメータが渡され、resultにより検索結果を得られる。
+    # rejectメソッド・・・各要素を評価し「偽」となる要素だけを抽出する。
+    
     # params[:q]で、欲しいデータが送られてきているかチェック
     # 送られてきている、かつ、データが存在しているか確認している。
     # 左側のparams[:q]の記述がないと、そもそもデータが送られてきていない場合、エラーが出てきてしまう。
