@@ -13,33 +13,36 @@ class Member < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  
 
   # A：自分がフォローしているユーザーとの関連(与フォロー)
-  # フォローする場合の中間テーブルを「relationships」と名付ける。外部キーは「follower_id」
+  # フォローする場合の中間テーブルを「relationships」と名付ける。外部キーは「follower_id =フォローするユーザのid」
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  # 与フォロー関係を通じて参照→自分がフォローしている人
+  # 与フォロー関係を通じて参照→自分がフォローしている人. followings = フォローしている人
   has_many :followings, through: :relationships, source: :followed
 
   # B：自分がフォローされるユーザーとの関連(被フォロー)
-  # フォローする場合の中間テーブルを「reverse_of_relationships」と名付ける。外部キーは「followed_id」
+  # フォローする場合の中間テーブルを「reverse_of_relationships」と名付ける。外部キーは「followed_id =フォローされるユーザのid」
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  # 被フォロー関係を通じて参照→自分をフォローしている人
+  # 被フォロー関係を通じて参照→自分をフォローしている人  followers = フォローしてくれている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_one_attached :profile_image
 
-  # フォローをした時の処理
+  # フォローをした時の処理(relationshipsコントローラで使用)
+  # followed_id=フォローされるユーザのid
   def follow(member)
     relationships.create(followed_id: member.id)
   end
-  # フォローを外す時の処理
+  # フォローを外す時の処理(relationshipsコントローラで使用)
   def unfollow(member)
     relationships.find_by(followed_id: member.id).destroy
   end
-  # フォローしているか判定
+  # フォローしているか判定(viewで使用)
   def following?(member)
     followings.include?(member)
   end
+
 
   # プロフィール写真を表示するためのメソッドを作成
   def get_profile_image(width, height)

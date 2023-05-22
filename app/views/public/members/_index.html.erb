@@ -22,7 +22,7 @@
       <% unless members.empty? %>
 
         <table class="table member_index_table">
-          <%#
+          
           <thead>
             <th>ユーザー名</th>
             <th class="sm_size">在住県</th>
@@ -32,19 +32,21 @@
             <th class="sm_size">フォロワー数</th>
             <th></th>
           </thead>
-          %>
+          <!--
           <thead>
-            <th><%= sort_link(@q, :name, "ユーザー名") %></th>
-            <th class="sm_size"><%= sort_link(@q, :prefecture, "在住県") %></th>
-            <th class="sm_size"><%= sort_link(@q, :genre_genre_name, "好きなワインのジャンル") %></th>
+            <th><%#= sort_link(@q, :name, "ユーザー名") %></th>
+            <th class="sm_size"><%#= sort_link(@q, :prefecture, "在住県") %></th>
+            <th class="sm_size"><%#= sort_link(@q, :genre_genre_name, "好きなワインのジャンル") %></th>
             <th class="sm_size">ナチュール記録数</th>
             <th class="sm_size">フォロー数</th>
             <th class="sm_size">フォロワー数</th>
             <th></th>
           </thead>
+          -->
           <% members.each do |member| %>
           <tbody>
             <tr>
+              <%# 列(class="member_index_tbody_td")でクリックするとリンクに飛ぶようにjsファイルに記載。 %>
               <td class="member_index_tbody_td" data-href="../../wines/myindex/<%= member.id%>">
                 <%= image_tag member.get_profile_image(60,60), class: "rounded-circle" %>
                 <%= member.name %>
@@ -86,16 +88,3 @@
   </div>
 
 </div>
-
-<style>
-  .member_index_search {
-    margin-left: 100px;
-  }
-
-  @media screen and (max-width:425px) {
-    .member_index_search {
-      margin-left: 20px;
-      margin-top: 10px;
-    }
-  }
-</style>
