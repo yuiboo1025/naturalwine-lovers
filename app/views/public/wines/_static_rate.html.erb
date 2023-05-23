@@ -3,8 +3,9 @@
 window.onload = function() { //HTMLを読み込んでからscriptを読み込む
    //querySelector()」は、JavaScriptから任意のHTML要素を検出・取得することができるメソッド
   let elem = document.querySelector('#rate_<%= wine.id %>');
-  if (elem == null) return;
-  
+  if (elem == null) return; //elem=nullの場合、
+  　
+   //innerHTML・・・HTML要素の中身を変更するときに使われるプロパティ
   elem.innerHTML = "";
   let opt = {  
     starOn: "<%= asset_path('star-on.png') %>",
