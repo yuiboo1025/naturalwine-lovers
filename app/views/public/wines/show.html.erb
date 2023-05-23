@@ -78,6 +78,7 @@
             </tr>
           </table>
           <div class="wine_show__edit_destroy_btn text-right">
+            <%# 自分の投稿にのみ、編集・削除ボタン表示 %>
             <% if @wine.member == current_member %>
               <%= link_to "Edit", edit_wine_path(@wine), class: "wine_show__edit_btn px-2" %>
               <%= link_to "Delete", wine_path(@wine), method: :delete, class: "wine_show__destroy_btn px-2", "data-confirm" => "本当に削除しますか？" %>

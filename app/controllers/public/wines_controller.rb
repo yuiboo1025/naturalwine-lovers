@@ -1,10 +1,13 @@
 class Public::WinesController < ApplicationController
+  #ログインしていないと、投稿一覧画面以外は見れない
   before_action :authenticate_member!, except: [:index]
 
   def index
     # アソシエーション先での検索方法。(wineからmemberを指定して取り出したいときの書き方)
     @wines = Wine.includes(:member).where(member: { is_deleted: false }).order(id: "DESC")
     @genres = Genre.all
+    # 左外部結合（LEFT OUTER JOIN）は、1つ目のテーブルのカラムを優先して2つ目のテーブルを結合する、その際、2つのテーブルのどちらかにしか存在しないデータも含める
+    # includesとwhereを同時に使用すると、SQLの発行回数を少なく抑えつつ、条件をつけられる。
   end
 
   def myindex
@@ -25,6 +28,8 @@ class Public::WinesController < ApplicationController
     # spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
     # 結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
     @spots = Spot.joins(:wines).where(wines: {member_id: @member}).all.uniq
+    # joinsはテーブル同士を内部結合して検索するためのメソッド
+    # joinsとwhere句を組み合わせることによって、内部結合した後に条件を指定してデータ取り出せる
   end
 
   def show

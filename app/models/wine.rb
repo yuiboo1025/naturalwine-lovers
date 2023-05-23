@@ -16,10 +16,12 @@ class Wine < ApplicationRecord
   end
 
   # 引数で渡されたメンバーidがFavoritesテーブル内に存在（exists?） していればtrue、存在していなければfalseを返す
+  # bookmark-btnファイルで使用
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)
   end
-
+  
+  # favorite-btnファイルで使用
   def bookmarked_by?(member)
     bookmarks.exists?(member_id: member.id)
   end

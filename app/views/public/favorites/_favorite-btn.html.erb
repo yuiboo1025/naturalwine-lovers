@@ -1,4 +1,4 @@
-  <%# ログインしていない場合にはカウント表示のみでいいね押せない %>
+  <%# ログインしていない場合にはいいねを押すと、ログイン画面へ遷移 %>
   <% if member_signed_in? %>
 
     <% if wine.favorited_by?(current_member) %>
@@ -12,5 +12,7 @@
     <% end %>
 
   <% else %>
+    <%= link_to new_member_session_path  do %>
       ♡<%= wine.favorites.count %>
+    <% end %>
   <% end %>

@@ -1,4 +1,4 @@
-  <%# ログインしていない場合には表示させない %>
+  <%# ログインしていない場合にはブックマークボタンを押すと、ログイン画面へ遷移 %>
   <% if member_signed_in? %>   
     
     <% if wine.bookmarked_by?(current_member) %>
@@ -9,6 +9,12 @@
       <%= link_to wine_bookmarks_path(wine),method: :post, remote: true  do %>
       <i class="far fa-bookmark"></i><%#= wine.bookmarks.count %>
       <% end %>
+    <% end %>
+  
+  <% else %>
+  
+    <%= link_to new_member_session_path  do %>
+      <i class="far fa-bookmark"></i>
     <% end %>
     
   <% end %>
