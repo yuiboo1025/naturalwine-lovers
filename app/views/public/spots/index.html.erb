@@ -38,27 +38,16 @@
 
 <!-- js部分 -->
 <script>
-    function initMap() {
+    function initMap() { //コールバック関数
 
       //初期表示位置
-      let latlng = new google.maps.LatLng(36.00, 137.6);
-      //デザイン
-      let styles = [
-           {
-            stylers: [
-             { "saturation": 0 },
-             { "lightness": 0 }
-            ]
-           }
-          ];
-
-      let map = new google.maps.Map(document.getElementById('map'), {
+      let latlng = new google.maps.LatLng(36.00, 137.6); //LatLngクラスは位置座標のインスタンスを作成するためのクラス
+      
+      //指定したオプションで新しい地図を作成。optionsはcenterとzoomの設定が必須。
+      let map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
           zoom: 7,
-          styles: styles,
           center: latlng
       });
-      let transitLayer = new google.maps.TransitLayer();
-      transitLayer.setMap(map);
 
 //複数マーカー ここから
       <% @spots.each do |spot|%>
@@ -74,7 +63,8 @@
           let infowindow = new google.maps.InfoWindow({
             position: markerLatLng,
             content: "<a href='<%= spot_path(spot.id) %>' data-turbolinks='false'><%= spot.spot_name %></a>"
-          }); //ここで詳細ページへのリンクを表示させる
+          });
+          //ここで詳細ページへのリンクを表示させる
           marker.addListener('click', function() {
             infowindow.open(map, marker);
           });

@@ -114,7 +114,7 @@ function codeAddress(){
   
     //該当する検索結果がヒットした時
     if (status == 'OK') {
-        //マーカーが複数できないようにする
+        //マーカーが複数できないようにする　aft = trueであれば、マーカーを削除する
         if (aft == true){
             //Marker.setMap()はMarkerクラスのメソッド。マーカーを指定した地図に設置します。引数にnullを指定すると、地図から取り除きます。
             marker.setMap(null);
@@ -124,15 +124,17 @@ function codeAddress(){
          //Map.setCenter()はMapクラスのメソッド。地図の位置座標をセットすると同時に、表示もその位置に変更されます。
         map.setCenter(results[0].geometry.location);
             marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-            draggable: true	// ドラッグ可能にする
-        });
+              map: map,
+              position: results[0].geometry.location,
+              draggable: true	// ドラッグ可能にする
+          });
 
-        //二度目以降か判断
+        //二度目以降か判断するため、マーカー作成後　aft = true　にする
         aft = true
 
         //検索した時に緯度経度を入力する
+         　//getElementById・・・Webページ(document)上から特定のidを持つオブジェクトを入手する関数
+         　//緯度経度のエディットボックスに書き込まれている文字列(value)が得られる
         document.getElementById('lat').value = results[0].geometry.location.lat();
         document.getElementById('lng').value = results[0].geometry.location.lng();
 
@@ -140,8 +142,9 @@ function codeAddress(){
         $('#spot_address').val(getAddress(results[0].formatted_address));
 
         // マーカーのドロップ（ドラッグ終了）時のイベント
+         //「addEventListener()」は、JavaScriptからさまざまなイベント処理を実行することができるメソッド
         google.maps.event.addListener( marker, 'dragend', function(ev){
-            // イベントの引数evの、プロパティ.latLngが緯度経度
+            // イベントの引数evの、プロパティ.latLngが緯度経度 LatLngクラスは位置座標のインスタンスを作成するためのクラス
             document.getElementById('lat').value = ev.latLng.lat();
             document.getElementById('lng').value = ev.latLng.lng();
 
