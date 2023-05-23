@@ -120,20 +120,25 @@
 <!-- js部分 -->
 <script>
 //初期マップの設定
-let map
+let map //変数の定義
 let marker
-function initMap(){
-  geocoder = new google.maps.Geocoder()
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: <%= @wine.spot.lat %>, lng: <%= @wine.spot.lng %>},
-    zoom: 15,
+function initMap(){ //コールバック関数
+   //Googleサーバーと通信するために必要なgoogle.maps.Geocoderのオブジェクト（インスタンス）を生成。APIにはこのオブジェクトを通してアクセス。
+  geocoder = new google.maps.Geocoder() 
+  
+  //指定したオプションで新しい地図を作成。optionsはcenterとzoomの設定が必須。
+  map = new google.maps.Map(document.getElementById('map'), {  //'map'というidを取得してマップを表示
+    center:  {lat: <%= @wine.spot.lat %>, lng: <%= @wine.spot.lng %>}, //緯度軽度を取得
+    zoom: 15,  //数値は0〜21まで指定でき、数値が大きいほど拡大される
   });
-
+  
+  //指定したオプションで地図上にマーカーを作成。optionsはpositionの設定が必須。
    marker = new google.maps.Marker({
-    position:  {lat: <%= @wine.spot.lat %>, lng: <%= @wine.spot.lng %>},
-    map: map
+    position:  {lat: <%= @wine.spot.lat %>, lng: <%= @wine.spot.lng %>}, //マーカーの位置を指定。
+    map: map //マーカーを配置する地図を指定。
   });
 }
 </script>
+
+<%# URLにパラメータでcallback=initMapを付与して、APIが読み込まれたらinitMap()という関数を実行するようにしている。%>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY']%>&callback=initMap" async defer></script>

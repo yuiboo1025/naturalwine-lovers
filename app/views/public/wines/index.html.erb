@@ -18,8 +18,8 @@
       <% @genres.each do |genre| %>
         <li><a href="#tab-<%= genre.genre_name %>" class=""><%= genre.genre_name %></a></li>
       <% end %>
-      </ul>
-   </div>
+    </ul>
+  </div>
 </div>
 
 <!-- タブの内容作成-->
@@ -79,7 +79,6 @@
     <% @genres.each do |genre| %>
       <div id="tab-<%= genre.genre_name %>" class="tab">
         <% genre.wines.each do |wine| %>
-          <!--ブックマークをdestroyした際に一覧から消す非同期設定のためにidを設定-->
           <div>
             <div class="card-deck wine_card my-2 pt-1 px-1" style="width:310px;">
               <div class ="card">

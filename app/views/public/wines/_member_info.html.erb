@@ -4,6 +4,7 @@
         <h4 class="text-left">
           <%= image_tag member.get_profile_image(70,70), class: "rounded-circle member_info_profile_image" %>
           <%= member.name %>
+           <%# 自分のmypageにのみ、member_showページリンクを表示%>
           <% if member == current_member %>
             <%= link_to member_path(member), class: "text_blue" do %>
               &nbsp;<i class="fas fa-user-cog"></i>

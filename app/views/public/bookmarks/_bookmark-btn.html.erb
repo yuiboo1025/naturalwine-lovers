@@ -1,13 +1,14 @@
   <%# ログインしていない場合にはブックマークボタンを押すと、ログイン画面へ遷移 %>
   <% if member_signed_in? %>   
-    
+  
+     <%# wineモデルで作成したメソッドを使用 %>
     <% if wine.bookmarked_by?(current_member) %>
        <%= link_to wine_bookmarks_path(wine),method: :delete, remote: true do %>
-       <i class="fas fa-bookmark"></i><%#= wine.bookmarks.count %>
+       <i class="fas fa-bookmark"></i>
        <% end %>
     <% else %>
       <%= link_to wine_bookmarks_path(wine),method: :post, remote: true  do %>
-      <i class="far fa-bookmark"></i><%#= wine.bookmarks.count %>
+      <i class="far fa-bookmark"></i>
       <% end %>
     <% end %>
   

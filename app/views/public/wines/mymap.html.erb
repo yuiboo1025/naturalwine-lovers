@@ -55,7 +55,8 @@
             ]
            }
           ];
-
+      
+       //指定したオプションで新しい地図を作成。optionsはcenterとzoomの設定が必須。
       let map = new google.maps.Map(document.getElementById('map'), {
           zoom: 7,
           styles: styles,
@@ -88,4 +89,5 @@
   }
 </script>
 
+<%# URLにパラメータでcallback=initMapを付与して、APIが読み込まれたらinitMap()という関数を実行するようにしている。%>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY']%>&callback=initMap" async defer></script>
