@@ -14,7 +14,6 @@ class Member < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   
-
   # A：自分がフォローしているユーザーとの関連(与フォロー)
   # フォローする場合の中間テーブルを「relationships」と名付ける。外部キーは「follower_id =フォローするユーザのid」
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

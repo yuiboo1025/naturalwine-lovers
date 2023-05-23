@@ -13,13 +13,14 @@ class Public::MembersController < ApplicationController
     # 左側のparams[:q]の記述がないと、そもそもデータが送られてきていない場合、エラーが出てきてしまう。
     @exist_members = Member.where(is_deleted: false)
     if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
-      @q = @exist_members.ransack(search_params, activated_true: true)
+      @q = @exist_members.ransack(search_params)
       @title = "検索結果"
     else
-      @q = @exist_members.ransack(activated_true: true)
+      @q = @exist_members.ransack
       @title = "全てのユーザー"
     end
     @members = @q.result.page(params[:page]).per(6)
+
   end
 
   def followings
