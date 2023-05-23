@@ -139,6 +139,7 @@
         <div id="post_raty"></div>
         <script>
           window.onload = function() {　//HTMLを読み込んでからscriptを読み込む
+             //querySelector()」は、JavaScriptから任意のHTML要素を検出・取得することができるメソッド
             let elem = document.querySelector('#post_raty');
             if (elem == null) return;
 
@@ -147,7 +148,7 @@
               starOn: "<%= asset_path('star-on.png') %>",
               starOff: "<%= asset_path('star-off.png') %>",
               starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'wine[rate]',
+              scoreName: 'wine[rate]', //これがwineモデルのrateカラムへ値を保存という意味になる。
              };
             raty(elem, opt);
            }

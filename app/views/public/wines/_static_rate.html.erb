@@ -1,6 +1,7 @@
 <div id="rate_<%= wine.id %>"></div>
 <script>
 window.onload = function() { //HTMLを読み込んでからscriptを読み込む
+   //querySelector()」は、JavaScriptから任意のHTML要素を検出・取得することができるメソッド
   let elem = document.querySelector('#rate_<%= wine.id %>');
   if (elem == null) return;
   

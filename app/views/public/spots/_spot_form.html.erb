@@ -134,7 +134,7 @@ function codeAddress(){
 
         //検索した時に緯度経度を入力する
          　//getElementById・・・Webページ(document)上から特定のidを持つオブジェクトを入手する関数
-         　//緯度経度のエディットボックスに書き込まれている文字列(value)が得られる
+         　//緯度経度のエディットボックスに書き込まれている文字列(value)に、検索後の緯度経度の値を代入
         document.getElementById('lat').value = results[0].geometry.location.lat();
         document.getElementById('lng').value = results[0].geometry.location.lng();
 
