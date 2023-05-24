@@ -5,8 +5,11 @@
 
   <div class="row">
     <div class="col text-center">
-      <% provide(:title,'ユーザー検索') %>
-      <h4><%= title %></h4>
+      <% if member.present? %>
+        <h4><%= image_tag member.get_profile_image(40,40), class: "rounded-circle" %>&thinsp;<%= member.name %>の<%= title %></h4>
+      <% else %>
+        <h4><%= title %></h4>
+      <% end %>
     </div>
   </div>
 
