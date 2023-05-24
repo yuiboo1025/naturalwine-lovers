@@ -41,7 +41,7 @@
                 </div>
                 <div class ="card_wine_image text-center">
                   <%= link_to admin_wine_path(wine) do %>
-                    <%= image_tag wine.get_wine_image(260,290) %>
+                    <%= image_tag wine.get_wine_image(260,290), :alt => "wine画像", class:"index_wine_img" %>
                   <% end %>
                 </div>
                 <div class ="card_member_name ml-4 mt-1">
@@ -89,7 +89,7 @@
                   </div>
                   <div class ="card_wine_image text-center">
                     <%= link_to admin_wine_path(wine) do %>
-                      <%= image_tag wine.get_wine_image(260,290) %>
+                      <%= image_tag wine.get_wine_image(260,290), :alt => "wine画像", class:"index_wine_img" %>
                     <% end %>
                   </div>
                   <div class ="card_member_name ml-4 mt-1">

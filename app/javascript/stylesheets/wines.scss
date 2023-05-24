@@ -50,16 +50,19 @@
  }
 
 
-
 //indexページ
 #tab-menu {
   display: flex;
 }
-
 #tab-menu li {
   list-style-type: none;
   width: 20%;
   border-bottom: 2px solid #3d83bf;
+}
+.index_wine_img{ //一覧ページの投稿写真を正方形に調整
+	width: 250px;
+	height: 255px;
+	object-fit: cover;
 }
 
 @media screen and (max-width:425px) { //レスポンシブ対応(タブ)
