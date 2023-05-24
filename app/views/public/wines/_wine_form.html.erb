@@ -83,8 +83,11 @@
         <tr>
           <th class="table-active">また飲みたい判定</th>
           <td class="text_left">
-            <%= f.radio_button :is_again, true %>&emsp;また飲みたいリストに入れる
-　　　　　　<%= f.radio_button :is_again, false %>&emsp;また飲みたいリストには入れない
+            <%= f.radio_button :is_again, true %>
+            <%= f.label :is_again, "また飲みたいリストに入れる", value: true %>
+            &emsp;&emsp;
+            <%= f.radio_button :is_again, false %>
+            <%= f.label :is_again, "また飲みたいリストには入れない", value: false %>
           </td>
         </tr>
       </table>
@@ -169,8 +172,10 @@
       また飲みたい判定
     </div>
     <div>
-      <%= f.radio_button :is_again, true %>&emsp;また飲みたいリストに入れる<br />
-      <%= f.radio_button :is_again, false %>&emsp;また飲みたいリストには入れない
+      <%= f.radio_button :is_again, true %>
+      <%= f.label :is_again, "また飲みたいリストに入れる", value: true %><br />
+      <%= f.radio_button :is_again, false %>
+      <%= f.label :is_again, "また飲みたいリストには入れない", value: false %>
     </div>
 
     <div class="row justify-content-center">
