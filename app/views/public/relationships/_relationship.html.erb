@@ -1,5 +1,7 @@
 <% if member_signed_in? %>
+   <%# 自分以外のマイページにフォローボタンを %>
   <% if current_member != member %>
+     <%# wineモデルで作成した .following?(member) メッソドを使用 %>
     <% if current_member.following?(member) %>
       <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, remote: true, class: "btn unfollow_btn pr-2 pl-2 ml-4" %>
     <% else %>
