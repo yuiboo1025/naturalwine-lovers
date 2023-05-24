@@ -5,6 +5,7 @@
 
   <div class="row">
     <div class="col text-center">
+      <%# 個人のフォローユーザー表示ページには、タイトルにユーザー名を表示させる%>
       <% if member.present? %>
         <h4><%= image_tag member.get_profile_image(40,40), class: "rounded-circle" %>&thinsp;<%= member.name %>の<%= title %></h4>
       <% else %>
