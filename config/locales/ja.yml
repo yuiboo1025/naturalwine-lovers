@@ -6,3 +6,12 @@ ja:
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
+      
+ja:
+  activerecord:
+    attributes:
+      member:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        name: ユーザー名
