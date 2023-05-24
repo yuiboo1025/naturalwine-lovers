@@ -45,6 +45,10 @@ class Public::WinesController < ApplicationController
   def edit
     @wine = Wine.find(params[:id])
     @spot = @wine.spot
+    # 違う人の投稿編集画面へはurlからでも遷移できないように制限
+    unless @wine.member.id == current_member.id
+      redirect_to wine_path(@wine)
+    end
   end
 
   def create
@@ -60,6 +64,11 @@ class Public::WinesController < ApplicationController
 
   def update
     @wine = Wine.find(params[:id])
+    # 違う人の投稿は更新できないように制限
+    unless @wine.member.id == current_member.id
+      redirect_to wine_path(@wine)
+    end
+    
     if @wine.update(wine_params)
       flash[:notice] = "ナチュール投稿の更新が完了しました。"
       redirect_to wine_path(@wine.id)

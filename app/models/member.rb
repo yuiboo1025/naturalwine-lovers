@@ -15,15 +15,19 @@ class Member < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   
   # A：自分がフォローしているユーザーとの関連(与フォロー)
-  # フォローする場合の中間テーブルを「relationships」と名付ける。外部キーは「follower_id =フォローするユーザのid」
+  # フォローする場合の中間テーブルを「relationships」と名付ける。外部キー「follower_id =フォローするユーザのid」で参照するカラムを指定
+  # フォローする側(follower_id)を元にフォローされる側(followed_id)を引っ張ってくるので、primary_key(外部キー)をfollower_idに指定する必要がある
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  # 与フォロー関係を通じて参照→自分がフォローしている人. followings = フォローしている人
+  # 与フォロー関係を通じて参照→自分がフォローしている人. followings = フォローしている人 (一覧画面で使う)
+  # 自分がフォローした人を集めるには、"followed"モデルを参照することになるため、source: :followedを記述する。
   has_many :followings, through: :relationships, source: :followed
 
-  # B：自分がフォローされるユーザーとの関連(被フォロー)
-  # フォローする場合の中間テーブルを「reverse_of_relationships」と名付ける。外部キーは「followed_id =フォローされるユーザのid」
+  # B：自分をフォローしているユーザーとの関連(被フォロー)
+  # フォローされる場合の中間テーブルを「reverse_of_relationships」と名付ける。外部キー「followed_id =フォローされるユーザのid」で参照するカラムを指定
+  # フォローされる側(followed_id)を元にフォローする側(follower_id)を引っ張ってくるので、primary_key(外部キー)をfollowed_idに指定する必要がある
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  # 被フォロー関係を通じて参照→自分をフォローしている人  followers = フォローしてくれている人
+  # 被フォロー関係を通じて参照→自分をフォローしている人  followers = フォローしてくれている人 (一覧画面で使う)
+  # 自分のことをフォローした人を集めるには、"follower"モデルを参照することになるため、source: :followerを記述する。
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_one_attached :profile_image
