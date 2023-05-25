@@ -45,7 +45,7 @@ class Public::WinesController < ApplicationController
   def edit
     @wine = Wine.find(params[:id])
     @spot = @wine.spot
-    # 違う人の投稿編集画面へはurlからでも遷移できないように制限
+    # 違う人の投稿編集画面へはurlからでも遷移できないよう制限
     unless @wine.member.id == current_member.id
       redirect_to wine_path(@wine)
     end
