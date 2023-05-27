@@ -135,15 +135,15 @@
     </div>
     <div class="field my-3 font_bold">
       評価<br />
-      
+
       <div>
       <% if wine.id.nil? %>
         <div class="form-group" id="star"></div>
-        <div id="post_raty"></div>
+        <div id="post_raty_2"></div>
         <script>
           window.onload = function() {　//HTMLを読み込んでからscriptを読み込む
              //querySelector()」は、JavaScriptから任意のHTML要素を検出・取得することができるメソッド
-            let elem = document.querySelector('#post_raty');
+            let elem = document.querySelector('#post_raty_2');
             if (elem == null) return;
 
             elem.innerHTML = ""
@@ -162,7 +162,7 @@
         </div>
       <% end %>
       </div>
-      
+
     </div>
     <div class="field my-3 font_bold">
       感想<br />
