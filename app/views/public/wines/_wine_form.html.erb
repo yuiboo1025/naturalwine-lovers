@@ -113,8 +113,8 @@
       飲食店<br />
       <%= spot.spot_name %>
       <%= f.hidden_field :spot_id, value: spot.id %>
-      <%# リンクに(URLに)wine.idの情報を持たせる＝spotデータの中にwine_idとしてwine.idを持たせる %>
-      <%# spotテーブルでparams[:wine_id]としてデータを取り出すことができるようになる %>
+      <%# リンクに(URLに)wine.idの情報を持たせる＝spotデータの中にwine_idとしてwine.idを持たせる。 %>
+      <%# spotテーブルでparams[:wine_id]としてデータを取り出すことができるようになる。 %>
       <%= link_to "編集", edit_spot_path(spot.id, wine_id: wine.id) %>
     </div>
     <div class="field my-3 font_bold">
