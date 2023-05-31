@@ -60,6 +60,7 @@ class Public::SpotsController < ApplicationController
   end
 
   private
+  
     def spot_params
       params.require(:spot).permit(:spot_name, :address, :telephone_number, :lat, :lng)
     end
