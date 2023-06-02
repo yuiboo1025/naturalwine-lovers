@@ -25,11 +25,11 @@ class Public::WinesController < ApplicationController
   
   def mymap
     @member = Member.find(params[:id])
-    # spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている
-    # 結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている
+    # spotテーブルとwineテーブルを結合して、wineの情報があるものだけ取ってきている。
+    # 結合すると、wineの個数分spotのレコードができてしまうので、uniqで重複削除をしている。
     @spots = Spot.joins(:wines).where(wines: {member_id: @member}).all.uniq
     # joinsはテーブル同士を内部結合して検索するためのメソッド
-    # joinsとwhere句を組み合わせることによって、内部結合した後に条件を指定してデータ取り出せる
+    # joinsとwhere句を組み合わせることによって、内部結合した後に条件を指定してデータ取り出せる。
   end
 
   def show
