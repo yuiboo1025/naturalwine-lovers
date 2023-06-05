@@ -52,19 +52,13 @@
               <div class="form-group" id="star"></div>
               <div id="post_raty"></div>
               <script>
-                window.onload = function() {　//HTMLを読み込んでからscriptを読み込む
-                  let elem = document.querySelector('#post_raty');
-                  if (elem == null) return;
-
-                  elem.innerHTML = ""
-                  let opt = {
+                  document.querySelector('#post_raty').innerHTML = ""
+                  raty(document.querySelector('#post_raty'), {
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
                     starHalf: "<%= asset_path('star-half.png') %>",
                     scoreName: 'wine[rate]',
-                   };
-                  raty(elem, opt);
-                 }
+                   });
               </script>
             <% else %>
               <div class="form-group">
@@ -141,20 +135,14 @@
         <div class="form-group" id="star"></div>
         <div id="post_raty_2"></div>
         <script>
-          window.onload = function() {　//HTMLを読み込んでからscriptを読み込む
-             //querySelector()」は、JavaScriptから任意のHTML要素を検出・取得することができるメソッド
-            let elem = document.querySelector('#post_raty_2');
-            if (elem == null) return;
-
-            elem.innerHTML = ""
-            let opt = {
+            //querySelector()」は、JavaScriptから任意のHTML要素を検出・取得することができるメソッド
+            document.querySelector('#post_raty_2').innerHTML = ""
+            raty(document.querySelector('#post_raty_2'), {
               starOn: "<%= asset_path('star-on.png') %>",
               starOff: "<%= asset_path('star-off.png') %>",
               starHalf: "<%= asset_path('star-half.png') %>",
               scoreName: 'wine[rate]', //これがwineモデルのrateカラムへ値を保存という意味になる。
-             };
-            raty(elem, opt);
-           }
+             });
         </script>
       <% else %>
         <div class="form-group">
